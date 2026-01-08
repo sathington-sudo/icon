@@ -4,15 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Icon Computers | Hamilton's Expert Tech Repair</title>
+    
+    <!-- External Scripts -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        /* Immediate styles to prevent "Blank Blue Page" */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #0f172a; 
+            font-family: 'Inter', sans-serif; 
+            color: #f1f5f9;
+        }
         .bg-grid { background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); }
         html { scroll-behavior: smooth; }
+        .bench-gradient { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px 5px rgba(37, 99, 235, 0.3); }
+        }
+        .animate-call-pulse {
+            animation: pulse-soft 3s infinite ease-in-out;
+        }
+
+        /* Loading indicator if React takes too long */
+        #root:empty::after {
+            content: "Initializing Icon Computers...";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #3b82f6;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100">
@@ -21,144 +52,270 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // Lucide-like SVG Icons
         const Icon = ({ name, className = "w-6 h-6" }) => {
             const icons = {
                 wrench: <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>,
                 cpu: <path d="M4 4h16v16H4V4zm4 5h8v6H8V9zM2 9h2m0 3h-2m0 3h2m16-6h2m-2 3h2m-2 3h2M9 2v2m3-2v2m3-2v2M9 20v2m3-2v2m3-2v2"/>,
                 star: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>,
+                monitor: <path d="M2 3h20v10H2V3zm0 14h20v2H2v-2zm8 0h4v4h-4v-4z"/>,
+                harddrive: <path d="M22 12H2M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>,
                 phone: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>,
-                check: <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
+                microscope: (
+                    <React.Fragment>
+                        <path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0-14 0"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 1-2-2V6h6v8h-4"/>
+                    </React.Fragment>
+                ),
+                check: (
+                    <React.Fragment>
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <path d="M22 4L12 14.01l-3-3"/>
+                    </React.Fragment>
+                )
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-                    {icons[name]}
+                    {icons[name] || <circle cx="12" cy="12" r="10" />}
                 </svg>
             );
         };
 
         const App = () => {
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
-
             return (
                 <div className="min-h-screen">
-                    {/* Navigation */}
                     <nav className="fixed w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-7xl mx-auto px-4">
                             <div className="flex items-center justify-between h-20">
                                 <div className="flex items-center gap-2">
                                     <div className="p-2 bg-blue-600 rounded-lg"><Icon name="cpu" className="w-6 h-6 text-white"/></div>
                                     <span className="font-bold text-2xl tracking-tighter uppercase italic">Icon<span className="text-blue-500">Computers</span></span>
                                 </div>
                                 <div className="hidden md:flex items-center gap-8">
-                                    <a href="#services" className="hover:text-blue-400 font-medium transition-colors">The Bench</a>
+                                    <a href="#why-us" className="hover:text-blue-400 font-medium transition-colors">Why Us</a>
+                                    <a href="#bench" className="hover:text-blue-400 font-medium transition-colors">The Bench</a>
+                                    <a href="#services" className="hover:text-blue-400 font-medium transition-colors">Services</a>
                                     <a href="#reviews" className="hover:text-blue-400 font-medium transition-colors">Reviews</a>
-                                    <a href="tel:9054672249" className="bg-blue-600 px-6 py-2 rounded-full font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Call (905) 467-2249</a>
+                                    <a href="tel:9054672249" className="animate-call-pulse flex items-center gap-2 bg-blue-600 px-6 py-2.5 rounded-full font-bold hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/40 group">
+                                        <Icon name="phone" className="w-4 h-4 text-blue-100 group-hover:rotate-12 transition-transform" />
+                                        <span>(905) 467-2249</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </nav>
 
-                    {/* Hero */}
                     <section className="pt-40 pb-20 px-4 bg-grid">
                         <div className="max-w-5xl mx-auto text-center">
-                            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                            <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
                                 Hamilton's <span className="text-blue-500 italic">No-Nonsense</span> Repair Shop.
                             </h1>
-                            <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-                                25 years experience. We fix Macs, PCs, and retrieve lost data when the big box stores say "it's impossible." 
+                            <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                                25 years of bench experience. We don't just swap parts; we diagnose motherboards, recover lost data, and fix what others won't.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-xl shadow-blue-600/20">Book a Repair</a>
-                                <a href="tel:9054672249" className="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-xl border border-slate-700 transition-all">Emergency Call</a>
+                                <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-xl shadow-blue-600/20">Get a Free Quote</a>
+                                <a href="#bench" className="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-xl border border-slate-700 transition-all">Inside The Bench</a>
                             </div>
+                        </div>
+                    </section>
 
-                            {/* Trust Signals */}
-                            <div className="mt-16 pt-8 border-t border-slate-800 flex flex-wrap justify-center items-center gap-8 opacity-70">
-                                <div className="flex items-center gap-2">
-                                    <div className="flex text-orange-400">
-                                        {[...Array(5)].map((_, i) => <Icon key={i} name="star" className="w-4 h-4 fill-current" />)}
-                                    </div>
-                                    <span className="font-bold">4.9/5.0 Google Rating</span>
+                    <section id="why-us" className="py-24 bg-slate-800/30">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                                <div>
+                                    <h2 className="text-4xl font-bold mb-6 italic text-blue-500 underline decoration-slate-700 underline-offset-8">25 Years on the Bench.</h2>
+                                    <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                                        When your business or education depends on your machine, you can't wait for a shipping depot. We provide local, board-level repairs in Hamilton with an average 24-hour turnaround.
+                                    </p>
+                                    <ul className="space-y-4">
+                                        {[
+                                            "No appointment necessary—just walk in.",
+                                            "Board-level micro-soldering experts.",
+                                            "MacBook & iMac specialist (Better value than Apple).",
+                                            "Advanced data recovery (Photos, Files, Tax Docs)."
+                                        ].map((text, i) => (
+                                            <li key={i} className="flex items-center gap-3 font-medium text-slate-200">
+                                                <div className="bg-blue-600/20 p-1 rounded-full"><Icon name="check" className="w-5 h-5 text-blue-500" /></div>
+                                                {text}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                                <div className="flex items-center gap-2 font-bold uppercase text-xs tracking-widest">
-                                    <Icon name="check" className="w-4 h-4 text-blue-500" /> Authorized Repair Center
+                                <div className="grid grid-cols-2 gap-4">
+                                    <StatBox label="Turnaround" value="24h" />
+                                    <StatBox label="Appointments" value="0" />
+                                    <StatBox label="Success Rate" value="98%" />
+                                    <StatBox label="Years Exp." value="25" />
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    {/* Reviews */}
+                    <section id="bench" className="py-24 bench-gradient border-y border-slate-800 overflow-hidden">
+                        <div className="max-w-7xl mx-auto px-4">
+                            <div className="flex flex-col lg:flex-row gap-12 items-center">
+                                <div className="flex-1 text-center lg:text-left">
+                                    <div className="inline-block px-3 py-1 rounded-full bg-blue-600/10 text-blue-500 text-xs font-bold uppercase tracking-widest mb-4">Technical Excellence</div>
+                                    <h2 className="text-4xl font-extrabold mb-6 leading-tight">The Bench: Beyond Simple Repairs</h2>
+                                    <p className="text-slate-400 text-lg mb-8 leading-relaxed">Most shops "repair" by replacing expensive modules. At Icon, we go to the component level. Using high-precision thermal cameras and microscopes, we find the single shorted capacitor or blown trace that's stopping your machine.</p>
+                                    
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div className="p-6 bg-slate-900/50 rounded-xl border border-slate-700/50 text-left">
+                                            <Icon name="microscope" className="w-8 h-8 text-blue-500 mb-4" />
+                                            <h4 className="font-bold text-white mb-2 text-lg">Micro-Soldering</h4>
+                                            <p className="text-sm text-slate-500 leading-relaxed">Repairing individual components on logic boards to save you hundreds over full replacements.</p>
+                                        </div>
+                                        <div className="p-6 bg-slate-900/50 rounded-xl border border-slate-700/50 text-left">
+                                            <Icon name="wrench" className="w-8 h-8 text-blue-500 mb-4" />
+                                            <h4 className="font-bold text-white mb-2 text-lg">Ultrasonic Cleaning</h4>
+                                            <p className="text-sm text-slate-500 leading-relaxed">The only real way to fix liquid damage. We strip corrosion from under chips that others miss.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex-1 relative hidden lg:block">
+                                    <div className="aspect-square bg-blue-600/5 rounded-full absolute -top-12 -right-12 w-96 h-96 blur-3xl"></div>
+                                    <div className="relative z-10 grid grid-cols-12 gap-4">
+                                        <div className="col-span-8 bg-slate-800 rounded-2xl p-4 border border-slate-700 shadow-2xl">
+                                            <div className="w-full h-48 bg-slate-900 rounded-lg mb-3 flex items-center justify-center border border-slate-700/50 overflow-hidden">
+                                                <div className="text-center p-4">
+                                                    <div className="text-blue-500 font-mono text-xs mb-2 italic">LOGIC_BOARD_SCAN_V2.4</div>
+                                                    <div className="w-32 h-1 bg-blue-900 rounded-full mx-auto relative overflow-hidden">
+                                                        <div className="absolute inset-y-0 left-0 w-1/2 bg-blue-500"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p className="text-xs text-slate-500 font-mono"># DIAGNOSTIC FEED: BOARD REV 820-00165... PASS</p>
+                                        </div>
+                                        <div className="col-span-4 bg-blue-600 rounded-2xl flex flex-col items-center justify-center p-4 shadow-xl text-center">
+                                            <span className="text-4xl font-black mb-1 leading-none">01</span>
+                                            <span className="text-[10px] font-bold uppercase tracking-tighter text-blue-100">Hamilton Expert</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="services" className="py-24">
+                        <div className="max-w-7xl mx-auto px-4 text-center">
+                            <h2 className="text-4xl font-bold mb-4">Common Issues We Solve</h2>
+                            <p className="text-slate-400 mb-16">If your tech is failing, we've likely seen it—and fixed it—this week.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <ServiceCard 
+                                    icon="monitor" 
+                                    title="Mac & PC Repair" 
+                                    items={["Cracked Screens", "Battery Failure", "Liquid Damage", "OS Upgrades"]} 
+                                />
+                                <ServiceCard 
+                                    icon="cpu" 
+                                    title="Gaming Rigs" 
+                                    items={["BSOD Crashes", "GPU Upgrades", "Overheating", "Custom Builds"]} 
+                                />
+                                <ServiceCard 
+                                    icon="harddrive" 
+                                    title="Data Recovery" 
+                                    items={["Dead Hard Drives", "Accidental Deletion", "Corrupt SSDs", "Cloud Backups"]} 
+                                />
+                            </div>
+                        </div>
+                    </section>
+
                     <section id="reviews" className="py-24 bg-slate-800/20">
                         <div className="max-w-7xl mx-auto px-4">
-                            <div className="text-center mb-16">
-                                <h2 className="text-4xl font-bold mb-4">Real Reviews. Real Neighbors.</h2>
-                                <p className="text-slate-400">Straight from our Google Business Profile.</p>
+                            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                                <div>
+                                    <h2 className="text-4xl font-bold mb-4">Verified Feedback</h2>
+                                    <p className="text-slate-400">What the Hamilton community says about Chris and the team.</p>
+                                </div>
+                                <div className="bg-slate-800 border border-slate-700 p-4 rounded-xl flex items-center gap-4">
+                                    <div className="bg-white p-2 rounded-lg">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Logo.svg" alt="Google" className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <div className="flex text-orange-400"><Icon name="star" className="w-3 h-3 fill-current"/><Icon name="star" className="w-3 h-3 fill-current"/><Icon name="star" className="w-3 h-3 fill-current"/><Icon name="star" className="w-3 h-3 fill-current"/><Icon name="star" className="w-3 h-3 fill-current"/></div>
+                                        <p className="text-xs font-bold">4.9 Star Rating</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <ReviewCard 
-                                    name="Ali Al-Azzawi" 
-                                    text="The most honest repair place in the city. Chris explained the issue with my motherboard soldering and fixed it when others said to buy a new one." 
-                                />
-                                <ReviewCard 
-                                    name="T. Marshall" 
-                                    text="Fast service. Dropped my laptop off at 10am for a screen repair and it was ready by 4pm the same day. Highly recommend for any student." 
-                                />
-                                <ReviewCard 
-                                    name="Jordan G." 
-                                    text="They recovered data from an old SSD that Apple told me was gone forever. Their pricing is extremely fair compared to big-box stores." 
-                                />
-                            </div>
-                            <div className="mt-12 text-center">
-                                <a href="https://www.google.com/search?q=icon+computers+hamilton+reviews" className="text-blue-500 font-bold hover:underline">View All 150+ Google Reviews →</a>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                                <ReviewCard name="Ali Al-Azzawi" text="The most honest repair place in the city. Chris explained the issue with my motherboard soldering and fixed it when others said to buy a new one." />
+                                <ReviewCard name="T. Marshall" text="Fast service. Dropped my laptop off at 10am for a screen repair and it was ready by 4pm the same day. Highly recommend." />
+                                <ReviewCard name="Jordan G." text="They recovered data from an old SSD that Apple told me was gone forever. Their pricing is extremely fair." />
                             </div>
                         </div>
                     </section>
 
-                    {/* Contact Section */}
-                    <section id="contact" className="py-24 px-4">
-                        <div className="max-w-4xl mx-auto bg-blue-600 rounded-3xl p-8 md:p-16 text-center shadow-2xl shadow-blue-600/20">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6">Need a quote?</h2>
-                            <p className="text-xl text-blue-100 mb-8">Call us or visit our shop on Centennial Pkwy. Most diagnostics are free.</p>
-                            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <section id="contact" className="py-24 px-4 bg-grid">
+                        <div className="max-w-4xl mx-auto bg-blue-600 rounded-3xl p-12 text-center shadow-2xl relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-16 -mt-16"></div>
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to get back to work?</h2>
+                            <p className="text-xl text-blue-100 mb-10">Visit our shop on Centennial Pkwy. No appointment needed.</p>
+                            <div className="flex flex-col md:flex-row justify-center items-center gap-8 bg-slate-900/20 p-8 rounded-2xl">
                                 <div className="text-left">
-                                    <p className="text-xs font-bold uppercase tracking-widest text-blue-200">Visit Us</p>
-                                    <p className="text-xl font-bold">90 Centennial Pkwy N, Hamilton</p>
+                                    <p className="text-xs font-bold uppercase tracking-widest text-blue-200">Shop Address</p>
+                                    <p className="text-xl font-bold text-white">90 Centennial Pkwy N, Hamilton</p>
                                 </div>
-                                <div className="h-10 w-px bg-blue-400 hidden md:block"></div>
                                 <div className="text-left">
-                                    <p className="text-xs font-bold uppercase tracking-widest text-blue-200">Talk to Chris</p>
-                                    <p className="text-xl font-bold">(905) 467-2249</p>
+                                    <p className="text-xs font-bold uppercase tracking-widest text-blue-200">Call the Bench</p>
+                                    <p className="text-xl font-bold text-white">(905) 467-2249</p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <footer className="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
-                        <p>© 2026 Icon Computers. Serving Hamilton, Stoney Creek & Dundas since 1999.</p>
+                    <footer className="py-12 text-center text-slate-600 text-sm">
+                        <p>© 2026 Icon Computers. Hamilton, Ontario. Established 1999.</p>
                     </footer>
                 </div>
             );
         };
 
-        const ReviewCard = ({ name, text }) => (
-            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 relative hover:border-blue-500 transition-colors">
-                <div className="flex text-orange-400 mb-4">
-                    {[...Array(5)].map((_, i) => <Icon key={i} name="star" className="w-4 h-4 fill-current" />)}
+        const StatBox = ({ label, value }) => (
+            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 text-center shadow-lg hover:shadow-blue-500/5 transition-all">
+                <p className="text-4xl font-bold text-blue-500 mb-1 leading-none">{value}</p>
+                <p className="text-xs uppercase tracking-widest text-slate-500 font-bold">{label}</p>
+            </div>
+        );
+
+        const ServiceCard = ({ icon, title, items }) => (
+            <div className="p-8 bg-slate-800/50 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group text-left">
+                <div className="mb-6 p-3 bg-slate-900 w-fit rounded-xl group-hover:scale-110 transition-transform">
+                    <Icon name={icon} className="text-blue-500 w-6 h-6" />
                 </div>
-                <p className="italic text-slate-300 mb-6 leading-relaxed">"{text}"</p>
+                <h3 className="text-xl font-bold mb-4">{title}</h3>
+                <ul className="space-y-2">
+                    {items.map((item, i) => (
+                        <li key={i} className="text-slate-400 text-sm flex items-center gap-2">
+                            <span className="w-1 h-1 bg-blue-500 rounded-full"></span> {item}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+
+        const ReviewCard = ({ name, text }) => (
+            <div className="bg-slate-800/40 p-8 rounded-2xl border border-slate-700 h-full flex flex-col">
+                <div className="flex text-orange-400 mb-4">
+                    {[...Array(5)].map((_, i) => <Icon key={i} name="star" className="w-3 h-3 fill-current" />)}
+                </div>
+                <p className="italic text-slate-300 mb-6 leading-relaxed flex-grow">"{text}"</p>
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center font-bold text-xs uppercase">{name.charAt(0)}</div>
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center font-bold text-xs uppercase text-white">{name.charAt(0)}</div>
                     <div>
-                        <p className="font-bold text-sm">{name}</p>
-                        <p className="text-xs text-slate-500">Verified Customer</p>
+                        <p className="font-bold text-sm leading-none mb-1">{name}</p>
+                        <p className="text-xs text-slate-500">Verified Local Review</p>
                     </div>
                 </div>
             </div>
         );
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        // Ensure the DOM is fully loaded before mounting React
+        window.addEventListener('load', () => {
+            const container = document.getElementById('root');
+            if (container) {
+                const root = ReactDOM.createRoot(container);
+                root.render(<App />);
+            }
+        });
     </script>
 </body>
 </html>
