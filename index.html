@@ -50,7 +50,7 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-2">
                     <svg class="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                     </svg>
                     <span class="font-bold text-2xl tracking-tighter uppercase italic">Icon<span class="text-blue-500">Computers</span></span>
                 </div>
@@ -194,35 +194,75 @@
     <!-- Services Grid -->
     <section id="services" class="py-24 bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-12">Expert Solutions</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div class="p-8 glass-panel rounded-2xl hover:border-blue-500 transition-all group">
-                    <h3 class="text-xl font-bold mb-4">Mac & PC Repair</h3>
-                    <ul class="text-slate-400 text-sm space-y-2">
-                        <li>• Screen & Keyboard Swap</li>
-                        <li>• Battery Calibration/Replace</li>
-                        <li>• Logic Board Repair</li>
-                        <li>• Windows/macOS Install</li>
+            <h2 class="text-4xl font-bold mb-12 italic">Expert Solutions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                
+                <!-- Card 1: Hardware -->
+                <div class="p-8 glass-panel rounded-2xl border-l-4 border-l-blue-500 hover:bg-slate-800/50 transition-all group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Mac & PC Repair</h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex items-start gap-2">• <span><strong>Broken Hinge Repair:</strong> Structural fixes for laptop frames.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Screen & Keyboard:</strong> Fast swaps for cracked or dead keys.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Logic Board Repair:</strong> Component-level micro-soldering.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Battery:</strong> High-cycle replacement for all models.</span></li>
                     </ul>
                 </div>
-                <div class="p-8 glass-panel rounded-2xl hover:border-blue-500 transition-all group">
-                    <h3 class="text-xl font-bold mb-4">Gaming Hardware</h3>
-                    <ul class="text-slate-400 text-sm space-y-2">
-                        <li>• Custom PC Builds</li>
-                        <li>• Overheating & Re-pasting</li>
-                        <li>• GPU Diagnostics</li>
-                        <li>• Liquid Cooling Maintenance</li>
+
+                <!-- Card 2: Software -->
+                <div class="p-8 glass-panel rounded-2xl border-l-4 border-l-blue-500 hover:bg-slate-800/50 transition-all group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Software & OS</h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex items-start gap-2">• <span><strong>Windows/macOS Reinstall:</strong> Clean factory setups.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Virus & Malware:</strong> Deep cleaning and protection.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Optimization:</strong> Making slow machines feel new again.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Driver Config:</strong> Fixing peripherals and blue screens.</span></li>
                     </ul>
                 </div>
-                <div class="p-8 glass-panel rounded-2xl hover:border-blue-500 transition-all group">
-                    <h3 class="text-xl font-bold mb-4">Data Recovery</h3>
-                    <ul class="text-slate-400 text-sm space-y-2">
-                        <li>• Dead SSD/Hard Drive</li>
-                        <li>• Encrypted File Access</li>
-                        <li>• Formatted Drive Recovery</li>
-                        <li>• Enterprise Backup Setup</li>
+
+                <!-- Card 3: Data -->
+                <div class="p-8 glass-panel rounded-2xl border-l-4 border-l-blue-500 hover:bg-slate-800/50 transition-all group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Data & Transfer</h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex items-start gap-2">• <span><strong>Data Transfers:</strong> Move everything to your new PC.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Advanced Recovery:</strong> Photos and docs from dead drives.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Backup Solutions:</strong> Automated local and cloud setups.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Privacy Cleaning:</strong> Securely wiping old data.</span></li>
                     </ul>
                 </div>
+
+                <!-- Card 4: Gaming -->
+                <div class="p-8 glass-panel rounded-2xl border-l-4 border-l-blue-500 hover:bg-slate-800/50 transition-all group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Enthusiast Gear</h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex items-start gap-2">• <span><strong>Custom PC Builds:</strong> Performance gaming or workstations.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Thermal Re-pasting:</strong> Solving loud fans and overheating.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>GPU Diags:</strong> Artifacting or no-signal troubleshooting.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Console Repair:</strong> HDMI port swaps and cleaning.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Advanced Hardware Internals -->
+                <div class="p-8 glass-panel rounded-2xl border-l-4 border-l-blue-500 hover:bg-slate-800/50 transition-all group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Advanced Internals</h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex items-start gap-2">• <span><strong>Liquid Damage Recovery:</strong> Full ultrasonic board cleaning.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Charge Port Repair:</strong> DC jack and USB-C socket soldering.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>BIOS Flash:</strong> Recovering from corrupted firmware updates.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Fan/Heatsink Service:</strong> Bearing repair and dust removal.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Card 6: Business Services -->
+                <div class="p-8 glass-panel rounded-2xl border-l-4 border-l-blue-500 hover:bg-slate-800/50 transition-all group">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">Business Solutions</h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex items-start gap-2">• <span><strong>Network Setup:</strong> Secure Wi-Fi and VPN config.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>POS Systems:</strong> Restaurant and retail hardware support.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>NAS Storage:</strong> Multi-user file sharing servers.</span></li>
+                        <li class="flex items-start gap-2">• <span><strong>Remote Support:</strong> Solving software issues instantly.</span></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </section>
@@ -350,10 +390,8 @@
             const subject = `Repair Inquiry from ${name}`;
             const body = `Name: ${name}%0D%0AEmail: ${document.getElementById('userEmail').value}%0D%0A%0D%0AProblem: ${message}`;
             
-            // This safely opens the mail client without exposing email to scrapers via text
             window.location.href = `mailto:sathington@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
             
-            // Optional: UI feedback
             const btn = e.target.querySelector('button');
             const originalText = btn.innerText;
             btn.innerText = "Opening Email Client...";
