@@ -5,280 +5,207 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Icon Computers | Hamilton's Expert Tech Repair</title>
     
-    <!-- Scripts & Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
-    
+    <!-- Fail-safe CSS: Ensures colors load even if Tailwind CDN is slow -->
     <style>
+        :root {
+            --bg-deep: #0f172a;
+            --accent: #2563eb;
+            --text-main: #f1f5f9;
+        }
         body { 
-            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-deep) !important; 
+            color: var(--text-main) !important;
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
             scroll-behavior: smooth;
         }
-        .text-italic { font-style: italic; }
+        /* Loading state prevention */
+        #main-content { opacity: 0; transition: opacity 0.5s ease-in; }
+        .loaded #main-content { opacity: 1; }
+        
         .bg-dark-mesh {
             background-color: #0f172a;
-            background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.1) 0, transparent 50%), 
-                              radial-gradient(at 50% 0%, rgba(15, 23, 42, 1) 0, transparent 50%);
+            background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0, transparent 50%);
         }
         .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .text-italic { font-style: italic; }
     </style>
+
+    <!-- External Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#2563eb',
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-slate-900 text-slate-100 selection:bg-blue-500/30">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-2 cursor-pointer">
-                    <i data-lucide="wrench" class="h-8 w-8 text-blue-500"></i>
-                    <span class="font-bold text-2xl tracking-tighter uppercase italic text-white">
-                        Icon<span class="text-blue-500">Computers</span>
-                    </span>
-                </div>
-                
-                <div class="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
-                    <a href="#services" class="hover:text-blue-400 transition-colors">The Bench</a>
-                    <a href="#why-us" class="hover:text-blue-400 transition-colors">Why Us</a>
-                    <a href="#workshop" class="hover:text-blue-400 transition-colors">Workshop</a>
-                    <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
-                    <a href="tel:9054672249" class="flex items-center gap-2 bg-blue-600 px-6 py-2.5 rounded-full font-bold text-white hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/40 normal-case tracking-normal text-sm">
-                        <i data-lucide="phone" class="w-4 h-4"></i>
-                        <span>(905) 467-2249</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="pt-40 pb-24 px-4 bg-dark-mesh relative overflow-hidden border-b border-slate-800/50 text-center">
-        <div class="max-w-5xl mx-auto relative z-10">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight text-white leading-tight uppercase italic">
-                Hamilton's <span class="text-blue-500">No-Nonsense</span> Repair Shop.
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-                25 years of bench experience. We don't just swap parts; we diagnose motherboards, recover lost data, and fix what others won't.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-xl shadow-blue-600/20 text-lg">Get a Free Quote</a>
-                <a href="#services" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2 text-lg">
-                    Explore Services
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Why Us Section -->
-    <section id="why-us" class="py-24 bg-slate-800/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <span class="text-blue-500 font-black uppercase tracking-[0.3em] text-xs">Trust the Experts</span>
-                    <h2 class="text-4xl font-bold text-white mt-4 mb-6 italic uppercase tracking-tight">Experience Matters. <br/><span class="text-blue-500">25 Years Matters.</span></h2>
-                    <p class="text-lg text-slate-400 mb-8 leading-relaxed">
-                        When your business depends on your laptop, you want someone who has seen every hardware failure in the book.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3 text-slate-200 font-medium">
-                            <i data-lucide="check-circle-2" class="h-5 w-5 text-blue-500"></i>
-                            Board-level diagnostics and precision soldering
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-200 font-medium">
-                            <i data-lucide="check-circle-2" class="h-5 w-5 text-blue-500"></i>
-                            MacBook & iMac Specialist (Repair, don't replace)
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-200 font-medium">
-                            <i data-lucide="check-circle-2" class="h-5 w-5 text-blue-500"></i>
-                            Advanced Data Recovery (Photos, Business Files)
-                        </li>
-                    </ul>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass-card p-8 rounded-2xl text-center shadow-xl">
-                        <p class="text-5xl font-black text-blue-500 mb-1 italic">24h</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-black">Avg. Turnaround</p>
+    <div id="main-content">
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="wrench" class="h-8 w-8 text-blue-500"></i>
+                        <span class="font-bold text-2xl tracking-tighter uppercase italic text-white">
+                            Icon<span class="text-blue-500">Computers</span>
+                        </span>
                     </div>
-                    <div class="glass-card p-8 rounded-2xl text-center shadow-xl">
-                        <p class="text-5xl font-black text-blue-500 mb-1 italic">0</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-black">Appts Needed</p>
-                    </div>
-                    <div class="bg-slate-900 p-8 rounded-2xl border border-blue-500/30 text-center col-span-2 shadow-2xl">
-                        <p class="text-5xl font-black text-blue-500 mb-1 italic">10k+</p>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-black">Success Stories</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-24 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="max-w-3xl mb-16">
-                <span class="text-blue-500 font-black uppercase tracking-[0.3em] text-xs">Technical Arsenal</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-6 italic uppercase tracking-tight leading-none">
-                    Any Brand. Any OS. <br/> <span class="text-blue-500">Mastered.</span>
-                </h2>
-                <p class="text-slate-400 text-lg">Our 25-year expertise covers Debian, Ubuntu, Windows, and macOS specialists.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-grid">
-                <!-- Service Cards Generated Here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Workshop Section -->
-    <section id="workshop" class="py-24 bg-slate-950 border-y border-slate-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <span class="bg-blue-600/20 text-blue-400 text-xs font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-blue-500/20 mb-4 inline-block">Hands-On Training</span>
-                    <h2 class="text-5xl font-black text-white mb-6 leading-[1.1] uppercase italic">
-                        Build Your Own <br/><span class="text-blue-500">PC Workshop</span>
-                    </h2>
                     
-                    <div class="space-y-6 mb-12">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center font-black text-blue-500">1</div>
-                            <div>
-                                <p class="text-white font-bold uppercase italic text-sm">Consultation</p>
-                                <p class="text-slate-400 text-sm">Consult with us to pick the parts tailored to your specific needs.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center font-black text-blue-500">2</div>
-                            <div>
-                                <p class="text-white font-bold uppercase italic text-sm">Scheduling</p>
-                                <p class="text-slate-400 text-sm">Schedule a time that works for you to hit the bench.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center font-black text-blue-500">3</div>
-                            <div>
-                                <p class="text-white font-bold uppercase italic text-sm">Assembly</p>
-                                <p class="text-slate-400 text-sm">Assemble the PC yourself with our expert guidance every step of the way.</p>
-                            </div>
-                        </div>
+                    <div class="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
+                        <a href="#services" class="hover:text-blue-400">The Bench</a>
+                        <a href="#workshop" class="hover:text-blue-400">Workshop</a>
+                        <a href="#contact" class="hover:text-blue-400">Contact</a>
+                        <a href="tel:9054672249" class="bg-blue-600 px-6 py-2.5 rounded-full font-bold text-white hover:bg-blue-500 shadow-lg shadow-blue-600/40 normal-case tracking-normal text-sm">
+                            (905) 467-2249
+                        </a>
                     </div>
-
-                    <div class="flex flex-wrap gap-4">
-                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                            <p class="text-2xl font-bold text-white">$100</p>
-                            <p class="text-[10px] uppercase text-slate-500 font-black tracking-widest">Buy parts from us</p>
-                        </div>
-                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                            <p class="text-2xl font-bold text-white">$150</p>
-                            <p class="text-[10px] uppercase text-slate-500 font-black tracking-widest">Bring your own parts</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-blue-600 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-                    <h4 class="text-white text-2xl font-black mb-6 italic uppercase">What's Included:</h4>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 items-start text-white/90 text-sm">
-                            <i data-lucide="settings" class="w-5 h-5 mt-1"></i>
-                            <span>Professional tools, thermal compound, and anti-static workstations.</span>
-                        </div>
-                        <div class="flex gap-4 items-start text-white/90 text-sm">
-                            <i data-lucide="cpu" class="w-5 h-5 mt-1"></i>
-                            <span>BIOS/UEFI configuration and hardware stress testing.</span>
-                        </div>
-                        <div class="flex gap-4 items-start text-white/90 text-sm">
-                            <i data-lucide="mouse-pointer-2" class="w-5 h-5 mt-1"></i>
-                            <span>OS installation and driver optimization masterclass.</span>
-                        </div>
-                    </div>
-                    <button onclick="document.getElementById('contact').scrollIntoView()" class="mt-8 w-full bg-white text-blue-600 font-black py-4 rounded-xl hover:bg-slate-100 uppercase tracking-widest italic">
-                        Book Your Bench
-                    </button>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- Contact -->
-    <section id="contact" class="py-24 px-4 bg-slate-900 border-t border-slate-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="space-y-8">
-                    <h2 class="text-4xl font-bold italic text-blue-500 uppercase tracking-tight">Visit the Shop</h2>
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4 text-slate-300">
-                            <div class="bg-slate-800 p-3 rounded-xl"><i data-lucide="map-pin" class="text-blue-500"></i></div>
-                            <div>
-                                <p class="text-[10px] uppercase text-slate-500 font-black tracking-widest">Location</p>
-                                <p class="font-bold text-white">90 Centennial Pkwy N, Hamilton, ON</p>
+        <!-- Hero Section -->
+        <header class="pt-40 pb-24 px-4 bg-dark-mesh text-center">
+            <div class="max-w-5xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight text-white leading-tight uppercase italic">
+                    Hamilton's <span class="text-blue-500">No-Nonsense</span> Repair Shop.
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto font-medium">
+                    25 years of bench experience. We diagnose motherboards, recover lost data, and fix what others won't.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-xl shadow-blue-600/20 text-lg">Get a Free Quote</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Workshop Section -->
+        <section id="workshop" class="py-24 bg-slate-950 border-y border-slate-800">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="text-blue-400 text-xs font-black uppercase tracking-[0.2em] mb-4 inline-block">Hands-On Training</span>
+                        <h2 class="text-5xl font-black text-white mb-6 uppercase italic">
+                            Build Your Own <br/><span class="text-blue-500">PC Workshop</span>
+                        </h2>
+                        
+                        <div class="space-y-6 mb-12">
+                            <div class="flex gap-4 items-center">
+                                <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center font-black text-blue-500">1</div>
+                                <div>
+                                    <p class="text-white font-bold uppercase italic text-sm">Consultation</p>
+                                    <p class="text-slate-400 text-sm">We help you pick the perfect parts for your budget.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-center">
+                                <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center font-black text-blue-500">2</div>
+                                <div>
+                                    <p class="text-white font-bold uppercase italic text-sm">Scheduling</p>
+                                    <p class="text-slate-400 text-sm">Book a time to use our pro tools and anti-static bench.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-center">
+                                <div class="w-12 h-12 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center font-black text-blue-500">3</div>
+                                <div>
+                                    <p class="text-white font-bold uppercase italic text-sm">Assembly</p>
+                                    <p class="text-slate-400 text-sm">Build it yourself with an expert over your shoulder.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex items-center gap-4 text-slate-300">
-                            <div class="bg-slate-800 p-3 rounded-xl"><i data-lucide="phone" class="text-blue-500"></i></div>
-                            <div>
-                                <p class="text-[10px] uppercase text-slate-500 font-black tracking-widest">Call or Text</p>
-                                <p class="font-bold text-white">(905) 467-2249</p>
+
+                        <div class="flex flex-wrap gap-4">
+                            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <p class="text-2xl font-bold text-white">$100</p>
+                                <p class="text-[10px] uppercase text-slate-500 font-black tracking-widest">Buy parts from us</p>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <p class="text-2xl font-bold text-white">$150</p>
+                                <p class="text-[10px] uppercase text-slate-500 font-black tracking-widest">Bring your own parts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-600 p-8 rounded-3xl shadow-2xl">
+                        <h4 class="text-white text-2xl font-black mb-6 italic uppercase">What's Included:</h4>
+                        <div class="space-y-6">
+                            <div class="flex gap-4 items-start text-white/90">
+                                <i data-lucide="settings" class="w-5 h-5 mt-1"></i>
+                                <span>Professional tools, thermal compound, and workstations.</span>
+                            </div>
+                            <div class="flex gap-4 items-start text-white/90">
+                                <i data-lucide="cpu" class="w-5 h-5 mt-1"></i>
+                                <span>BIOS/UEFI configuration and hardware stress testing.</span>
+                            </div>
+                            <div class="flex gap-4 items-start text-white/90">
+                                <i data-lucide="mouse-pointer-2" class="w-5 h-5 mt-1"></i>
+                                <span>OS installation and driver optimization masterclass.</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-2xl relative">
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-24 px-4 bg-slate-900">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-slate-800 p-8 md:p-12 rounded-3xl border border-slate-700 shadow-2xl">
                     <form onsubmit="handleContact(event)" class="space-y-4">
-                        <h3 class="text-white font-bold text-xl mb-4 italic uppercase">Repair Inquiry</h3>
-                        <input id="userName" required placeholder="Your Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:border-blue-500 outline-none" />
-                        <input id="userEmail" type="email" required placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:border-blue-500 outline-none" />
-                        <textarea id="userMessage" required rows="4" placeholder="Describe the issue..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:border-blue-500 outline-none"></textarea>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg uppercase tracking-widest italic">Send Diagnostic Request</button>
+                        <h3 class="text-white font-bold text-3xl mb-6 italic uppercase">Send a Diagnostic Request</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input id="userName" required placeholder="Your Name" class="bg-slate-900 border border-slate-700 rounded-xl p-4 text-white outline-none focus:border-blue-500" />
+                            <input id="userEmail" type="email" required placeholder="Email Address" class="bg-slate-900 border border-slate-700 rounded-xl p-4 text-white outline-none focus:border-blue-500" />
+                        </div>
+                        <textarea id="userMessage" required rows="4" placeholder="What is your machine doing? (e.g., won't turn on, blue screen...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white outline-none focus:border-blue-500"></textarea>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 rounded-xl shadow-lg uppercase tracking-widest italic text-lg transition-all">
+                            Submit to the Bench
+                        </button>
                     </form>
                 </div>
+                <div class="mt-12 text-center text-slate-400">
+                    <p class="font-bold text-white mb-2">90 Centennial Pkwy N, Hamilton, ON</p>
+                    <p>(905) 467-2249 | sathington@gmail.com</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="py-12 text-center text-slate-600 text-sm border-t border-slate-800/50 bg-slate-950">
-        <p>© 2026 Icon Computers. Hamilton, Ontario. Established 2004.</p>
-    </footer>
+        <footer class="py-12 text-center text-slate-600 text-sm bg-slate-950">
+            <p>© 2026 Icon Computers. Hamilton, Ontario. Established 2004.</p>
+        </footer>
+    </div>
 
     <script>
-        // Initialize Icons
-        lucide.createIcons();
+        // Ensure scripts are loaded before showing content
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            lucide.createIcons();
+        });
 
-        // Contact Handler
         function handleContact(e) {
             e.preventDefault();
             const name = document.getElementById('userName').value;
             const email = document.getElementById('userEmail').value;
             const message = document.getElementById('userMessage').value;
-            const subject = `Repair Inquiry from ${name}`;
-            const body = `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`;
+            const subject = `Icon Repair Request: ${name}`;
+            const body = `Customer: ${name}\nEmail: ${email}\n\nProblem:\n${message}`;
             window.location.href = `mailto:sathington@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
-
-        // Service Content
-        const services = [
-            { title: "Linux & OS Specialist", items: ["Debian Stable/Testing", "Ubuntu & Mint Support", "Windows 10/11 Installs", "macOS Upgrades"], icon: "refresh-cw" },
-            { title: "Any Brand Hardware", items: ["MacBook Logic Boards", "Dell XPS Repairs", "Lenovo ThinkPad", "Surface Pro Screen"], icon: "layers" },
-            { title: "Data Recovery", items: ["PC to Mac Migrations", "SSD Cloning", "Legacy Data Extraction", "Cloud Backup"], icon: "database" }
-        ];
-
-        const grid = document.getElementById('services-grid');
-        services.forEach(s => {
-            const card = document.createElement('div');
-            card.className = "p-8 glass-card rounded-2xl border border-slate-800/50 hover:bg-slate-800 hover:border-blue-500/30 transition-all group";
-            card.innerHTML = `
-                <div class="mb-6 p-3 bg-slate-900 w-fit rounded-xl group-hover:bg-blue-600/10"><i data-lucide="${s.icon}" class="text-blue-500"></i></div>
-                <h3 class="text-xl font-bold mb-4 text-white uppercase italic">${s.title}</h3>
-                <ul class="text-slate-400 text-sm space-y-3 font-medium">
-                    ${s.items.map(i => `<li class="flex items-center gap-2"><div class="w-1 h-1 bg-blue-500 rounded-full"></div>${i}</li>`).join('')}
-                </ul>
-            `;
-            grid.appendChild(card);
-        });
-        lucide.createIcons(); // Re-run for dynamic icons
     </script>
 </body>
 </html>
