@@ -12,6 +12,12 @@
         .bg-mesh { background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0, transparent 50%); }
         .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
         [data-lucide] { width: 20px; height: 20px; }
+
+        /* Blog specific styling */
+        .prose h3 { color: white; font-weight: 800; font-style: italic; text-transform: uppercase; margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.5rem; letter-spacing: -0.025em; }
+        .prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #94a3b8; font-size: 1.125rem; }
+        .prose .highlight-box { background: rgba(37, 99, 235, 0.1); border-left: 4px solid #2563eb; padding: 2rem; margin: 2.5rem 0; border-radius: 0 1rem 1rem 0; }
+        .prose .highlight-box h4 { color: white; font-weight: 900; text-transform: uppercase; font-style: italic; margin-bottom: 0.5rem; }
     </style>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,6 +41,8 @@
                     <a href="#why-us" class="hover:text-blue-400 transition-colors">Why Us</a>
                     <a href="#workshop" class="hover:text-blue-400 transition-colors">Workshop</a>
                     <a href="#reviews" class="hover:text-blue-400 transition-colors">Reviews</a>
+                    <!-- ADDED BLOG LINK -->
+                    <a href="#blog" class="text-blue-400 hover:text-blue-300 transition-colors font-bold">The Blog</a>
                     <a href="tel:9054672249" class="bg-blue-600 px-6 py-2.5 rounded-full font-bold text-white hover:bg-blue-500 transition-all text-sm normal-case tracking-normal">
                         (905) 467-2249
                     </a>
@@ -348,6 +356,48 @@
             <div class="mt-12 text-center text-slate-400">
                 <p class="font-bold text-white text-xl mb-2">90 Centennial Pkwy N, Hamilton, ON</p>
                 <p class="font-bold tracking-widest uppercase text-xs">(905) 467-2249 | sathington@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION (New Article Below Main Content) -->
+    <section id="blog" class="py-24 px-4 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-16">
+                <span class="text-blue-500 font-black uppercase tracking-widest text-xs">Latest From The Bench</span>
+                <h2 class="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-tight mt-4">
+                    Identifying the <span class="text-blue-500">"Click of Death"</span>: Is Your Drive Done For?
+                </h2>
+                <div class="w-20 h-1 bg-blue-600 mt-6"></div>
+            </div>
+
+            <div class="prose text-slate-300">
+                <p>Look, we’ve all been there. You’re minding your own business, maybe finishing up a spreadsheet or finally hitting "save" on that massive project, and then you hear it. <strong>Click. Click. Click.</strong> It’s rhythmic. It’s persistent. And honestly? It’s the sound of your data screaming for help. In the tech world, we call that the "Click of Death," and if you're hearing it, we need to talk before your hard drive becomes a very expensive paperweight.</p>
+
+                <h3>What the hell is that sound?</h3>
+                <p>Inside a traditional Hard Disk Drive (HDD), there’s a tiny mechanical arm with a "read/write head" on the end. Think of it like a record player needle, but way faster and more fragile. It hovers just nanometers above spinning platters that hold all your photos, files, and cat videos.</p>
+                <p>The clicking usually happens when that arm loses its place or the head itself is failing. It tries to find the "home" position, fails, hits a physical stop, and resets. Click. Then it tries again. Click.</p>
+
+                <h3>Why is it happening?</h3>
+                <p>Usually, it boils down to a few things:</p>
+                <ul class="list-disc pl-6 mb-8 space-y-4 text-slate-400 font-medium">
+                    <li><strong class="text-white italic uppercase text-sm">Physical Trauma:</strong> Did the laptop take a tumble off the couch? Even a small bump while the drive is spinning can wreck those internals.</li>
+                    <li><strong class="text-white italic uppercase text-sm">Old Age:</strong> Everything dies eventually. Bearings wear out, magnets lose their strength, and parts just give up the ghost.</li>
+                    <li><strong class="text-white italic uppercase text-sm">Power Issues:</strong> A bad power supply or a nasty surge can scramble the drive's controller board, making it act like a confused toddler.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4>The "Golden Rule" of the Click</h4>
+                    <p class="text-white font-bold mb-0 italic">If you hear your drive clicking, STOP. Shut the computer down immediately.</p>
+                </div>
+
+                <p>Every single click is the mechanical arm potentially scraping against the platters where your data lives. The more you let it struggle, the higher the chance you’re turning your data into actual dust. Don't try the "freezer trick" you saw on a 2005 forum, and don't start banging on the side of the case. You aren't fixing a jukebox in a 50s diner; you're dealing with precision engineering.</p>
+
+                <h3>What’s next?</h3>
+                <p>If you’ve got a backup, congrats! You’re smarter than 90% of the population. Trash the drive, buy an SSD (which has no moving parts to click!), and restore your files.</p>
+                <p>If you don't have a backup and that drive has the only copies of your wedding photos or tax returns? Bring it into Icon Computers. We’ve seen it all, and we can help you figure out if the data is recoverable or if it's time to pour one out for your hardware.</p>
+                
+                <p>Think your drive is acting suspicious? Swing by the shop or give us a call before that "click" becomes permanent silence.</p>
             </div>
         </div>
     </section>
