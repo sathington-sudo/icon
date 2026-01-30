@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Icon | Digital Fortresses for the XXX Industry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+        
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #aa8a2e;
+            --rich-black: #050505;
+            --hazard: #ff3333;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--rich-black); 
+            color: #e5e5e5; 
+            scroll-behavior: smooth;
+        }
+
+        .serif { font-family: 'Cinzel', serif; }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #fbf5b7 0%, #d4af37 50%, #aa8a2e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hazard-text { color: var(--hazard); }
+
+        .glass-card {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            box-shadow: 0 10px 20px -10px var(--dark-gold);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+        
+        .threat-alert {
+            border-left: 4px solid var(--hazard);
+            background: rgba(255, 51, 51, 0.05);
+        }
+
+        /* Background Images */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .pricing-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1571508601891-ca5e7a713859?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <nav class="fixed w-full z-50 px-6 py-4 bg-black/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-[0.2em] serif uppercase gold-gradient">The Icon</div>
+            <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-semibold text-gray-400">
+                <a href="#threats" class="hover:text-yellow-500 transition">Why Switch?</a>
+                <a href="#security" class="hover:text-yellow-500 transition">Safety Features</a>
+                <a href="#pricing" class="hover:text-yellow-500 transition">Packages</a>
+            </div>
+            <a href="#apply" class="cta-button text-black px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition">Private Inquiry</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-bg relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-yellow-500 text-xs font-black uppercase tracking-[0.5em] mb-6 animate-pulse">XXX Industry Exclusive Design</h2>
+            <h1 class="text-5xl md:text-8xl font-bold serif leading-tight mb-8 drop-shadow-2xl">
+                Your Site. <br> <span class="gold-gradient italic">Your Rules.</span>
+            </h1>
+            <p class="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-md">
+                Stop worrying about getting banned. Most website builders delete adult content instantly. <br>
+                We use special servers that <strong class="text-yellow-400">allow your content</strong>, protect your real name, and keep you online 24/7.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#apply" class="cta-button text-black px-12 py-5 rounded-xl font-black text-sm uppercase tracking-widest transition transform hover:scale-105 text-center">Get A Ban-Proof Website</a>
+            </div>
+            <p class="mt-8 text-xs text-gray-400 italic uppercase tracking-widest flex items-center justify-center">
+                <i class="fa-solid fa-lock mr-2 text-yellow-500"></i> No "Inappropriate Content" Flags. Guaranteed.
+            </p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Threat Analysis Section (Simplified) -->
+    <section id="threats" class="py-24 px-6 bg-[#0a0000]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl serif font-bold mb-4 hazard-text uppercase">Why Regular Sites Are Risky</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Standard website builders (Wix, Squarespace) are dangerous for this industry</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="threat-alert p-8 rounded-r-xl">
+                    <h3 class="text-white font-bold mb-2 flex items-center uppercase tracking-tighter">
+                        <i class="fa-solid fa-ban mr-3 text-red-500"></i> The "Inappropriate Content" Ban
+                    </h3>
+                    <p class="text-sm text-gray-400">Regular website hosts hate adult content. They use bots to scan your photos. If they see nudity, they delete your entire business overnight. <strong>We don't. Our servers are built for this industry.</strong></p>
+                </div>
+                <div class="threat-alert p-8 rounded-r-xl">
+                    <h3 class="text-white font-bold mb-2 flex items-center uppercase tracking-tighter">
+                        <i class="fa-solid fa-location-dot mr-3 text-red-500"></i> Hidden Location Tracking
+                    </h3>
+                    <p class="text-sm text-gray-400">Did you know photos taken on your iPhone save your home address inside the file? Regular sites post this data publicly. <strong>We wipe all location data</strong> so nobody knows where you live.</p>
+                </div>
+                <div class="threat-alert p-8 rounded-r-xl">
+                    <h3 class="text-white font-bold mb-2 flex items-center uppercase tracking-tighter">
+                        <i class="fa-solid fa-ghost mr-3 text-red-500"></i> Shadowbanning
+                    </h3>
+                    <p class="text-sm text-gray-400">Using a "Linktree" makes you look like spam to Instagram and Twitter, limiting your reach. A professional .com website helps you show up in search results without being hidden.</p>
+                </div>
+                <div class="threat-alert p-8 rounded-r-xl">
+                    <h3 class="text-white font-bold mb-2 flex items-center uppercase tracking-tighter">
+                        <i class="fa-solid fa-user-ninja mr-3 text-red-500"></i> Accidental Doxing
+                    </h3>
+                    <p class="text-sm text-gray-400">When you buy a domain on GoDaddy, your real legal name is listed on public records. We buy domains using a blind corporate proxy, so <strong>your real name is never connected to your adult brand.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Focus -->
+    <section id="security" class="py-24 px-6 bg-[#050505]">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl md:text-5xl serif font-bold mb-8 gold-gradient">We Guard Your Privacy.</h2>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                    You worry about the content; we worry about the safety. We are the "Digital Bodyguards" for your brand.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center mr-4 shrink-0">
+                            <i class="fa-solid fa-check text-yellow-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Adult Content is Welcome Here</h4>
+                            <p class="text-sm text-gray-500">Our servers are located in countries where adult content is 100% legal and protected. You will never get a warning email about your photos.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center mr-4 shrink-0">
+                            <i class="fa-solid fa-check text-yellow-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Anti-Theft Protection</h4>
+                            <p class="text-sm text-gray-500">We add code that stops casual users from "Right-Clicking" and saving your premium preview images.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card p-10 rounded-3xl relative overflow-hidden text-center">
+                <div class="p-4 inline-block bg-yellow-500/20 rounded-full mb-6">
+                    <i class="fa-solid fa-lock text-5xl text-yellow-500"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 serif uppercase tracking-widest">How We Protect You</h3>
+                <p class="text-sm text-gray-500 mb-8 italic">"We handle the tech so you stay safe."</p>
+                <div class="text-left space-y-4">
+                    <div class="bg-black/50 p-4 rounded-lg border border-white/5">
+                        <span class="text-xs font-bold text-yellow-500 block uppercase mb-1 underline">Our Safety Checklist:</span>
+                        <ul class="text-[12px] space-y-3 text-gray-300">
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>GPS Removal:</strong> We clean your photos so they don't reveal your location.</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>Private Servers:</strong> Hosted in Iceland (strict privacy laws).</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>Anonymous Sign-Up:</strong> We don't need your ID to build your site.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Tiers Section -->
+    <section id="pricing" class="pricing-bg py-24">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-4xl serif font-bold mb-4 uppercase tracking-tighter">Safe & Secure <span class="gold-gradient">Packages</span></h2>
+            <p class="text-gray-400 uppercase tracking-widest text-xs mb-16 font-bold">Pricing designed for the industry</p>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Essential Hub -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col text-left">
+                    <h3 class="text-xl font-bold mb-2 text-center">Essential Hub</h3>
+                    <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest text-center">For New Professionals</p>
+                    <div class="text-4xl font-bold serif mb-2 gold-gradient text-center">$0 Build Fee</div>
+                    <div class="text-sm text-gray-400 mb-8 border-b border-white/5 pb-8 italic text-center">Just cover the secure hosting</div>
+                    <ul class="text-sm space-y-4 mb-8 flex-grow text-gray-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> <strong>Ban-Proof Hosting</strong></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> 1-Page "Linktree" Replacement</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> Links to OF/Fansly/ManyVids</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> We Remove GPS Data for you</li>
+                    </ul>
+                    <div class="bg-black/40 p-4 rounded-xl mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-[10px] font-bold text-gray-400 uppercase">Monthly</span>
+                            <span class="text-xl font-black">$39/mo</span>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-white/10 pt-2">
+                            <span class="text-[10px] font-bold text-yellow-500 uppercase italic">Annual Discount</span>
+                            <span class="text-xl font-black text-yellow-500">$399/yr</span>
+                        </div>
+                    </div>
+                    <a href="#apply" class="border border-yellow-500 text-yellow-500 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-yellow-500 hover:text-black transition text-center">Secure Your Spot</a>
+                </div>
+
+                <!-- Pro Performer -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col border-yellow-500/40 bg-yellow-500/[0.05] text-left transform scale-105">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-tighter shadow-lg">Most Popular</div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Pro Performer</h3>
+                    <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest text-center">For Established Models</p>
+                    <div class="text-4xl font-bold serif mb-2 gold-gradient text-center">$299 Build</div>
+                    <div class="text-sm text-gray-400 mb-8 border-b border-white/5 pb-8 italic text-center">One-time design fee</div>
+                    <ul class="text-sm space-y-4 mb-8 flex-grow text-gray-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> <strong>Multi-Page Website</strong></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> HD Photo Gallery (Anti-Theft)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> Video Teaser Support</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> Advanced "No-Meets" Filtering</li>
+                    </ul>
+                    <div class="bg-black/40 p-4 rounded-xl mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-[10px] font-bold text-gray-300 uppercase">Monthly</span>
+                            <span class="text-xl font-black">$49/mo</span>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-yellow-500/20 pt-2 text-yellow-500">
+                            <span class="text-[10px] font-bold uppercase italic">Annual Discount</span>
+                            <span class="text-xl font-black">$499/yr</span>
+                        </div>
+                    </div>
+                    <a href="#apply" class="cta-button text-black py-3 rounded-lg font-black text-xs uppercase tracking-widest transition transform hover:scale-105 text-center">Upgrade Safety</a>
+                </div>
+
+                <!-- Empire Suite -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col text-left">
+                    <h3 class="text-xl font-bold mb-2 text-center">Empire Suite</h3>
+                    <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest text-center">For Top 1% Stars</p>
+                    <div class="text-4xl font-bold serif mb-2 gold-gradient text-center">Custom</div>
+                    <div class="text-sm text-gray-400 mb-8 border-b border-white/5 pb-8 italic text-center">Starting from $750</div>
+                    <ul class="text-sm space-y-4 mb-8 flex-grow text-gray-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> <strong>Sell Clips Directly (Keep 100%)</strong></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> Members-Only Areas</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> Rank #1 for your Name</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-500 mr-3"></i> 1-on-1 Security Consulting</li>
+                    </ul>
+                    <div class="bg-black/40 p-4 rounded-xl mb-6">
+                        <div class="text-center">
+                            <span class="text-[10px] font-bold text-yellow-500 block uppercase mb-1">Elite Infrastructure</span>
+                            <span class="text-xl font-black italic">Custom Quote</span>
+                        </div>
+                    </div>
+                    <a href="#apply" class="border border-white/20 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:border-yellow-500 transition text-center">Request Briefing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="apply" class="py-24 px-6 max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl serif font-bold mb-4">Private Inquiry</h2>
+            <p class="text-gray-500 uppercase tracking-widest text-xs font-bold animate-pulse">Encrypted & Confidential | Current Wait-time: 48 Hours</p>
+        </div>
+        
+        <!-- Updated Form to go to sathington@gmail.com -->
+        <form action="https://formspree.io/f/sathington@gmail.com" method="POST" class="space-y-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest font-black text-yellow-500">Stage Name / Handle</label>
+                    <input type="text" name="stage_name" required class="w-full bg-white/5 border-b border-white/20 p-4 outline-none focus:border-yellow-500 transition text-white" placeholder="Elena">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest font-black text-yellow-500">Which Package Interests You?</label>
+                    <select name="tier" class="w-full bg-white/5 border-b border-white/20 p-4 outline-none focus:border-yellow-500 transition text-gray-400 appearance-none">
+                        <option>Essential Hub ($0 Build)</option>
+                        <option>Pro Performer ($299 Build)</option>
+                        <option>Empire Suite (Custom)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="text-[10px] uppercase tracking-widest font-black text-yellow-500">Contact Email (We never spam)</label>
+                <input type="email" name="_replyto" required class="w-full bg-white/5 border-b border-white/20 p-4 outline-none focus:border-yellow-500 transition text-white" placeholder="contact@you.com">
+            </div>
+            <div class="space-y-2">
+                <label class="text-[10px] uppercase tracking-widest font-black text-yellow-500">Where are you currently? (OF/Fansly/etc)</label>
+                <input type="text" name="platform" class="w-full bg-white/5 border-b border-white/20 p-4 outline-none focus:border-yellow-500 transition text-white" placeholder="onlyfans.com/yourhandle">
+            </div>
+            <div class="space-y-2">
+                <label class="text-[10px] uppercase tracking-widest font-black text-yellow-500">Any specific worries? (Bans, Leaks, etc)</label>
+                <textarea name="message" rows="4" class="w-full bg-white/5 border-b border-white/20 p-4 outline-none focus:border-yellow-500 transition text-white" placeholder="e.g. My Linktree was banned, I want better metadata protection..."></textarea>
+            </div>
+            
+            <!-- Honeypot to prevent spam -->
+            <input type="text" name="_gotcha" style="display:none">
+            
+            <button type="submit" class="w-full cta-button text-black py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-sm hover:scale-[1.02] transition">Request Private Consultation</button>
+        </form>
+    </section>
+
+    <footer class="py-12 text-center text-gray-600 text-[10px] uppercase tracking-widest border-t border-white/5">
+        &copy; 2026 THE ICON | ADULT INDUSTRY WEB ARCHITECTURE. <br>
+        <span class="mt-4 inline-block">HOSTED IN PRIVATE JURISDICTIONS | ENCRYPTED BY THE ICON HUB</span>
+    </footer>
+
+</body>
+</html>
