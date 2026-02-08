@@ -1,471 +1,415 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Rocket, 
-  Zap, 
-  Shield, 
-  Globe, 
-  CheckCircle, 
-  ArrowRight, 
-  MessageSquare, 
-  Code, 
-  Cpu, 
-  Menu, 
-  X,
-  Sparkles,
-  TrendingUp,
-  Clock
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Web | Premier Digital Engineering</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@18.2.0",
+                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+                "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-const IconWeb = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatInput, setChatInput] = useState('');
-  const [briefInput, setBriefInput] = useState('');
-  const [isOptimizing, setIsOptimizing] = useState(false);
+    <!-- Custom Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(22, 27, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-hover:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
 
-  // Handle scroll effect for navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+        /* Animation utilities */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-[#0A0F1C] text-slate-200">
 
-  // Simulating the AI optimization feature
-  const handleOptimizeBrief = () => {
-    if (!briefInput) return;
-    setIsOptimizing(true);
-    setTimeout(() => {
-      setBriefInput("I require a high-performance, mobile-responsive website for a local bakery. Key requirements include a digital menu, online ordering integration, and a warm, artisanal aesthetic to drive local foot traffic.");
-      setIsOptimizing(false);
-    }, 1500);
-  };
+    <div id="root"></div>
 
-  return (
-    <div className="min-h-screen bg-[#0A0F1C] text-slate-200 font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
-      
-      {/* --- Navigation --- */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#0A0F1C]/90 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
-              <Code size={18} className="text-white" />
-            </div>
-            <span className="text-2xl font-bold text-white tracking-tight">Icon<span className="text-blue-500">Web</span></span>
-          </div>
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { 
+            Rocket, Zap, Shield, Globe, CheckCircle, ArrowRight, 
+            MessageSquare, Code, Cpu, Menu, X, Sparkles, TrendingUp, Clock 
+        } from 'lucide-react';
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#capabilities" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Capabilities</a>
-            <a href="#metrics" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Advantage</a>
-            <a href="#pricing" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Investment</a>
-            <button className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
-              Secure Launch
-            </button>
-          </div>
+        const IconWeb = () => {
+            const [scrolled, setScrolled] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [chatOpen, setChatOpen] = useState(false);
+            const [chatInput, setChatInput] = useState('');
+            const [briefInput, setBriefInput] = useState('');
+            const [isOptimizing, setIsOptimizing] = useState(false);
 
-          {/* Mobile Toggle */}
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-white">
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-[#0A0F1C] border-b border-white/10 p-6 flex flex-col gap-6 shadow-2xl">
-            <a href="#capabilities" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Capabilities</a>
-            <a href="#metrics" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Advantage</a>
-            <a href="#pricing" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Investment</a>
-            <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl">Secure Launch</button>
-          </div>
-        )}
-      </nav>
+            const handleOptimizeBrief = () => {
+                if (!briefInput) return;
+                setIsOptimizing(true);
+                setTimeout(() => {
+                    setBriefInput("I require a high-performance, mobile-responsive website for a local bakery. Key requirements include a digital menu, online ordering integration, and a warm, artisanal aesthetic to drive local foot traffic.");
+                    setIsOptimizing(false);
+                }, 1500);
+            };
 
-      {/* --- Hero Section --- */}
-      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] -z-10 opacity-50 pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-900/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+            return (
+                <div className="min-h-screen overflow-x-hidden">
+                    
+                    {/* --- Navigation --- */}
+                    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#0A0F1C]/90 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+                            <div className="flex items-center gap-2 group cursor-pointer">
+                                <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                                    <Code size={18} className="text-white" />
+                                </div>
+                                <span className="text-2xl font-bold text-white tracking-tight">Icon<span className="text-blue-500">Web</span></span>
+                            </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in-up">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-            Hamilton's Digital Premier Partner
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter mb-8 leading-[1.1]">
-            Precision Built. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-              Launched in 24h.
-            </span>
-          </h1>
-          
-          <p className="max-w-2xl mx-auto text-xl text-slate-400 mb-12 leading-relaxed">
-            We engineer professional digital presences for high-performance businesses. 
-            Custom architecture, enterprise hosting, and zero-latency support.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <button className="px-8 py-4 bg-white text-[#0A0F1C] rounded-xl font-bold text-lg hover:bg-slate-200 transition-colors shadow-xl flex items-center justify-center gap-2 group">
-              Initialize Project <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 bg-[#161B22]/50 backdrop-blur-md border border-white/10 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
-              View Deployment Plans
-            </button>
-          </div>
-        </div>
-      </header>
+                            {/* Desktop Nav */}
+                            <div className="hidden md:flex items-center gap-8">
+                                <a href="#capabilities" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Capabilities</a>
+                                <a href="#metrics" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Advantage</a>
+                                <a href="#pricing" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Investment</a>
+                                <button className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
+                                    Secure Launch
+                                </button>
+                            </div>
 
-      {/* --- The Fix: Metrics Grid (Replacing Graphs) --- */}
-      <section id="metrics" className="py-24 bg-[#0D121F] relative">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Competitive Velocity</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full"></div>
-            <p className="mt-6 text-slate-400 max-w-2xl mx-auto">
-              Our optimized engineering stack allows us to bypass the bloat of traditional agencies. 
-              Better results, fraction of the time.
-            </p>
-          </div>
+                            {/* Mobile Toggle */}
+                            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-white">
+                                {mobileMenuOpen ? <X /> : <Menu />}
+                            </button>
+                        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Metric 1 */}
-            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-blue-500/30 transition-all group hover:-translate-y-2">
-              <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
-                <Clock className="text-blue-400" size={24} />
-              </div>
-              <h3 className="text-4xl font-bold text-white mb-2">24h</h3>
-              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Deployment Time</p>
-              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
-                From concept to live URL in one day. Traditional agencies take 4-6 weeks.
-              </p>
-            </div>
+                        {/* Mobile Menu */}
+                        {mobileMenuOpen && (
+                            <div className="md:hidden absolute top-full left-0 w-full bg-[#0A0F1C] border-b border-white/10 p-6 flex flex-col gap-6 shadow-2xl z-50">
+                                <a href="#capabilities" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Capabilities</a>
+                                <a href="#metrics" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Advantage</a>
+                                <a href="#pricing" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Investment</a>
+                                <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl">Secure Launch</button>
+                            </div>
+                        )}
+                    </nav>
 
-            {/* Metric 2 */}
-            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-cyan-500/30 transition-all group hover:-translate-y-2">
-              <div className="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 transition-colors">
-                <TrendingUp className="text-cyan-400" size={24} />
-              </div>
-              <h3 className="text-4xl font-bold text-white mb-2">96%</h3>
-              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Cost Efficiency</p>
-              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
-                We automated the overhead. You pay for the code, not the office snacks.
-              </p>
-            </div>
+                    {/* --- Hero Section with Background Image --- */}
+                    <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex flex-col justify-center min-h-[80vh]">
+                        {/* Background Image with Overlay */}
+                        <div className="absolute inset-0 z-0">
+                            <img 
+                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
+                                alt="Digital Network Background" 
+                                className="w-full h-full object-cover opacity-20"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1C] via-[#0A0F1C]/80 to-[#0A0F1C]"></div>
+                        </div>
 
-            {/* Metric 3 */}
-            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-purple-500/30 transition-all group hover:-translate-y-2">
-              <div className="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
-                <Code className="text-purple-400" size={24} />
-              </div>
-              <h3 className="text-4xl font-bold text-white mb-2">100%</h3>
-              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Custom Architecture</p>
-              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
-                No slow drag-and-drop builders. Pure React & semantic HTML5.
-              </p>
-            </div>
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in-up">
+                                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                                Hamilton's Digital Premier Partner
+                            </div>
+                            
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter mb-8 leading-[1.1] drop-shadow-2xl">
+                                Precision Built. <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                                    Launched in 24h.
+                                </span>
+                            </h1>
+                            
+                            <p className="max-w-2xl mx-auto text-xl text-slate-300 mb-12 leading-relaxed drop-shadow-md">
+                                We engineer professional digital presences for high-performance businesses. 
+                                Custom architecture, enterprise hosting, and zero-latency support.
+                            </p>
+                            
+                            <div className="flex flex-col sm:flex-row justify-center gap-6">
+                                <button className="px-8 py-4 bg-white text-[#0A0F1C] rounded-xl font-bold text-lg hover:bg-slate-200 transition-colors shadow-xl flex items-center justify-center gap-2 group">
+                                    Initialize Project <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                </button>
+                                <button className="px-8 py-4 bg-[#161B22]/50 backdrop-blur-md border border-white/10 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
+                                    View Deployment Plans
+                                </button>
+                            </div>
+                        </div>
+                    </header>
 
-            {/* Metric 4 */}
-            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-emerald-500/30 transition-all group hover:-translate-y-2">
-              <div className="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
-                <Globe className="text-emerald-400" size={24} />
-              </div>
-              <h3 className="text-4xl font-bold text-white mb-2">L8E</h3>
-              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Hamilton Ops</p>
-              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
-                Local servers, local support. Call 905 and speak to a human.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+                    {/* --- Metrics Grid --- */}
+                    <section id="metrics" className="py-24 bg-[#0D121F] relative">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <div className="text-center mb-16">
+                                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Competitive Velocity</h2>
+                                <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full"></div>
+                                <p className="mt-6 text-slate-400 max-w-2xl mx-auto">
+                                    Our optimized engineering stack allows us to bypass the bloat of traditional agencies. 
+                                    Better results, fraction of the time.
+                                </p>
+                            </div>
 
-      {/* --- Capabilities / Features --- */}
-      <section id="capabilities" className="py-24 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-block px-3 py-1 bg-blue-600/10 text-blue-400 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-                Technical Stack
-              </div>
-              <h2 className="text-4xl font-bold text-white mb-6">Built for the Modern Web.</h2>
-              <p className="text-slate-400 text-lg mb-8">
-                We don't just build websites; we build digital assets that appreciate in value.
-                Using the latest framework technologies ensures your site is faster, safer, and ranks higher.
-              </p>
-              
-              <div className="space-y-6">
-                {[
-                  { title: "React.js Core", desc: "The same technology powering Facebook and Netflix." },
-                  { title: "Tailwind Styling", desc: "Pixel-perfect responsive design for any device size." },
-                  { title: "SEO Native", desc: "Semantic structure that Google's bots love to crawl." }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-4">
-                    <div className="mt-1">
-                      <CheckCircle className="text-blue-500" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold">{item.title}</h4>
-                      <p className="text-slate-500 text-sm">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="relative">
-              {/* Abstract Representation of Code/structure */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 blur-3xl -z-10"></div>
-              <div className="bg-[#161B22]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
-                <div className="flex items-center gap-2 mb-6 border-b border-white/10 pb-4">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="ml-4 text-xs text-slate-500 font-mono">deployment_config.js</span>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {[
+                                    { icon: Clock, color: 'blue', val: '24h', title: 'Deployment Time', desc: 'From concept to live URL in one day. Traditional agencies take 4-6 weeks.' },
+                                    { icon: TrendingUp, color: 'cyan', val: '96%', title: 'Cost Efficiency', desc: 'We automated the overhead. You pay for the code, not the office snacks.' },
+                                    { icon: Code, color: 'purple', val: '100%', title: 'Custom Architecture', desc: 'No slow drag-and-drop builders. Pure React & semantic HTML5.' },
+                                    { icon: Globe, color: 'emerald', val: 'L8E', title: 'Hamilton Ops', desc: 'Local servers, local support. Call 905 and speak to a human.' }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="glass p-8 rounded-3xl glass-hover transition-all group hover:-translate-y-2">
+                                        <div className={`w-12 h-12 bg-${item.color}-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-${item.color}-500/20 transition-colors`}>
+                                            <item.icon className={`text-${item.color}-400`} size={24} />
+                                        </div>
+                                        <h3 className="text-4xl font-bold text-white mb-2">{item.val}</h3>
+                                        <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">{item.title}</p>
+                                        <p className="mt-4 text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- Capabilities / Features with Image --- */}
+                    <section id="capabilities" className="py-24 relative overflow-hidden bg-[#0A0F1C]">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                                <div>
+                                    <div className="inline-block px-3 py-1 bg-blue-600/10 text-blue-400 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                                        Technical Stack
+                                    </div>
+                                    <h2 className="text-4xl font-bold text-white mb-6">Built for the Modern Web.</h2>
+                                    <p className="text-slate-400 text-lg mb-8">
+                                        We don't just build websites; we build digital assets that appreciate in value.
+                                        Using the latest framework technologies ensures your site is faster, safer, and ranks higher.
+                                    </p>
+                                    
+                                    <div className="space-y-6">
+                                        {[
+                                            { title: "React.js Core", desc: "The same technology powering Facebook and Netflix." },
+                                            { title: "Tailwind Styling", desc: "Pixel-perfect responsive design for any device size." },
+                                            { title: "SEO Native", desc: "Semantic structure that Google's bots love to crawl." }
+                                        ].map((item, idx) => (
+                                            <div key={idx} className="flex gap-4">
+                                                <div className="mt-1">
+                                                    <CheckCircle className="text-blue-500" size={20} />
+                                                </div>
+                                                <div>
+                                                    <h4 className="text-white font-bold">{item.title}</h4>
+                                                    <p className="text-slate-500 text-sm">{item.desc}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                <div className="relative group">
+                                    <div className="absolute inset-0 bg-blue-600/20 rounded-2xl blur-xl group-hover:bg-blue-600/30 transition-all duration-500"></div>
+                                    <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                                        {/* IMAGE ADDED HERE */}
+                                        <img 
+                                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" 
+                                            alt="Coding Environment" 
+                                            className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                                        />
+                                        <div className="absolute bottom-0 left-0 w-full bg-[#161B22]/90 backdrop-blur-md p-6 border-t border-white/10">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                                <span className="text-xs font-mono text-green-400">System Online</span>
+                                            </div>
+                                            <p className="text-white font-bold text-sm">Deployment Pipeline Active</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- Pricing --- */}
+                    <section id="pricing" className="py-24 bg-[#0D121F] relative">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <div className="text-center mb-20">
+                                <h2 className="text-4xl font-bold text-white mb-4">Transparent Investment</h2>
+                                <p className="text-slate-400">No hidden fees. No "call for quote." Just business.</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                                {/* Starter */}
+                                <div className="glass p-8 rounded-3xl flex flex-col glass-hover transition-all">
+                                    <div className="mb-6">
+                                        <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Bootstrap</span>
+                                        <h3 className="text-2xl font-bold text-white mt-2">Starter</h3>
+                                        <div className="mt-4 flex items-baseline">
+                                            <span className="text-4xl font-bold text-white">$99</span>
+                                            <span className="ml-2 text-slate-500 text-sm">/ 1 Year</span>
+                                        </div>
+                                    </div>
+                                    <ul className="space-y-4 mb-8 flex-grow">
+                                        {['Custom Design', 'Domain Included', 'SSL Security', 'Standard Hosting'].map((feat, i) => (
+                                            <li key={i} className="flex items-center text-sm text-slate-300">
+                                                <CheckCircle size={16} className="text-blue-900 mr-3" /> {feat}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button className="w-full py-3 border border-slate-700 text-white rounded-xl hover:bg-white/5 transition-colors font-semibold">Select Starter</button>
+                                </div>
+
+                                {/* Pro - Highlighted */}
+                                <div className="bg-[#0A0F1C] border border-blue-500/50 p-8 rounded-3xl flex flex-col relative scale-105 shadow-[0_0_50px_rgba(37,99,235,0.15)] z-10">
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                                        Most Popular
+                                    </div>
+                                    <div className="mb-6">
+                                        <span className="text-blue-400 font-bold uppercase tracking-wider text-xs">Enterprise Grade</span>
+                                        <h3 className="text-2xl font-bold text-white mt-2">Long-Term</h3>
+                                        <div className="mt-4 flex items-baseline">
+                                            <span className="text-5xl font-extrabold text-white">$249</span>
+                                            <span className="ml-2 text-slate-500 text-sm">/ 3 Years</span>
+                                        </div>
+                                        <p className="text-xs text-blue-400 mt-2 font-mono bg-blue-900/20 inline-block px-2 py-1 rounded">Locked-in Protection</p>
+                                    </div>
+                                    <ul className="space-y-4 mb-8 flex-grow">
+                                        {['Everything in Starter', 'Inflation Protection', 'Priority Support', 'Annual Audit', 'Content Updates'].map((feat, i) => (
+                                            <li key={i} className="flex items-center text-sm text-white">
+                                                <CheckCircle size={16} className="text-blue-500 mr-3" /> {feat}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button className="w-full py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-500 transition-colors font-bold shadow-lg">
+                                        Maximize Value
+                                    </button>
+                                </div>
+
+                                {/* Value */}
+                                <div className="glass p-8 rounded-3xl flex flex-col glass-hover transition-all">
+                                    <div className="mb-6">
+                                        <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Standard</span>
+                                        <h3 className="text-2xl font-bold text-white mt-2">Growth</h3>
+                                        <div className="mt-4 flex items-baseline">
+                                            <span className="text-4xl font-bold text-white">$179</span>
+                                            <span className="ml-2 text-slate-500 text-sm">/ 2 Years</span>
+                                        </div>
+                                    </div>
+                                    <ul className="space-y-4 mb-8 flex-grow">
+                                        {['Custom Design', 'Price Guarantee', 'Monthly Backups', 'Basic Analytics'].map((feat, i) => (
+                                            <li key={i} className="flex items-center text-sm text-slate-300">
+                                                <CheckCircle size={16} className="text-blue-900 mr-3" /> {feat}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <button className="w-full py-3 border border-slate-700 text-white rounded-xl hover:bg-white/5 transition-colors font-semibold">Select Growth</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- Contact / AI Optimizer --- */}
+                    <section id="contact" className="py-24 bg-[#0A0F1C]">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                                <div>
+                                    <h2 className="text-5xl font-bold text-white mb-6">Ready to <span className="text-blue-500">Launch?</span></h2>
+                                    <p className="text-xl text-slate-400 mb-12">
+                                        Secure your spot in our next 24-hour cycle. 
+                                        We operate on a first-come, first-serve basis to ensure quality.
+                                    </p>
+                                    
+                                    <div className="flex items-center gap-4 mb-8 group cursor-pointer">
+                                        <div className="w-14 h-14 bg-[#161B22] border border-white/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                                            <span className="text-blue-500 font-bold text-lg group-hover:text-white">905</span>
+                                        </div>
+                                        <div>
+                                            <p className="text-white font-bold text-lg">905-467-2249</p>
+                                            <p className="text-slate-500 text-sm">Direct Engineering Line</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-[#161B22] p-8 rounded-3xl border border-white/5 relative overflow-hidden shadow-2xl">
+                                    <form className="space-y-6 relative z-10">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <input type="text" placeholder="Name" className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full" />
+                                            <input type="text" placeholder="Contact Info" className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full" />
+                                        </div>
+                                        
+                                        <div className="relative">
+                                            <div className="flex justify-between items-center mb-2">
+                                                <label className="text-xs font-bold text-slate-500 uppercase">Project Brief</label>
+                                                <button 
+                                                    type="button" 
+                                                    onClick={handleOptimizeBrief}
+                                                    className="text-xs flex items-center gap-1 text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md hover:bg-blue-500/20 transition-colors"
+                                                    disabled={isOptimizing}
+                                                >
+                                                    <Sparkles size={12} /> {isOptimizing ? 'Optimizing...' : 'AI Optimizer'}
+                                                </button>
+                                            </div>
+                                            <textarea 
+                                                rows="4" 
+                                                value={briefInput}
+                                                onChange={(e) => setBriefInput(e.target.value)}
+                                                placeholder="E.g. I need a clean site for my local bakery..." 
+                                                className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full resize-none transition-all duration-500"
+                                            ></textarea>
+                                        </div>
+
+                                        <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-colors shadow-lg">
+                                            Start Engagement
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* --- Footer --- */}
+                    <footer className="py-12 border-t border-white/5 bg-[#0A0F1C]">
+                        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+                            <div>
+                                <span className="text-xl font-bold text-white tracking-tight">Icon<span className="text-blue-500">Web</span></span>
+                                <p className="text-xs text-slate-500 mt-2">
+                                    90 Centennial Pkwy N, Hamilton, ON<br />
+                                    © 2026 Icon Web Hamilton
+                                </p>
+                            </div>
+                            <div className="flex gap-8 text-xs font-bold text-slate-500 uppercase">
+                                <a href="#" className="hover:text-white">Privacy</a>
+                                <a href="#" className="hover:text-white">Terms</a>
+                                <a href="#" className="hover:text-white">Sitemap</a>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
-                <div className="space-y-3 font-mono text-sm">
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">01</span>
-                    <span className="text-purple-400">const</span> <span className="text-yellow-200">IconWeb</span> <span className="text-white">=</span> <span className="text-purple-400">async</span> () <span className="text-purple-400">=&gt;</span> {'{'}
-                  </div>
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">02</span>
-                    <span className="ml-4 text-blue-400">await</span> <span className="text-blue-300">deploy</span>({'{'}
-                  </div>
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">03</span>
-                    <span className="ml-8 text-slate-300">speed:</span> <span className="text-green-400">'24h'</span>,
-                  </div>
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">04</span>
-                    <span className="ml-8 text-slate-300">security:</span> <span className="text-green-400">'Maximum'</span>,
-                  </div>
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">05</span>
-                    <span className="ml-8 text-slate-300">cost:</span> <span className="text-green-400">99.00</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">06</span>
-                    <span className="ml-4 text-white">{'}'});</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <span className="text-slate-600">07</span>
-                    <span className="text-white">{'}'};</span>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-dashed border-white/10 text-xs text-slate-500">
-                    // Ready for production launch...
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            );
+        };
 
-      {/* --- Pricing --- */}
-      <section id="pricing" className="py-24 bg-[#0A0F1C] relative">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-bold text-white mb-4">Transparent Investment</h2>
-            <p className="text-slate-400">No hidden fees. No "call for quote." Just business.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-            {/* Starter */}
-            <div className="bg-[#161B22]/50 backdrop-blur-sm border border-white/5 p-8 rounded-3xl flex flex-col hover:bg-[#161B22] transition-colors">
-              <div className="mb-6">
-                <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Bootstrap</span>
-                <h3 className="text-2xl font-bold text-white mt-2">Starter</h3>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-4xl font-bold text-white">$99</span>
-                  <span className="ml-2 text-slate-500 text-sm">/ 1 Year</span>
-                </div>
-              </div>
-              <ul className="space-y-4 mb-8 flex-grow">
-                {['Custom Design', 'Domain Included', 'SSL Security', 'Standard Hosting'].map((feat, i) => (
-                  <li key={i} className="flex items-center text-sm text-slate-300">
-                    <CheckCircle size={16} className="text-blue-900 mr-3" /> {feat}
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full py-3 border border-slate-700 text-white rounded-xl hover:bg-white/5 transition-colors font-semibold">Select Starter</button>
-            </div>
-
-            {/* Pro - Highlighted */}
-            <div className="bg-[#0D121F] border border-blue-500/50 p-8 rounded-3xl flex flex-col relative scale-105 shadow-[0_0_50px_rgba(37,99,235,0.15)] z-10">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
-                Most Popular
-              </div>
-              <div className="mb-6">
-                <span className="text-blue-400 font-bold uppercase tracking-wider text-xs">Enterprise Grade</span>
-                <h3 className="text-2xl font-bold text-white mt-2">Long-Term</h3>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-5xl font-extrabold text-white">$249</span>
-                  <span className="ml-2 text-slate-500 text-sm">/ 3 Years</span>
-                </div>
-                <p className="text-xs text-blue-400 mt-2 font-mono bg-blue-900/20 inline-block px-2 py-1 rounded">Locked-in Protection</p>
-              </div>
-              <ul className="space-y-4 mb-8 flex-grow">
-                {['Everything in Starter', 'Inflation Protection', 'Priority Support', 'Annual Audit', 'Content Updates'].map((feat, i) => (
-                  <li key={i} className="flex items-center text-sm text-white">
-                    <CheckCircle size={16} className="text-blue-500 mr-3" /> {feat}
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-500 transition-colors font-bold shadow-lg">
-                Maximize Value
-              </button>
-            </div>
-
-            {/* Value */}
-            <div className="bg-[#161B22]/50 backdrop-blur-sm border border-white/5 p-8 rounded-3xl flex flex-col hover:bg-[#161B22] transition-colors">
-              <div className="mb-6">
-                <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Standard</span>
-                <h3 className="text-2xl font-bold text-white mt-2">Growth</h3>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-4xl font-bold text-white">$179</span>
-                  <span className="ml-2 text-slate-500 text-sm">/ 2 Years</span>
-                </div>
-              </div>
-              <ul className="space-y-4 mb-8 flex-grow">
-                {['Custom Design', 'Price Guarantee', 'Monthly Backups', 'Basic Analytics'].map((feat, i) => (
-                  <li key={i} className="flex items-center text-sm text-slate-300">
-                    <CheckCircle size={16} className="text-blue-900 mr-3" /> {feat}
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full py-3 border border-slate-700 text-white rounded-xl hover:bg-white/5 transition-colors font-semibold">Select Growth</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- Contact / AI Optimizer --- */}
-      <section id="contact" className="py-24 bg-[#0D121F]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-5xl font-bold text-white mb-6">Ready to <span className="text-blue-500">Launch?</span></h2>
-              <p className="text-xl text-slate-400 mb-12">
-                Secure your spot in our next 24-hour cycle. 
-                We operate on a first-come, first-serve basis to ensure quality.
-              </p>
-              
-              <div className="flex items-center gap-4 mb-8 group cursor-pointer">
-                <div className="w-14 h-14 bg-[#161B22] border border-white/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                  <span className="text-blue-500 font-bold text-lg group-hover:text-white">905</span>
-                </div>
-                <div>
-                  <p className="text-white font-bold text-lg">905-467-2249</p>
-                  <p className="text-slate-500 text-sm">Direct Engineering Line</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#161B22] p-8 rounded-3xl border border-white/5 relative overflow-hidden">
-              <form className="space-y-6 relative z-10">
-                <div className="grid grid-cols-2 gap-4">
-                  <input type="text" placeholder="Name" className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full" />
-                  <input type="text" placeholder="Contact Info" className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full" />
-                </div>
-                
-                <div className="relative">
-                  <div className="flex justify-between items-center mb-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Project Brief</label>
-                    <button 
-                      type="button" 
-                      onClick={handleOptimizeBrief}
-                      className="text-xs flex items-center gap-1 text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md hover:bg-blue-500/20 transition-colors"
-                      disabled={isOptimizing}
-                    >
-                      <Sparkles size={12} /> {isOptimizing ? 'Optimizing...' : 'AI Optimizer'}
-                    </button>
-                  </div>
-                  <textarea 
-                    rows="4" 
-                    value={briefInput}
-                    onChange={(e) => setBriefInput(e.target.value)}
-                    placeholder="E.g. I need a clean site for my local bakery..." 
-                    className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full resize-none transition-all duration-500"
-                  ></textarea>
-                </div>
-
-                <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-colors shadow-lg">
-                  Start Engagement
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- Footer --- */}
-      <footer className="py-12 border-t border-white/5 bg-[#0A0F1C]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-          <div>
-            <span className="text-xl font-bold text-white tracking-tight">Icon<span className="text-blue-500">Web</span></span>
-            <p className="text-xs text-slate-500 mt-2">
-              90 Centennial Pkwy N, Hamilton, ON<br />
-              © 2026 Icon Web Hamilton
-            </p>
-          </div>
-          <div className="flex gap-8 text-xs font-bold text-slate-500 uppercase">
-            <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Terms</a>
-            <a href="#" className="hover:text-white">Sitemap</a>
-          </div>
-        </div>
-      </footer>
-
-      {/* --- AI Widget --- */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {!chatOpen ? (
-          <button 
-            onClick={() => setChatOpen(true)}
-            className="w-16 h-16 bg-blue-600 hover:bg-blue-500 rounded-full shadow-[0_0_30px_rgba(37,99,235,0.4)] flex items-center justify-center text-white transition-transform hover:scale-110"
-          >
-            <Sparkles />
-          </button>
-        ) : (
-          <div className="w-80 md:w-96 bg-[#161B22] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[500px] animate-fade-in-up">
-            <div className="bg-blue-600/20 p-4 border-b border-white/10 flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-xs font-bold text-white uppercase tracking-widest">Icon Strategist</span>
-              </div>
-              <button onClick={() => setChatOpen(false)} className="text-slate-400 hover:text-white">
-                <X size={18} />
-              </button>
-            </div>
-            
-            <div className="flex-grow p-4 bg-[#0A0F1C] overflow-y-auto space-y-4">
-              <div className="bg-[#161B22] p-3 rounded-xl rounded-tl-none border border-slate-700 text-sm text-slate-300">
-                Hello! I'm the Icon Web AI. I can explain our 24h process or help you pick a plan.
-              </div>
-            </div>
-
-            <div className="p-3 bg-[#161B22] border-t border-white/10">
-              <div className="flex gap-2">
-                <input 
-                  type="text" 
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value)}
-                  placeholder="Ask about pricing..." 
-                  className="flex-grow bg-[#0A0F1C] border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500"
-                />
-                <button className="bg-blue-600 px-3 rounded-lg text-white hover:bg-blue-500">
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-    </div>
-  );
-};
-
-export default IconWeb;
+        const root = createRoot(document.getElementById('root'));
+        root.render(<IconWeb />);
+    </script>
+</body>
+</html>
