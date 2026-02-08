@@ -1,446 +1,471 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icon Web | Professional Custom Websites</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+import React, { useState, useEffect } from 'react';
+import { 
+  Rocket, 
+  Zap, 
+  Shield, 
+  Globe, 
+  CheckCircle, 
+  ArrowRight, 
+  MessageSquare, 
+  Code, 
+  Cpu, 
+  Menu, 
+  X,
+  Sparkles,
+  TrendingUp,
+  Clock
+} from 'lucide-react';
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0A0F1C;
-            color: #E2E8F0;
-        }
+const IconWeb = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatInput, setChatInput] = useState('');
+  const [briefInput, setBriefInput] = useState('');
+  const [isOptimizing, setIsOptimizing] = useState(false);
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-        }
+  // Simulating the AI optimization feature
+  const handleOptimizeBrief = () => {
+    if (!briefInput) return;
+    setIsOptimizing(true);
+    setTimeout(() => {
+      setBriefInput("I require a high-performance, mobile-responsive website for a local bakery. Key requirements include a digital menu, online ordering integration, and a warm, artisanal aesthetic to drive local foot traffic.");
+      setIsOptimizing(false);
+    }, 1500);
+  };
 
-        .glass-card {
-            background: rgba(22, 27, 34, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .bg-overlay {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            mix-blend-mode: luminosity;
-            pointer-events: none;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        #ai-chat-window {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .loading-dots:after {
-            content: ' .';
-            animation: dots 1s steps(5, end) infinite;
-        }
-        @keyframes dots {
-            0%, 20% { color: rgba(0,0,0,0); text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); }
-            40% { color: #3B82F6; text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); }
-            60% { text-shadow: .25em 0 0 #3B82F6, .5em 0 0 rgba(0,0,0,0); }
-            80%, 100% { text-shadow: .25em 0 0 #3B82F6, .5em 0 0 #3B82F6; }
-        }
-
-        /* Scrollbar styling for chat */
-        #chat-messages::-webkit-scrollbar {
-            width: 4px;
-        }
-        #chat-messages::-webkit-scrollbar-thumb {
-            background: #3B82F6;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
-
-    <!-- AI Floating Widget ✨ -->
-    <div class="fixed bottom-6 right-6 z-[100]">
-        <button id="ai-chat-toggle" class="w-16 h-16 bg-blue-600 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.5)] flex items-center justify-center text-2xl hover:scale-110 transition-transform">
-            ✨
-        </button>
-        <div id="ai-chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 glass-card rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[500px]">
-            <div class="bg-blue-600/20 p-4 border-b border-white/10 flex justify-between items-center">
-                <span class="font-bold text-sm tracking-widest uppercase text-white">Digital Strategist ✨</span>
-                <button id="close-chat" class="text-slate-400 hover:text-white text-xl">&times;</button>
+  return (
+    <div className="min-h-screen bg-[#0A0F1C] text-slate-200 font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* --- Navigation --- */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#0A0F1C]/90 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+              <Code size={18} className="text-white" />
             </div>
-            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto space-y-4 text-sm scroll-smooth">
-                <div class="bg-blue-600/10 p-3 rounded-lg border border-blue-500/20">
-                    Hello! I'm Icon Web's AI consultant. Ask me about our 24h process, SEO, or which plan fits your business.
-                </div>
-            </div>
-            <div class="p-4 bg-[#0A0F1C] border-t border-white/10">
-                <div class="flex gap-2">
-                    <input id="ai-input" type="text" placeholder="How does the 24h launch work?" class="flex-grow bg-[#161B22] border border-slate-700 rounded-lg p-2 text-xs focus:border-blue-500 outline-none text-white">
-                    <button id="send-ai-query" class="bg-blue-600 px-3 py-2 rounded-lg text-white font-bold text-xs hover:bg-blue-500 transition-colors">Send</button>
-                </div>
-            </div>
+            <span className="text-2xl font-bold text-white tracking-tight">Icon<span className="text-blue-500">Web</span></span>
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#capabilities" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Capabilities</a>
+            <a href="#metrics" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Advantage</a>
+            <a href="#pricing" className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase tracking-wider">Investment</a>
+            <button className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
+              Secure Launch
+            </button>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-white">
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
         </div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#0A0F1C]/80 backdrop-blur-lg border-b border-white/5 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-2xl tracking-tight text-white italic">Icon<span class="text-[#3B82F6]">Web</span></span>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="tel:9054672249" class="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-bold uppercase tracking-widest">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        905-467-2249
-                    </a>
-                    <a href="#features" class="text-slate-300 hover:text-white transition-colors text-sm font-semibold uppercase tracking-widest">Capabilities</a>
-                    <a href="#pricing" class="text-slate-300 hover:text-white transition-colors text-sm font-semibold uppercase tracking-widest">Investment</a>
-                    <a href="#contact" class="px-5 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] text-sm font-bold">Secure Launch</a>
-                </div>
-                
-                <button class="md:hidden text-2xl text-slate-300">&#9776;</button>
-            </div>
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-[#0A0F1C] border-b border-white/10 p-6 flex flex-col gap-6 shadow-2xl">
+            <a href="#capabilities" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Capabilities</a>
+            <a href="#metrics" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Advantage</a>
+            <a href="#pricing" className="text-lg font-medium text-white" onClick={() => setMobileMenuOpen(false)}>Investment</a>
+            <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl">Secure Launch</button>
+          </div>
+        )}
+      </nav>
+
+      {/* --- Hero Section --- */}
+      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] -z-10 opacity-50 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-900/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in-up">
+            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+            Hamilton's Digital Premier Partner
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter mb-8 leading-[1.1]">
+            Precision Built. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+              Launched in 24h.
+            </span>
+          </h1>
+          
+          <p className="max-w-2xl mx-auto text-xl text-slate-400 mb-12 leading-relaxed">
+            We engineer professional digital presences for high-performance businesses. 
+            Custom architecture, enterprise hosting, and zero-latency support.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <button className="px-8 py-4 bg-white text-[#0A0F1C] rounded-xl font-bold text-lg hover:bg-slate-200 transition-colors shadow-xl flex items-center justify-center gap-2 group">
+              Initialize Project <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="px-8 py-4 bg-[#161B22]/50 backdrop-blur-md border border-white/10 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-colors">
+              View Deployment Plans
+            </button>
+          </div>
         </div>
-    </nav>
+      </header>
 
-    <!-- Hero Section -->
-    <header class="relative min-h-[85vh] flex items-center overflow-hidden pt-20 pb-32">
-        <div class="bg-overlay" style="background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070'); opacity: 0.1;"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-flex items-center space-x-2 py-1.5 px-4 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-10">
-                <span>Hamilton's Premier Digital Partner</span>
-            </div>
-            <h1 class="text-6xl md:text-8xl font-bold text-white tracking-tighter mb-8 leading-[1.1]">
-                Precision Built. <br>
-                <span class="text-[#3B82F6]">Launched in 24h.</span>
-            </h1>
-            <p class="mt-4 max-w-3xl mx-auto text-xl text-slate-400 leading-relaxed">
-                We engineer professional digital presences for high-performance businesses. <br>
-                Custom architecture, enterprise hosting, and zero-latency support. Starting at <strong>$99</strong>.
+      {/* --- The Fix: Metrics Grid (Replacing Graphs) --- */}
+      <section id="metrics" className="py-24 bg-[#0D121F] relative">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Competitive Velocity</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full"></div>
+            <p className="mt-6 text-slate-400 max-w-2xl mx-auto">
+              Our optimized engineering stack allows us to bypass the bloat of traditional agencies. 
+              Better results, fraction of the time.
             </p>
-            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#contact" class="px-10 py-5 bg-blue-600 text-white rounded-xl font-bold shadow-2xl hover:bg-blue-500 transition-all transform hover:-translate-y-1">
-                    Initialize Project
-                </a>
-                <a href="#market-analysis" class="px-10 py-5 glass-card text-white rounded-xl font-bold hover:bg-white/10 transition-all">
-                    Market Analysis
-                </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Metric 1 */}
+            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-blue-500/30 transition-all group hover:-translate-y-2">
+              <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
+                <Clock className="text-blue-400" size={24} />
+              </div>
+              <h3 className="text-4xl font-bold text-white mb-2">24h</h3>
+              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Deployment Time</p>
+              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+                From concept to live URL in one day. Traditional agencies take 4-6 weeks.
+              </p>
             </div>
+
+            {/* Metric 2 */}
+            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-cyan-500/30 transition-all group hover:-translate-y-2">
+              <div className="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 transition-colors">
+                <TrendingUp className="text-cyan-400" size={24} />
+              </div>
+              <h3 className="text-4xl font-bold text-white mb-2">96%</h3>
+              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Cost Efficiency</p>
+              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+                We automated the overhead. You pay for the code, not the office snacks.
+              </p>
+            </div>
+
+            {/* Metric 3 */}
+            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-purple-500/30 transition-all group hover:-translate-y-2">
+              <div className="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
+                <Code className="text-purple-400" size={24} />
+              </div>
+              <h3 className="text-4xl font-bold text-white mb-2">100%</h3>
+              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Custom Architecture</p>
+              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+                No slow drag-and-drop builders. Pure React & semantic HTML5.
+              </p>
+            </div>
+
+            {/* Metric 4 */}
+            <div className="bg-[#161B22] border border-white/5 p-8 rounded-3xl hover:border-emerald-500/30 transition-all group hover:-translate-y-2">
+              <div className="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
+                <Globe className="text-emerald-400" size={24} />
+              </div>
+              <h3 className="text-4xl font-bold text-white mb-2">L8E</h3>
+              <p className="text-sm text-slate-400 uppercase tracking-wider font-semibold">Hamilton Ops</p>
+              <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+                Local servers, local support. Call 905 and speak to a human.
+              </p>
+            </div>
+          </div>
         </div>
-    </header>
+      </section>
 
-    <!-- Market Analysis -->
-    <section id="market-analysis" class="py-32 bg-[#0D121F]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-24">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Competitive Advantage</h2>
-                <div class="h-1 w-20 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-slate-400 max-w-2xl mx-auto text-lg">Our optimized engineering allows us to deliver agency-quality results at a fraction of the cost and time.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="glass-card p-10 rounded-3xl">
-                    <h3 class="text-2xl font-bold text-white mb-2">Cost Efficiency</h3>
-                    <div class="chart-container"><canvas id="costChart"></canvas></div>
-                </div>
-                <div class="glass-card p-10 rounded-3xl">
-                    <h3 class="text-2xl font-bold text-white mb-2">Delivery Velocity</h3>
-                    <div class="chart-container"><canvas id="timeChart"></canvas></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Grid -->
-    <section id="pricing" class="py-32 bg-[#0A0F1C] relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-24">
-                <h2 class="text-4xl font-bold text-white mb-4">Investment Tiers</h2>
-                <p class="text-slate-400">All tiers include the full "Standard Inclusion" package.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-                <!-- Plan 1 -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col order-1 md:order-1">
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-slate-300">Starter Plan</h3>
-                        <div class="mt-4 flex items-baseline">
-                            <span class="text-5xl font-extrabold text-white">$99</span>
-                            <span class="ml-2 text-slate-500">/ 1 Year</span>
-                        </div>
-                    </div>
-                    <ul class="space-y-4 mb-10 text-sm text-slate-400 flex-grow">
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> Custom Design & Code</li>
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> Domain Name</li>
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> Hosting for 12 Months</li>
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> Security & SSL</li>
-                    </ul>
-                    <a href="#contact" class="block w-full text-center py-4 glass-card border-slate-700 hover:bg-white/5 transition-all text-white font-bold rounded-xl">Get Started</a>
-                </div>
-
-                <!-- Plan 2: FEATURED LONG-TERM -->
-                <div class="relative glass-card p-10 rounded-3xl border-blue-500/50 flex flex-col shadow-[0_0_60px_rgba(59,130,246,0.2)] scale-105 z-10 order-2 md:order-2">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-blue-600 text-white text-[10px] font-bold rounded-full uppercase tracking-tighter shadow-lg">Most Popular & Best Value</div>
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-white">Long-Term Plan</h3>
-                        <div class="mt-4 flex items-baseline">
-                            <span class="text-5xl font-extrabold text-white">$249</span>
-                            <span class="ml-2 text-slate-500">/ 3 Years</span>
-                        </div>
-                        <p class="mt-2 text-xs text-blue-400 font-bold uppercase tracking-widest italic">Locked-in Protection</p>
-                    </div>
-                    <ul class="space-y-4 mb-10 text-sm text-slate-200 flex-grow">
-                        <li><span class="text-blue-500 mr-3">&#10003;</span> <strong>Everything in Value Plan</strong></li>
-                        <li><span class="text-blue-500 mr-3">&#10003;</span> Lowest Daily Cost Rate</li>
-                        <li><span class="text-blue-500 mr-3">&#10003;</span> 3 Years Inflation Protection</li>
-                        <li><span class="text-blue-500 mr-3">&#10003;</span> Priority Tech Support</li>
-                        <li><span class="text-blue-500 mr-3">&#10003;</span> Annual SEO Audit</li>
-                    </ul>
-                    <a href="#contact" class="block w-full text-center py-4 bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold rounded-xl shadow-xl">Maximum Value Launch</a>
-                </div>
-
-                <!-- Plan 3 -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col order-3 md:order-3">
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-slate-300">Value Plan</h3>
-                        <div class="mt-4 flex items-baseline">
-                            <span class="text-5xl font-extrabold text-white">$179</span>
-                            <span class="ml-2 text-slate-500">/ 2 Years</span>
-                        </div>
-                    </div>
-                    <ul class="space-y-4 mb-10 text-sm text-slate-400 flex-grow">
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> Everything in Starter</li>
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> 24 Months Guaranteed Price</li>
-                        <li><span class="text-blue-500 mr-2">&#10003;</span> Priority Monthly Backups</li>
-                    </ul>
-                    <a href="#contact" class="block w-full text-center py-4 glass-card border-slate-700 hover:bg-white/5 transition-all text-white font-bold rounded-xl">Lock in Price</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact + AI Optimizer ✨ -->
-    <section id="contact" class="py-32 bg-[#0D121F]">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-                <div>
-                    <h2 class="text-5xl font-bold text-white mb-8">Ready to <span class="text-blue-500">Launch?</span></h2>
-                    <p class="text-xl text-slate-400 mb-12">Don't let your business get left behind. Secure your spot in the next 24-hour cycle.</p>
-                    <div class="space-y-6">
-                        <a href="tel:9054672249" class="flex items-center group">
-                            <div class="w-12 h-12 glass-card rounded-xl flex items-center justify-center text-blue-500 text-lg group-hover:bg-blue-600 group-hover:text-white transition-all">905</div>
-                            <div class="ml-4 text-slate-400 font-bold group-hover:text-white transition-colors">905-467-2249</div>
-                        </a>
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 glass-card rounded-xl flex items-center justify-center text-blue-500 text-lg">ON</div>
-                            <div class="ml-4 text-slate-500 uppercase tracking-widest text-xs font-bold">Hamilton Local Operations</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-card p-10 rounded-3xl">
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <input type="text" id="user-name" placeholder="Name" class="w-full bg-[#0A0F1C]/50 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" required>
-                            <input type="text" id="user-contact" placeholder="Email/Phone" class="w-full bg-[#0A0F1C]/50 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" required>
-                        </div>
-                        <div class="relative">
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="text-xs font-bold text-slate-500">Project Brief</label>
-                                <button type="button" id="ai-optimize-brief" class="text-xs bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full border border-blue-500/30 hover:bg-blue-600 hover:text-white transition-all">✨ AI Optimizer</button>
-                            </div>
-                            <textarea id="project-brief" rows="4" class="w-full bg-[#0A0F1C]/50 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" placeholder="E.g. I need a clean site for my local bakery with a menu page..."></textarea>
-                        </div>
-                        <button type="submit" id="submit-btn" class="w-full py-5 bg-blue-600 text-white font-bold rounded-xl shadow-xl hover:bg-blue-500 transition-all">Start Engagement</button>
-                    </form>
-                    <div id="form-feedback" class="mt-6 hidden text-center p-6 glass-card border-blue-500/50 rounded-xl">
-                        <div class="text-blue-400 font-bold mb-2">✨ Digital Strategist Insight:</div>
-                        <span id="ai-response-msg" class="text-slate-300 text-sm italic">Analyzing your brief...</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#0A0F1C] py-16 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8">
+      {/* --- Capabilities / Features --- */}
+      <section id="capabilities" className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-                <span class="font-bold text-2xl text-white italic">Icon<span class="text-blue-500">Web</span></span>
-                <p class="text-xs mt-4 text-slate-500 uppercase leading-relaxed">
-                    90 Centennial Pkwy N<br>
-                    Hamilton, ON L8E 1H7<br>
-                    Canada
-                </p>
+              <div className="inline-block px-3 py-1 bg-blue-600/10 text-blue-400 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                Technical Stack
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-6">Built for the Modern Web.</h2>
+              <p className="text-slate-400 text-lg mb-8">
+                We don't just build websites; we build digital assets that appreciate in value.
+                Using the latest framework technologies ensures your site is faster, safer, and ranks higher.
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  { title: "React.js Core", desc: "The same technology powering Facebook and Netflix." },
+                  { title: "Tailwind Styling", desc: "Pixel-perfect responsive design for any device size." },
+                  { title: "SEO Native", desc: "Semantic structure that Google's bots love to crawl." }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <div className="mt-1">
+                      <CheckCircle className="text-blue-500" size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold">{item.title}</h4>
+                      <p className="text-slate-500 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div class="flex space-x-8 text-xs font-bold text-slate-500 uppercase">
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                <span>© 2026 Icon Web Hamilton</span>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const apiKey = ""; // Handled by environment
-
-        // Core Gemini API Logic with Exponential Backoff
-        async function callGemini(prompt, systemPrompt) {
-            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
-
-            const delays = [1000, 2000, 4000, 8000, 16000];
-            for (let i = 0; i < 5; i++) {
-                try {
-                    const response = await fetch(endpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (response.ok) {
-                        const data = await response.json();
-                        return data.candidates?.[0]?.content?.parts?.[0]?.text;
-                    }
-                } catch (err) { /* silent retry */ }
-                await new Promise(resolve => setTimeout(resolve, delays[i]));
-            }
-            throw new Error("Service unavailable.");
-        }
-
-        // --- Feature 1: ✨ AI Brief Optimizer ---
-        document.getElementById('ai-optimize-brief').addEventListener('click', async () => {
-            const briefInput = document.getElementById('project-brief');
-            const originalText = briefInput.value.trim();
-            if (!originalText) {
-                briefInput.placeholder = "Please enter some notes first!";
-                return;
-            }
-
-            const btn = document.getElementById('ai-optimize-brief');
-            const originalBtnText = btn.innerText;
-            btn.innerText = '✨ Optimizing...';
-            btn.disabled = true;
-
-            try {
-                const systemPrompt = "You are an expert Digital Project Manager. Rewrite the following rough website notes into a professional, technical, and compelling project brief that would excite a web designer. Keep it to one concise paragraph.";
-                const optimized = await callGemini(originalText, systemPrompt);
-                briefInput.value = optimized.trim();
-            } catch (err) {
-                console.error(err);
-            } finally {
-                btn.innerText = originalBtnText;
-                btn.disabled = false;
-            }
-        });
-
-        // --- Feature 2: ✨ Digital Strategist Chat ---
-        const chatToggle = document.getElementById('ai-chat-toggle');
-        const chatWindow = document.getElementById('ai-chat-window');
-        const chatMessages = document.getElementById('chat-messages');
-        const aiInput = document.getElementById('ai-input');
-        const sendBtn = document.getElementById('send-ai-query');
-
-        chatToggle.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
-        document.getElementById('close-chat').addEventListener('click', () => chatWindow.classList.add('hidden'));
-
-        async function sendChatMessage() {
-            const query = aiInput.value.trim();
-            if (!query) return;
-
-            // User Message
-            const userDiv = document.createElement('div');
-            userDiv.className = 'bg-slate-800 p-2 rounded-lg text-right text-xs text-slate-200 ml-8';
-            userDiv.innerText = query;
-            chatMessages.appendChild(userDiv);
-            aiInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            // Loading state
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'text-blue-400 text-xs italic loading-dots';
-            loadingDiv.innerText = 'Strategizing';
-            chatMessages.appendChild(loadingDiv);
-
-            try {
-                const systemPrompt = "You are the Icon Web Digital Strategist. You provide advice for Hamilton businesses on websites. You are professional, persuasive, and advocate for 24-hour delivery and custom-coded sites. Keep responses under 3 sentences.";
-                const response = await callGemini(query, systemPrompt);
-                
-                loadingDiv.remove();
-                const aiDiv = document.createElement('div');
-                aiDiv.className = 'bg-blue-600/10 border border-blue-500/20 p-2 rounded-lg text-xs mr-8';
-                aiDiv.innerText = response;
-                chatMessages.appendChild(aiDiv);
-            } catch (err) {
-                loadingDiv.innerText = "Connection lost. Please call 905-467-2249.";
-            }
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', sendChatMessage);
-        aiInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChatMessage(); });
-
-        // --- Feature 3: ✨ Smart Submission Insight ---
-        document.getElementById('contact-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submit-btn');
-            const feedbackArea = document.getElementById('form-feedback');
-            const responseMsg = document.getElementById('ai-response-msg');
-            const brief = document.getElementById('project-brief').value;
-            const name = document.getElementById('user-name').value;
-
-            submitBtn.disabled = true;
-            submitBtn.innerText = 'Submitting...';
-            feedbackArea.classList.remove('hidden');
-
-            try {
-                const systemPrompt = "A user named " + name + " just submitted a web design brief. Write a very short, personalized one-sentence insight about why their specific idea is a great business move and confirm that an engineer will call them today.";
-                const insight = await callGemini(brief || "General inquiry", systemPrompt);
-                responseMsg.innerText = insight;
-            } catch (err) {
-                responseMsg.innerText = "Brief received. Our lead engineer will contact you shortly.";
-            }
             
-            submitBtn.innerText = 'Signal Sent';
-        });
+            <div className="relative">
+              {/* Abstract Representation of Code/structure */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 blur-3xl -z-10"></div>
+              <div className="bg-[#161B22]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+                <div className="flex items-center gap-2 mb-6 border-b border-white/10 pb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span className="ml-4 text-xs text-slate-500 font-mono">deployment_config.js</span>
+                </div>
+                <div className="space-y-3 font-mono text-sm">
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">01</span>
+                    <span className="text-purple-400">const</span> <span className="text-yellow-200">IconWeb</span> <span className="text-white">=</span> <span className="text-purple-400">async</span> () <span className="text-purple-400">=&gt;</span> {'{'}
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">02</span>
+                    <span className="ml-4 text-blue-400">await</span> <span className="text-blue-300">deploy</span>({'{'}
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">03</span>
+                    <span className="ml-8 text-slate-300">speed:</span> <span className="text-green-400">'24h'</span>,
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">04</span>
+                    <span className="ml-8 text-slate-300">security:</span> <span className="text-green-400">'Maximum'</span>,
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">05</span>
+                    <span className="ml-8 text-slate-300">cost:</span> <span className="text-green-400">99.00</span>
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">06</span>
+                    <span className="ml-4 text-white">{'}'});</span>
+                  </div>
+                  <div className="flex gap-4">
+                    <span className="text-slate-600">07</span>
+                    <span className="text-white">{'}'};</span>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-dashed border-white/10 text-xs text-slate-500">
+                    // Ready for production launch...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        // --- Original Charts ---
-        document.addEventListener('DOMContentLoaded', () => {
-            new Chart(document.getElementById('costChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['Icon Web', 'Agency Avg'],
-                    datasets: [{ label: 'Cost', data: [99, 2500], backgroundColor: ['#3B82F6', '#1E293B'] }]
-                },
-                options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
-            });
-            new Chart(document.getElementById('timeChart'), {
-                type: 'doughnut',
-                data: { labels: ['Icon Web', 'Market'], datasets: [{ data: [1, 30], backgroundColor: ['#3B82F6', '#1E293B'], borderWidth: 0 }] },
-                options: { cutout: '80%', plugins: { legend: { display: false } } }
-            });
-        });
-    </script>
-</body>
-</html>
+      {/* --- Pricing --- */}
+      <section id="pricing" className="py-24 bg-[#0A0F1C] relative">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-bold text-white mb-4">Transparent Investment</h2>
+            <p className="text-slate-400">No hidden fees. No "call for quote." Just business.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            {/* Starter */}
+            <div className="bg-[#161B22]/50 backdrop-blur-sm border border-white/5 p-8 rounded-3xl flex flex-col hover:bg-[#161B22] transition-colors">
+              <div className="mb-6">
+                <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Bootstrap</span>
+                <h3 className="text-2xl font-bold text-white mt-2">Starter</h3>
+                <div className="mt-4 flex items-baseline">
+                  <span className="text-4xl font-bold text-white">$99</span>
+                  <span className="ml-2 text-slate-500 text-sm">/ 1 Year</span>
+                </div>
+              </div>
+              <ul className="space-y-4 mb-8 flex-grow">
+                {['Custom Design', 'Domain Included', 'SSL Security', 'Standard Hosting'].map((feat, i) => (
+                  <li key={i} className="flex items-center text-sm text-slate-300">
+                    <CheckCircle size={16} className="text-blue-900 mr-3" /> {feat}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-3 border border-slate-700 text-white rounded-xl hover:bg-white/5 transition-colors font-semibold">Select Starter</button>
+            </div>
+
+            {/* Pro - Highlighted */}
+            <div className="bg-[#0D121F] border border-blue-500/50 p-8 rounded-3xl flex flex-col relative scale-105 shadow-[0_0_50px_rgba(37,99,235,0.15)] z-10">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                Most Popular
+              </div>
+              <div className="mb-6">
+                <span className="text-blue-400 font-bold uppercase tracking-wider text-xs">Enterprise Grade</span>
+                <h3 className="text-2xl font-bold text-white mt-2">Long-Term</h3>
+                <div className="mt-4 flex items-baseline">
+                  <span className="text-5xl font-extrabold text-white">$249</span>
+                  <span className="ml-2 text-slate-500 text-sm">/ 3 Years</span>
+                </div>
+                <p className="text-xs text-blue-400 mt-2 font-mono bg-blue-900/20 inline-block px-2 py-1 rounded">Locked-in Protection</p>
+              </div>
+              <ul className="space-y-4 mb-8 flex-grow">
+                {['Everything in Starter', 'Inflation Protection', 'Priority Support', 'Annual Audit', 'Content Updates'].map((feat, i) => (
+                  <li key={i} className="flex items-center text-sm text-white">
+                    <CheckCircle size={16} className="text-blue-500 mr-3" /> {feat}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-500 transition-colors font-bold shadow-lg">
+                Maximize Value
+              </button>
+            </div>
+
+            {/* Value */}
+            <div className="bg-[#161B22]/50 backdrop-blur-sm border border-white/5 p-8 rounded-3xl flex flex-col hover:bg-[#161B22] transition-colors">
+              <div className="mb-6">
+                <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Standard</span>
+                <h3 className="text-2xl font-bold text-white mt-2">Growth</h3>
+                <div className="mt-4 flex items-baseline">
+                  <span className="text-4xl font-bold text-white">$179</span>
+                  <span className="ml-2 text-slate-500 text-sm">/ 2 Years</span>
+                </div>
+              </div>
+              <ul className="space-y-4 mb-8 flex-grow">
+                {['Custom Design', 'Price Guarantee', 'Monthly Backups', 'Basic Analytics'].map((feat, i) => (
+                  <li key={i} className="flex items-center text-sm text-slate-300">
+                    <CheckCircle size={16} className="text-blue-900 mr-3" /> {feat}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-3 border border-slate-700 text-white rounded-xl hover:bg-white/5 transition-colors font-semibold">Select Growth</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- Contact / AI Optimizer --- */}
+      <section id="contact" className="py-24 bg-[#0D121F]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+              <h2 className="text-5xl font-bold text-white mb-6">Ready to <span className="text-blue-500">Launch?</span></h2>
+              <p className="text-xl text-slate-400 mb-12">
+                Secure your spot in our next 24-hour cycle. 
+                We operate on a first-come, first-serve basis to ensure quality.
+              </p>
+              
+              <div className="flex items-center gap-4 mb-8 group cursor-pointer">
+                <div className="w-14 h-14 bg-[#161B22] border border-white/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                  <span className="text-blue-500 font-bold text-lg group-hover:text-white">905</span>
+                </div>
+                <div>
+                  <p className="text-white font-bold text-lg">905-467-2249</p>
+                  <p className="text-slate-500 text-sm">Direct Engineering Line</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#161B22] p-8 rounded-3xl border border-white/5 relative overflow-hidden">
+              <form className="space-y-6 relative z-10">
+                <div className="grid grid-cols-2 gap-4">
+                  <input type="text" placeholder="Name" className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full" />
+                  <input type="text" placeholder="Contact Info" className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full" />
+                </div>
+                
+                <div className="relative">
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="text-xs font-bold text-slate-500 uppercase">Project Brief</label>
+                    <button 
+                      type="button" 
+                      onClick={handleOptimizeBrief}
+                      className="text-xs flex items-center gap-1 text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md hover:bg-blue-500/20 transition-colors"
+                      disabled={isOptimizing}
+                    >
+                      <Sparkles size={12} /> {isOptimizing ? 'Optimizing...' : 'AI Optimizer'}
+                    </button>
+                  </div>
+                  <textarea 
+                    rows="4" 
+                    value={briefInput}
+                    onChange={(e) => setBriefInput(e.target.value)}
+                    placeholder="E.g. I need a clean site for my local bakery..." 
+                    className="bg-[#0A0F1C] border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 focus:outline-none w-full resize-none transition-all duration-500"
+                  ></textarea>
+                </div>
+
+                <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-colors shadow-lg">
+                  Start Engagement
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- Footer --- */}
+      <footer className="py-12 border-t border-white/5 bg-[#0A0F1C]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+          <div>
+            <span className="text-xl font-bold text-white tracking-tight">Icon<span className="text-blue-500">Web</span></span>
+            <p className="text-xs text-slate-500 mt-2">
+              90 Centennial Pkwy N, Hamilton, ON<br />
+              © 2026 Icon Web Hamilton
+            </p>
+          </div>
+          <div className="flex gap-8 text-xs font-bold text-slate-500 uppercase">
+            <a href="#" className="hover:text-white">Privacy</a>
+            <a href="#" className="hover:text-white">Terms</a>
+            <a href="#" className="hover:text-white">Sitemap</a>
+          </div>
+        </div>
+      </footer>
+
+      {/* --- AI Widget --- */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {!chatOpen ? (
+          <button 
+            onClick={() => setChatOpen(true)}
+            className="w-16 h-16 bg-blue-600 hover:bg-blue-500 rounded-full shadow-[0_0_30px_rgba(37,99,235,0.4)] flex items-center justify-center text-white transition-transform hover:scale-110"
+          >
+            <Sparkles />
+          </button>
+        ) : (
+          <div className="w-80 md:w-96 bg-[#161B22] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[500px] animate-fade-in-up">
+            <div className="bg-blue-600/20 p-4 border-b border-white/10 flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs font-bold text-white uppercase tracking-widest">Icon Strategist</span>
+              </div>
+              <button onClick={() => setChatOpen(false)} className="text-slate-400 hover:text-white">
+                <X size={18} />
+              </button>
+            </div>
+            
+            <div className="flex-grow p-4 bg-[#0A0F1C] overflow-y-auto space-y-4">
+              <div className="bg-[#161B22] p-3 rounded-xl rounded-tl-none border border-slate-700 text-sm text-slate-300">
+                Hello! I'm the Icon Web AI. I can explain our 24h process or help you pick a plan.
+              </div>
+            </div>
+
+            <div className="p-3 bg-[#161B22] border-t border-white/10">
+              <div className="flex gap-2">
+                <input 
+                  type="text" 
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  placeholder="Ask about pricing..." 
+                  className="flex-grow bg-[#0A0F1C] border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500"
+                />
+                <button className="bg-blue-600 px-3 rounded-lg text-white hover:bg-blue-500">
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+    </div>
+  );
+};
+
+export default IconWeb;
