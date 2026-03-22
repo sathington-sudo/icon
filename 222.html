@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ava Q | New in Hamilton • Hot & Real</title>
+  <title>Ava | Hamilton Escort • Exclusive Companion</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <script>
     tailwind.config = {
       theme: {
@@ -15,279 +15,188 @@
             sans: ['Inter', 'sans-serif'],
           },
           colors: {
-            'ava-pink': '#f472b6',
-            'ava-gold': '#fbbf24',
-            'ava-dark': '#0f0f17',
+            'ava-gold': '#d4af37',
+            'ava-pink': '#e11d48',
+            'ava-dark': '#0a0a0e',
+            'ava-cream': '#f5f0e9',
           }
         }
       }
     }
   </script>
   <style>
-    .section-bg::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(15,15,23,0.45), rgba(15,15,23,0.88));
-      z-index: 0;
+    .hero-bg {
+      background-image: url('https://github.com/sathington-sudo/icon/blob/main/main.jpg.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
-    .section-content { position: relative; z-index: 1; }
+    .vignette {
+      box-shadow: inset 0 0 200px #000000;
+    }
+    .glass {
+      background: rgba(10,10,14,0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212,175,55,0.15);
+    }
     .teaser-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.7s ease;
     }
-    .teaser:hover .teaser-img { transform: scale(1.08); }
-    .glass-card {
-      background: rgba(15,15,23,0.70);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(244,114,182,0.20);
+    .teaser:hover .teaser-img {
+      transform: scale(1.08);
     }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    .animate-float { animation: float 4s ease-in-out infinite; }
   </style>
 </head>
-<body class="bg-ava-dark text-white font-sans">
+<body class="bg-ava-dark text-ava-cream font-sans">
 
   <!-- Mobile Sticky CTA -->
   <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-gradient-to-t from-black via-ava-dark/95 to-transparent pb-safe-area-inset-bottom px-5 py-4">
-    <a href="tel:+16478011483" class="block w-full bg-gradient-to-r from-ava-pink to-ava-gold text-center py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-pink-950/60 hover:scale-[1.03] transition-all">
-      Text/Call Ava Q Now
+    <a href="tel:+14379886969" class="block w-full bg-gradient-to-r from-ava-pink to-ava-gold text-center py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-pink-950/60 hover:scale-[1.03] transition-all">
+      Book Ava Now
     </a>
   </div>
 
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-ava-dark/95 backdrop-blur-xl border-b border-pink-900/30">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-      <!-- Logo -->
-      <a href="#" class="text-3xl md:text-5xl font-display font-black tracking-tight text-ava-pink drop-shadow-[0_0_10px_rgba(244,114,182,0.4)] uppercase">
-        Ava Q
-      </a>
-      
-      <!-- Desktop Nav Links -->
-      <div class="hidden lg:flex gap-8 uppercase text-xs tracking-widest font-bold">
-        <a href="#about" class="hover:text-ava-pink transition-colors">About</a>
-        <a href="#services" class="hover:text-ava-pink transition-colors">Services</a>
-        <a href="#rates" class="hover:text-ava-pink transition-colors">Rates</a>
-        <a href="#gallery" class="hover:text-ava-pink transition-colors">Gallery</a>
-      </div>
-
-      <!-- Header Booking & Phone -->
-      <div class="flex items-center gap-4 md:gap-6">
-        <a href="tel:+16478011483" class="hidden sm:block text-ava-gold font-bold tracking-tighter text-lg hover:text-white transition-colors">
-          647-801-1483
-        </a>
-        <a href="#book" class="bg-gradient-to-r from-ava-pink to-ava-gold px-5 py-2.5 md:px-8 md:py-3 rounded-full text-sm md:text-base font-black text-ava-dark uppercase tracking-widest shadow-lg shadow-pink-500/20 hover:scale-105 active:scale-95 transition-all">
-          Book Now
-        </a>
+  <nav class="fixed top-0 w-full z-50 bg-ava-dark/90 backdrop-blur-xl border-b border-ava-gold/20">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+      <h1 class="text-5xl font-display font-black tracking-tight text-ava-gold drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]">AVA</h1>
+      <div class="hidden md:flex gap-12 uppercase text-sm tracking-wider font-medium">
+        <a href="#about" class="hover:text-ava-gold transition-colors">About</a>
+        <a href="#services" class="hover:text-ava-gold transition-colors">Services</a>
+        <a href="#rates" class="hover:text-ava-gold transition-colors">Rates</a>
+        <a href="#gallery" class="hover:text-ava-gold transition-colors">Gallery</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="relative min-h-screen flex flex-col md:flex-row items-center justify-center pt-20 overflow-hidden">
-    <div class="w-full md:w-1/2 relative z-10 text-center md:text-left px-6 md:pl-20 py-12">
-      <div class="flex flex-wrap justify-center md:justify-start gap-3 mb-8">
-        <div class="inline-flex items-center gap-3 bg-pink-950/60 border border-ava-gold/40 px-6 py-2 rounded-full text-ava-pink text-xs tracking-widest uppercase">
-          AVA Q • Hamilton
-        </div>
-        <div class="inline-flex items-center gap-3 bg-white/10 border border-white/20 px-6 py-2 rounded-full text-ava-gold text-xs tracking-widest uppercase font-bold animate-pulse">
-          Intro Offer: $100
-        </div>
-      </div>
-      <h1 class="text-7xl md:text-8xl lg:text-[10rem] font-display font-black tracking-tighter leading-none mb-4 text-white drop-shadow-[0_0_25px_rgba(244,114,182,0.5)]">
-        AVA Q
+  <section class="hero-bg relative min-h-screen flex items-center justify-center vignette">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black"></div>
+    <div class="relative z-10 text-center px-6 max-w-5xl">
+      <h1 class="text-8xl md:text-[12rem] font-display font-black tracking-tighter leading-none mb-8 text-white drop-shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+        AVA
       </h1>
-      <p class="text-2xl md:text-5xl text-ava-pink font-bold mb-6 italic uppercase">Italian • Blonde • Seductive</p>
-      <p class="text-lg md:text-xl max-w-xl mb-10 leading-relaxed opacity-80 font-light">
-        A sophisticated Italian beauty now available in Hamilton. Experience the perfect blend of European class and pure seduction in a private, upscale setting.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-        <a href="tel:+16478011483" class="inline-block bg-gradient-to-r from-ava-pink to-ava-gold px-12 py-5 rounded-2xl text-xl font-bold shadow-2xl shadow-pink-950/60 hover:scale-105 transition-all duration-300">
-          Text Ava Q
-        </a>
-        <div class="px-8 py-5 border border-white/10 rounded-2xl text-neutral-400 text-sm flex flex-col justify-center">
-          <span class="block uppercase tracking-widest opacity-60">Direct Line</span>
-          <span class="text-white font-bold text-lg tracking-widest">647-801-1483</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="w-full md:w-1/2 h-[60vh] md:h-screen relative">
-      <div class="absolute inset-0 bg-gradient-to-r from-ava-dark via-transparent to-transparent z-10 hidden md:block"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-ava-dark via-transparent to-transparent z-10"></div>
-      <!-- Updated Hero Image to a more alluring, themed portrait -->
-      <img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?q=80&w=1000&auto=format&fit=crop" 
-           alt="Ava Q Portrait" 
-           class="w-full h-full object-cover object-center transition-all duration-1000 brightness-75 contrast-125 hover:brightness-90">
+      <p class="text-3xl md:text-5xl font-light text-ava-gold mb-10 tracking-wide">Exclusive Companion • Hamilton</p>
+      <a href="tel:+14379886969" class="inline-block bg-ava-gold text-ava-dark px-16 py-7 rounded-full text-2xl md:text-3xl font-bold uppercase tracking-wider shadow-2xl hover:bg-white hover:text-black transition-all duration-300">
+        Book Now
+      </a>
     </div>
   </section>
 
-  <!-- About / Specs -->
-  <section id="about" class="relative py-32 px-6 bg-ava-dark">
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-      <div class="w-full lg:w-1/2 relative">
-        <div class="glass-card rounded-[2rem] p-10 md:p-14 relative z-10 border-pink-500/30">
-          <h2 class="text-5xl md:text-6xl font-display font-black text-ava-pink mb-8 uppercase tracking-tighter">The Muse</h2>
-          <p class="text-lg md:text-xl leading-relaxed text-neutral-300 font-light mb-8">
-            I'm Ava Q — your new favorite secret in Hamilton. 
-            I bring a passionate Italian touch to every encounter, combining high-energy femininity with a completely attentive presence.
-          </p>
-          
-          <!-- Detailed Specs Grid -->
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-6 text-left border-t border-pink-900/40 pt-10">
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Age</h4>
-              <p class="text-xl font-display font-bold text-white">32</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Ethnicity</h4>
-              <p class="text-xl font-display font-bold text-white">Italian / Caucasian</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Height</h4>
-              <p class="text-xl font-display font-bold text-white">5' 4"</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Weight</h4>
-              <p class="text-xl font-display font-bold text-white">149 lbs</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Hair</h4>
-              <p class="text-xl font-display font-bold text-white">Blond</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Eyes</h4>
-              <p class="text-xl font-display font-bold text-white">Brown</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Languages</h4>
-              <p class="text-xl font-display font-bold text-white leading-tight">English, Italian</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Body Stats</h4>
-              <p class="text-xl font-display font-bold text-white">...D Cup</p>
-            </div>
-            <div>
-              <h4 class="text-ava-pink text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-70">Status</h4>
-              <p class="text-xl font-display font-bold text-white">Incall & Online</p>
-            </div>
-          </div>
+  <!-- About -->
+  <section id="about" class="py-32 px-6 relative">
+    <div class="max-w-5xl mx-auto glass rounded-3xl p-12 md:p-16">
+      <h2 class="text-6xl font-display font-black text-ava-gold mb-10 text-center">About Ava</h2>
+      <p class="text-xl md:text-2xl leading-relaxed text-center max-w-3xl mx-auto">
+        Elegant, discreet, and deeply sensual — Ava offers an unforgettable experience for gentlemen who appreciate the finer things. Fresh in Hamilton, she brings warmth, sophistication, and genuine connection to every encounter. No rush, no games — just pure indulgence.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 text-center">
+        <div>
+          <div class="text-ava-gold text-2xl font-bold">5'6"</div>
+          <div class="text-sm text-neutral-400">Height</div>
         </div>
-      </div>
-
-      <div class="w-full lg:w-1/2 relative flex justify-center">
-        <div class="relative w-full max-w-md aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl animate-float">
-          <img src="https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?q=80&w=1000&auto=format&fit=crop" 
-               class="w-full h-full object-cover grayscale opacity-60" alt="Ava Q Profile">
-          <div class="absolute inset-0 bg-gradient-to-t from-ava-pink/20 to-transparent"></div>
+        <div>
+          <div class="text-ava-gold text-2xl font-bold">Curvy</div>
+          <div class="text-sm text-neutral-400">Figure</div>
+        </div>
+        <div>
+          <div class="text-ava-gold text-2xl font-bold">GFE</div>
+          <div class="text-sm text-neutral-400">Specialty</div>
+        </div>
+        <div>
+          <div class="text-ava-gold text-2xl font-bold">Discreet</div>
+          <div class="text-sm text-neutral-400">Location</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services" class="py-32 px-6 bg-zinc-950">
-    <div class="relative z-10 max-w-6xl mx-auto">
-      <h2 class="text-6xl md:text-7xl font-display font-black text-center mb-16 text-ava-pink uppercase tracking-tighter">My Pleasures</h2>
+  <section id="services" class="py-32 px-6 bg-gradient-to-b from-ava-dark to-black">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-6xl font-display font-black text-ava-gold text-center mb-16">Signature Experiences</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass-card p-10 rounded-3xl hover:scale-105 transition-all duration-300 group">
-          <div class="w-12 h-12 bg-ava-pink/20 rounded-xl mb-6 flex items-center justify-center text-ava-pink group-hover:bg-ava-pink group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-          </div>
-          <h3 class="text-3xl font-display font-bold text-white mb-4 italic">The GFE</h3>
-          <p class="text-neutral-400 text-lg">Intimate, natural, and deeply personal connection with an Italian flair.</p>
+        <div class="glass rounded-3xl p-10 hover:border-ava-gold transition-all duration-300">
+          <h3 class="text-3xl font-display font-bold text-white mb-4">Full GFE</h3>
+          <p class="text-neutral-300 leading-relaxed">Passionate kissing, intimate connection, and genuine companionship — the ultimate girlfriend experience.</p>
         </div>
-        <div class="glass-card p-10 rounded-3xl hover:scale-105 transition-all duration-300 group">
-          <div class="w-12 h-12 bg-ava-pink/20 rounded-xl mb-6 flex items-center justify-center text-ava-pink group-hover:bg-ava-pink group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
-          </div>
-          <h3 class="text-3xl font-display font-bold text-white mb-4 italic">Online Sessions</h3>
-          <p class="text-neutral-400 text-lg">Virtual seduction and intimate play via HD camera.</p>
+        <div class="glass rounded-3xl p-10 border-ava-gold hover:border-white transition-all duration-300">
+          <h3 class="text-3xl font-display font-bold text-white mb-4">Sensual Massage</h3>
+          <p class="text-neutral-300 leading-relaxed">Slow, oiled full-body massage with teasing body-to-body slides and ultimate relaxation.</p>
         </div>
-        <div class="glass-card p-10 rounded-3xl hover:scale-105 transition-all duration-300 group">
-          <div class="w-12 h-12 bg-ava-pink/20 rounded-xl mb-6 flex items-center justify-center text-ava-pink group-hover:bg-ava-pink group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-          </div>
-          <h3 class="text-3xl font-display font-bold text-white mb-4 italic">Italian Seduction</h3>
-          <p class="text-neutral-400 text-lg">Full-body experiences designed for peak relaxation and pleasure.</p>
+        <div class="glass rounded-3xl p-10 hover:border-ava-gold transition-all duration-300">
+          <h3 class="text-3xl font-display font-bold text-white mb-4">Shower & Extras</h3>
+          <p class="text-neutral-300 leading-relaxed">Wet, slippery fun in the shower — body slide, mutual touching, and more.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Rates -->
-  <section id="rates" class="py-32 px-6 bg-gradient-to-b from-ava-dark to-black">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-6xl font-display font-black mb-12 text-ava-pink uppercase tracking-tighter">Rates</h2>
-      <div class="space-y-6 max-w-2xl mx-auto">
-        <!-- Introductory Special -->
-        <div class="glass-card p-10 rounded-3xl flex justify-between items-center border-ava-gold ring-1 ring-ava-gold/50 shadow-[0_0_20px_rgba(251,191,36,0.2)]">
-          <div class="text-left">
-            <span class="block text-ava-gold text-xs font-bold tracking-widest uppercase mb-1">Introductory Special</span>
-            <span class="text-2xl md:text-3xl font-light">Quick Visit</span>
+  <section id="rates" class="py-32 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-6xl font-display font-black text-ava-gold text-center mb-16">Rates</h2>
+      <div class="glass rounded-3xl p-12 space-y-8">
+        <div class="flex justify-between items-center border-b border-ava-gold/30 pb-6">
+          <div>
+            <span class="block text-3xl font-display font-bold text-white">100 Intro Special</span>
+            <span class="text-sm text-neutral-400">30 Minutes • Quick & Intimate</span>
           </div>
-          <span class="text-4xl md:text-5xl font-black text-ava-gold">$100</span>
+          <span class="text-5xl font-black text-ava-gold">$100</span>
         </div>
-        
-        <div class="glass-card p-10 rounded-3xl flex justify-between items-center hover:border-ava-pink transition">
-          <span class="text-2xl md:text-3xl font-light">45 Minutes</span>
-          <span class="text-4xl md:text-5xl font-black text-ava-pink">$160</span>
+        <div class="flex justify-between items-center border-b border-ava-gold/30 pb-6">
+          <div>
+            <span class="block text-3xl font-display font-bold text-white">45 Minutes</span>
+            <span class="text-sm text-neutral-400">Sensual & Unrushed</span>
+          </div>
+          <span class="text-5xl font-black text-ava-gold">$160</span>
         </div>
-        <div class="glass-card p-10 rounded-3xl flex justify-between items-center border-ava-pink/40">
-          <span class="text-2xl md:text-3xl font-light">60 Minutes</span>
-          <span class="text-4xl md:text-5xl font-black text-ava-pink">$220</span>
-        </div>
-        <div class="glass-card p-10 rounded-3xl flex justify-between items-center">
-          <span class="text-2xl md:text-3xl font-light">90 Minutes</span>
-          <span class="text-4xl md:text-5xl font-black text-ava-pink">$350</span>
+        <div class="flex justify-between items-center">
+          <div>
+            <span class="block text-3xl font-display font-bold text-white">1 Hour</span>
+            <span class="text-sm text-neutral-400">Full Experience</span>
+          </div>
+          <span class="text-5xl font-black text-ava-gold">$220</span>
         </div>
       </div>
-      <p class="mt-8 text-neutral-500 text-sm uppercase tracking-widest font-bold">In-call in Hamilton & Online Availability</p>
     </div>
   </section>
 
-  <!-- Visuals -->
-  <section id="gallery" class="py-32 px-6 bg-ava-dark">
+  <!-- Gallery -->
+  <section id="gallery" class="py-32 px-6 bg-gradient-to-b from-black to-ava-dark">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-6xl font-display font-black text-center mb-16 text-ava-pink uppercase tracking-widest">Visuals</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        <div class="group relative overflow-hidden rounded-[2rem] aspect-[3/4] shadow-2xl border border-pink-500/20 bg-zinc-900">
-          <img src="teaser-1.jpg" alt="Ava Q 1" class="teaser-img" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop';"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+      <h2 class="text-6xl font-display font-black text-ava-gold text-center mb-16">Gallery</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass-card">
+          <img src="teaser-1.jpg" alt="Ava" class="teaser-img" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Photo+1';"/>
         </div>
-        <div class="group relative overflow-hidden rounded-[2rem] aspect-[3/4] shadow-2xl border border-pink-500/20 bg-zinc-900">
-          <img src="teaser-2.jpg" alt="Ava Q 2" class="teaser-img" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop';"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass-card">
+          <img src="teaser-2.jpg" alt="Ava" class="teaser-img" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Photo+2';"/>
         </div>
-        <div class="group relative overflow-hidden rounded-[2rem] aspect-[3/4] shadow-2xl border border-pink-500/20 bg-zinc-900">
-          <img src="teaser-3.jpg" alt="Ava Q 3" class="teaser-img" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop';"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass-card">
+          <img src="teaser-3.jpg" alt="Ava" class="teaser-img" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Photo+3';"/>
         </div>
-        <div class="group relative overflow-hidden rounded-[2rem] aspect-[3/4] shadow-2xl border border-pink-500/20 bg-zinc-900">
-          <img src="teaser-4.jpg" alt="Ava Q 4" class="teaser-img" onerror="this.src='https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=600&auto=format&fit=crop';"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass-card">
+          <img src="teaser-4.jpg" alt="Ava" class="teaser-img" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Photo+4';"/>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Book -->
-  <section id="book" class="py-32 px-6 bg-gradient-to-b from-ava-dark to-black text-center">
-    <h2 class="text-6xl md:text-8xl font-display font-black mb-8 text-white uppercase tracking-tighter">Let's Play</h2>
-    <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-neutral-400 font-light italic">Available for in-calls in Hamilton and Online sessions.</p>
-    <a href="tel:+16478011483" class="inline-block bg-gradient-to-r from-ava-pink to-ava-gold px-16 py-7 rounded-3xl text-3xl font-bold shadow-2xl hover:scale-105 transition-all duration-300 uppercase">
-      Message Ava Q
+  <!-- Final CTA -->
+  <section class="py-32 px-6 text-center">
+    <h2 class="text-6xl md:text-8xl font-display font-black text-ava-gold mb-12">Ready to Meet?</h2>
+    <a href="tel:+14379886969" class="inline-block bg-gradient-to-r from-ava-pink to-ava-gold text-ava-dark px-20 py-8 rounded-full text-4xl md:text-5xl font-black shadow-2xl hover:scale-105 transition-all duration-300">
+      +1 (437) 988-6969
     </a>
-    <p class="mt-6 text-ava-pink font-bold text-xl tracking-widest">647-801-1483</p>
+    <p class="mt-8 text-neutral-400 text-lg">Hamilton • Discreet In-Call & Out-Call</p>
   </section>
 
-  <footer class="py-12 text-center text-neutral-600 border-t border-white/5 uppercase text-xs tracking-widest">
-    Ava Q • Hamilton • 18+ Only • Independent
+  <footer class="py-12 text-center text-neutral-500 border-t border-ava-gold/10 bg-black">
+    <p class="text-sm">AVA • Independent Companion • 18+ Only</p>
   </footer>
 
 </body>
