@@ -3,113 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ava | Hamilton • Sweet & Real</title>
+  <title>Ava | Hamilton • Exclusive Companion</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { display: , sans: },
-          colors: { 'ava-gold': '#d4af37', 'ava-pink': '#e11d48', 'ava-dark': '#0a0a0e' }
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'ava-gold': '#d4af37',
+            'ava-pink': '#e11d48',
+            'ava-dark': '#0a0a0e',
+          }
         }
       }
     }
   </script>
   <style>
-    .hero-bg { background-image: url('https://github.com/sathington-sudo/icon/blob/main/main.jpg.jpg?raw=true'); background-size: cover; background-position: center; background-attachment: fixed; }
-    .vignette { box-shadow: inset 0 0 180px #000000; }
-    .glass { background: rgba(10,10,14,0.65); backdrop-filter: blur(20px); border: 1px solid rgba(212,175,55,0.15); }
-    .teaser-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .hero-bg { background-image: url('https://github.com/sathington-sudo/icon/blob/main/main.jpg.jpg?raw=true'); }
+    .secondary-bg { background-image: url('https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?auto=format&fit=crop&q=80&w=2070'); }
+    .vignette::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,14,0.4), rgba(10,10,14,0.95));
+      z-index: 1;
+    }
+    .glass { background: rgba(10,10,14,0.75); backdrop-filter: blur(20px); border: 1px solid rgba(212,175,55,0.2); }
+    .teaser-img { transition: transform 0.6s ease; }
     .teaser:hover .teaser-img { transform: scale(1.08); }
   </style>
 </head>
-<body class="bg-ava-dark text-ava-cream font-sans">
+<body class="bg-ava-dark text-white font-sans">
 
   <!-- Mobile Sticky CTA -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-gradient-to-t from-black via-ava-dark/95 to-transparent pb-4 px-5">
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-gradient-to-t from-black via-ava-dark/95 to-transparent pb-safe-area-inset-bottom px-5 py-4">
     <a href="tel:+14379886969" class="block w-full bg-gradient-to-r from-ava-pink to-ava-gold text-center py-5 rounded-2xl font-bold text-xl shadow-2xl hover:scale-105 transition-all">
-      Text Me, Baby
+      Book Ava Now
     </a>
   </div>
 
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-ava-dark/90 backdrop-blur-xl border-b border-ava-gold/20">
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full z-50 bg-ava-dark/90 backdrop-blur-2xl border-b border-ava-gold/20">
     <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-      <h1 class="text-5xl font-display font-black tracking-tight text-ava-gold">AVA</h1>
-      <div class="hidden md:flex gap-12 uppercase text-sm tracking-wider font-medium">
+      <h1 class="text-5xl font-display font-black tracking-tighter text-ava-gold">AVA</h1>
+      <div class="hidden md:flex gap-10 uppercase text-sm tracking-widest font-medium">
         <a href="#about" class="hover:text-ava-gold">About</a>
-        <a href="#services" class="hover:text-ava-gold">Services</a>
+        <a href="#services" class="hover:text-ava-gold">Experiences</a>
         <a href="#rates" class="hover:text-ava-gold">Rates</a>
         <a href="#gallery" class="hover:text-ava-gold">Gallery</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero – your main.jpg -->
   <section class="hero-bg relative min-h-screen flex items-center justify-center vignette">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-ava-dark/70 to-ava-dark"></div>
     <div class="relative z-10 text-center px-6 max-w-5xl">
-      <h1 class="text-8xl md:text- font-display font-black tracking-tighter leading-none mb-8 text-white">AVA</h1>
-      <p class="text-3xl md:text-5xl font-light text-ava-gold mb-10">Hamilton's Sweetest Secret</p>
-      <a href="tel:+14379886969" class="inline-block bg-ava-gold text-ava-dark px-16 py-7 rounded-full text-2xl font-bold uppercase tracking-wider shadow-2xl hover:bg-white hover:text-black transition-all">
-        Come Closer
+      <h1 class="text-[16vw] md:text-[13rem] font-display font-black tracking-tighter leading-none text-white">AVA</h1>
+      <p class="text-4xl md:text-6xl text-ava-gold font-light tracking-wide mb-12">Hamilton • Exclusive Companion</p>
+      <a href="tel:+14379886969" class="inline-block bg-ava-gold text-ava-dark px-16 py-7 rounded-full text-3xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+        Book Now
       </a>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-32 px-6">
-    <div class="max-w-5xl mx-auto glass rounded-3xl p-12 md:p-16 text-center">
-      <h2 class="text-6xl font-display font-black text-ava-gold mb-10">Hey, Stranger</h2>
-      <p class="text-xl leading-relaxed">I'm Ava. Soft, warm, and all yours. I love long hugs, slow kisses, and making you feel like the only guy in the room. No rush—just us, tangled up, breathing each other in.</p>
-      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div><span class="block text-ava-gold text-3xl font-bold">5'4"</span><span class="text-xs text-neutral-400">Height</span></div>
-        <div><span class="block text-ava-gold text-3xl font-bold">149 lbs</span><span class="text-xs text-neutral-400">Weight</span></div>
-        <div><span class="block text-ava-gold text-3xl font-bold">Blond</span><span class="text-xs text-neutral-400">Hair</span></div>
-        <div><span class="block text-ava-gold text-3xl font-bold">Brown</span><span class="text-xs text-neutral-400">Eyes</span></div>
-      </div>
+  <!-- About – secondary image -->
+  <section id="about" class="relative py-32 px-6 secondary-bg">
+    <div class="absolute inset-0 vignette"></div>
+    <div class="relative z-10 max-w-4xl mx-auto glass rounded-3xl p-12 md:p-16 text-center">
+      <h2 class="text-6xl font-display font-black text-ava-gold mb-8">Hey, I'm Ava</h2>
+      <p class="text-xl leading-relaxed text-neutral-200">Your new secret in Hamilton. Soft, feminine, and always ready to make you feel incredible. Whether you want the sweet girlfriend experience or something a little more intense — I'm here for both.</p>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services" class="py-32 px-6 bg-gradient-to-b from-ava-dark to-black">
+  <section id="services" class="py-32 px-6 bg-ava-dark">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-6xl font-display font-black text-center mb-16 text-ava-gold">What I Love</h2>
+      <h2 class="text-6xl font-display font-black text-ava-gold text-center mb-16">My Experiences</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass rounded-3xl p-10">
-          <h3 class="text-3xl font-display font-bold text-ava-pink mb-4">Girlfriend Vibes</h3>
-          <p class="text-neutral-300">Cuddles, kisses, Netflix, and all the little things that make you smile.</p>
+        <div class="glass rounded-3xl p-10 hover:border-ava-gold transition-all">
+          <h3 class="text-3xl font-display font-bold text-white mb-4">Sweet GFE</h3>
+          <p class="text-neutral-300">Kissing, cuddling, real girlfriend vibes — slow and intimate.</p>
         </div>
-        <div class="glass rounded-3xl p-10">
-          <h3 class="text-3xl font-display font-bold text-ava-pink mb-4">Sensual Massage</h3>
-          <p class="text-neutral-300">Warm oil, slow hands, and me sliding all over you.</p>
+        <div class="glass rounded-3xl p-10 border-ava-gold">
+          <h3 class="text-3xl font-display font-bold text-white mb-4">Sensual Massage</h3>
+          <p class="text-neutral-300">Oiled body slide, teasing touches, full relaxation.</p>
         </div>
-        <div class="glass rounded-3xl p-10">
-          <h3 class="text-3xl font-display font-bold text-ava-pink mb-4">Shower Play</h3>
-          <p class="text-neutral-300">Wet skin, slippery fun, and no clothes required.</p>
+        <div class="glass rounded-3xl p-10 hover:border-ava-gold transition-all">
+          <h3 class="text-3xl font-display font-bold text-white mb-4">Dominatrix Session</h3>
+          <p class="text-neutral-300">For those who crave control, discipline, and intensity.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Rates -->
-  <section id="rates" class="py-32 px-6">
+  <section id="rates" class="py-32 px-6 bg-ava-dark">
     <div class="max-w-4xl mx-auto">
-      <h2 class="text-6xl font-display font-black text-center mb-16 text-ava-gold">Let's Play</h2>
+      <h2 class="text-6xl font-display font-black text-ava-gold text-center mb-16">Rates</h2>
       <div class="glass rounded-3xl p-12 space-y-8">
-        <div class="flex justify-between items-center border-b border-ava-gold/30 pb-6">
-          <div>
-            <span class="block text-3xl font-display font-bold text-white">100 Intro</span>
-            <span class="text-sm text-neutral-400">30 mins • Tease & Please</span>
-          </div>
+        <div class="flex justify-between items-center border-b border-ava-gold/30 pb-8">
+          <div><span class="text-3xl font-display font-bold">Intro Special</span><br><span class="text-sm text-neutral-400">30 min</span></div>
           <span class="text-5xl font-black text-ava-gold">$100</span>
         </div>
+        <div class="flex justify-between items-center border-b border-ava-gold/30 pb-8">
+          <div><span class="text-3xl font-display font-bold">45 Minutes</span><br><span class="text-sm text-neutral-400">GFE or Tease</span></div>
+          <span class="text-5xl font-black text-ava-gold">$160</span>
+        </div>
         <div class="flex justify-between items-center">
-          <div>
-            <span class="block text-3xl font-display font-bold text-white">1 Hour</span>
-            <span class="text-sm text-neutral-400">Full Girlfriend</span>
-          </div>
+          <div><span class="text-3xl font-display font-bold">1 Hour</span><br><span class="text-sm text-neutral-400">Full Experience</span></div>
           <span class="text-5xl font-black text-ava-gold">$220</span>
         </div>
       </div>
@@ -117,8 +124,28 @@
   </section>
 
   <!-- Gallery -->
-  <section id="gallery" class="py-32 px-6">
+  <section id="gallery" class="py-32 px-6 bg-ava-dark">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-6xl font-display font-black text-center mb-16 text-ava-gold">Peek at Me</h2>
+      <h2 class="text-6xl font-display font-black text-ava-gold text-center mb-16">Sneak Peek</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass"><img src="teaser-1.jpg" class="teaser-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Teaser+1';"></div>
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass"><img src="teaser-2.jpg" class="teaser-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Teaser+2';"></div>
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass"><img src="teaser-3.jpg" class="teaser-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Teaser+3';"></div>
+        <div class="group relative overflow-hidden rounded-3xl aspect-[3/4] glass"><img src="teaser-4.jpg" class="teaser-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/800x1200/111/eee?text=Teaser+4';"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-32 px-6 text-center bg-ava-dark">
+    <h2 class="text-6xl md:text-8xl font-display font-black text-ava-gold mb-8">Ready for me?</h2>
+    <a href="tel:+14379886969" class="inline-block bg-gradient-to-r from-ava-pink to-ava-gold text-ava-dark px-20 py-8 rounded-full text-4xl font-bold hover:scale-105 transition-all">
+      +1 (437) 988-6969
+    </a>
+  </section>
+
+  <footer class="py-12 text-center text-neutral-500 border-t border-ava-gold/10 bg-black">
+    Ava • Hamilton • Independent • 18+
+  </footer>
+</body>
+</html>
