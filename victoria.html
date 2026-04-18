@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victoria Wallace | Fine Artist</title>
+    <title>Victoria Wallace | Fine Artist & Store</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Snipcart CSS (E-commerce) -->
+    <link rel="preconnect" href="https://app.snipcart.com">
+    <link rel="preconnect" href="https://cdn.snipcart.com">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.css" />
+
     <!-- React and Babel for browser transpilation -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -32,6 +38,12 @@
         .animate-delay { animation-delay: 0.8s; }
         
         html { scroll-behavior: smooth; }
+
+        /* Snipcart Customization to match our theme */
+        #snipcart {
+            --color-brand: #c2410c; /* Tailwind Orange 700 */
+            --color-brand-hover: #9a3412; /* Tailwind Orange 800 */
+        }
     </style>
 </head>
 <body>
@@ -39,19 +51,6 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-
-        // Custom Icon Component to handle Lucide in React
-        const Icon = ({ name, size = 24, className = "" }) => {
-            const [iconSvg, setIconSvg] = useState("");
-            
-            useEffect(() => {
-                if (window.lucide) {
-                    const svg = window.lucide.createIcons();
-                }
-            }, []);
-
-            return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
-        };
 
         function App() {
             const [isScrolled, setIsScrolled] = useState(false);
@@ -67,24 +66,31 @@
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
 
-            const collections = [
+            // E-commerce Products Array
+            const products = [
                 { 
-                    id: 1, 
-                    title: 'Magic Realism', 
-                    description: 'Narrative works blurring the line between physical reality and the subconscious.',
-                    img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&q=80&w=800' 
+                    id: 'art-001', 
+                    title: 'The Midnight Garden', 
+                    medium: 'Encaustic on Cradled Wood Panel',
+                    price: 850.00,
+                    img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&q=80&w=800',
+                    description: 'A surreal exploration of night blooming flora trapped in luminous beeswax.'
                 },
                 { 
-                    id: 2, 
-                    title: 'Encaustic & Wax', 
-                    description: 'Luminous layers of beeswax and pigment creating deep, sculptural textures.',
-                    img: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&q=80&w=800' 
+                    id: 'art-002', 
+                    title: 'Suspended Reality No. 4', 
+                    medium: 'Acrylic & Mixed Media on Canvas',
+                    price: 1200.00,
+                    img: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&q=80&w=800',
+                    description: '21st Century Grisaille technique creating a dreamscape that defies gravity.'
                 },
                 { 
-                    id: 3, 
-                    title: 'Surrealistic Nature', 
-                    description: 'The dangerous juxtaposed with the comical, sourced from dreams and the uncanny.',
-                    img: 'https://images.unsplash.com/photo-1459908676235-d5f02a50184b?auto=format&fit=crop&q=80&w=800' 
+                    id: 'art-003', 
+                    title: 'Feral Subconscious', 
+                    medium: 'Oil, Cold Wax & Mica',
+                    price: 650.00,
+                    img: 'https://images.unsplash.com/photo-1459908676235-d5f02a50184b?auto=format&fit=crop&q=80&w=800',
+                    description: 'Richly textured study of animal instinct juxtaposed with domestic settings.'
                 }
             ];
 
@@ -99,19 +105,28 @@
                             </a>
                             
                             <div className="hidden md:flex space-x-10 items-center">
-                                {['Gallery', 'Biography', 'Workshops', 'Contact'].map((item) => (
+                                {['Biography', 'Workshops', 'Shop', 'Contact'].map((item) => (
                                     <a key={item} href={`#${item.toLowerCase()}`} className={`text-[10px] uppercase tracking-[0.3em] font-bold hover:text-orange-600 transition-colors ${isScrolled ? 'text-stone-600' : 'text-white'}`}>
                                         {item}
                                     </a>
                                 ))}
-                                <a href="https://www.victoria-wallace.com/gallery" target="_blank" className={`px-5 py-2 border text-[10px] uppercase tracking-[0.2em] font-bold transition-all ${isScrolled ? 'border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white' : 'border-white text-white hover:bg-white hover:text-stone-900'}`}>
-                                    Main Site
-                                </a>
+                                
+                                {/* Snipcart Cart Button */}
+                                <button className={`snipcart-checkout flex items-center gap-2 px-5 py-2 border text-[10px] uppercase tracking-[0.2em] font-bold transition-all ${isScrolled ? 'border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white' : 'border-white text-white hover:bg-white hover:text-stone-900'}`}>
+                                    <i data-lucide="shopping-cart" className="w-4 h-4"></i>
+                                    Cart (<span className="snipcart-items-count">0</span>)
+                                </button>
                             </div>
 
-                            <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                                <i data-lucide={isMobileMenuOpen ? "x" : "menu"} className={isScrolled ? 'text-stone-900' : 'text-white'}></i>
-                            </button>
+                            <div className="md:hidden flex items-center gap-4">
+                                <button className={`snipcart-checkout flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
+                                    <i data-lucide="shopping-cart" className="w-5 h-5"></i>
+                                    <span className="snipcart-items-count">0</span>
+                                </button>
+                                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                                    <i data-lucide={isMobileMenuOpen ? "x" : "menu"} className={isScrolled ? 'text-stone-900' : 'text-white'}></i>
+                                </button>
+                            </div>
                         </div>
                     </nav>
 
@@ -131,11 +146,8 @@
                                 <span className="italic font-light text-orange-100">Gone Awry.</span>
                             </h1>
                             <div className="flex flex-col md:flex-row items-center justify-center gap-8 opacity-0 animate-fade-in animate-delay">
-                                <a href="#gallery" className="bg-orange-700 text-white px-12 py-5 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-orange-800 transition-all shadow-2xl flex items-center gap-3">
-                                    Enter The Gallery <i data-lucide="arrow-right" className="w-4 h-4"></i>
-                                </a>
-                                <a href="#workshops" className="text-white border-b border-white/40 pb-2 hover:border-white transition-all tracking-[0.3em] text-[10px] uppercase font-bold">
-                                    Learn the Craft
+                                <a href="#shop" className="bg-orange-700 text-white px-12 py-5 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-orange-800 transition-all shadow-2xl flex items-center gap-3">
+                                    Shop Available Works <i data-lucide="arrow-right" className="w-4 h-4"></i>
                                 </a>
                             </div>
                         </div>
@@ -187,7 +199,6 @@
                             <div className="text-center max-w-3xl mx-auto mb-20">
                                 <h2 className="text-orange-500 font-bold tracking-[0.4em] uppercase text-xs mb-6">Education</h2>
                                 <h3 className="text-5xl md:text-6xl font-serif text-white leading-tight mb-8">Learn the <span className="italic text-orange-200">Alchemy</span></h3>
-                                <p className="text-stone-400 text-lg font-light">Professional instruction in specialized mediums.</p>
                             </div>
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                                 <div className="group">
@@ -218,26 +229,43 @@
                         </div>
                     </section>
 
-                    {/* Gallery */}
-                    <section id="gallery" className="py-32 px-6 md:px-12 bg-white">
+                    {/* Shop / E-Commerce Section */}
+                    <section id="shop" className="py-32 px-6 md:px-12 bg-white">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-stone-100 pb-12">
                                 <div>
-                                    <h2 className="text-orange-700 font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Portfolio</h2>
-                                    <h3 className="text-5xl font-serif leading-none italic">The Collections</h3>
+                                    <h2 className="text-orange-700 font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Store</h2>
+                                    <h3 className="text-5xl font-serif leading-none italic">Available Works</h3>
                                 </div>
-                                <a href="https://www.victoria-wallace.com/gallery" target="_blank" className="group flex items-center gap-3 text-stone-900 font-bold uppercase tracking-widest text-[10px] pb-1 border-b-2 border-stone-900">
-                                    Browse Full Archive <i data-lucide="external-link" className="w-4 h-4"></i>
-                                </a>
+                                <p className="text-stone-500 font-light text-sm max-w-sm text-right">
+                                    Original artwork shipped directly from the studio in Burlington, Ontario. Secure checkout powered by Snipcart.
+                                </p>
                             </div>
+                            
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                                {collections.map((item) => (
-                                    <div key={item.id} className="group">
-                                        <div className="relative overflow-hidden mb-8 rounded-sm bg-stone-100">
-                                            <img src={item.img} className="w-full aspect-square object-cover transform group-hover:scale-[1.05] transition-transform duration-[1.5s]" />
+                                {products.map((item) => (
+                                    <div key={item.id} className="group flex flex-col h-full">
+                                        <div className="relative overflow-hidden mb-6 rounded-sm bg-stone-100">
+                                            <img src={item.img} alt={item.title} className="w-full aspect-square object-cover transform group-hover:scale-[1.05] transition-transform duration-[1.5s]" />
                                         </div>
-                                        <h4 className="text-2xl font-serif mb-3 flex items-center gap-3">{item.title}</h4>
-                                        <p className="text-stone-500 font-light text-sm">{item.description}</p>
+                                        
+                                        <h4 className="text-2xl font-serif mb-2">{item.title}</h4>
+                                        <p className="text-stone-500 font-bold text-sm mb-2">${item.price.toFixed(2)} CAD</p>
+                                        <p className="text-stone-400 text-xs uppercase tracking-widest mb-4">{item.medium}</p>
+                                        <p className="text-stone-600 font-light text-sm mb-8 flex-grow">{item.description}</p>
+                                        
+                                        {/* Snipcart Add to Cart Button */}
+                                        <button 
+                                            className="snipcart-add-item w-full bg-stone-900 text-white py-4 font-bold uppercase tracking-widest text-[10px] hover:bg-orange-700 transition-colors"
+                                            data-item-id={item.id}
+                                            data-item-price={item.price}
+                                            data-item-url="/"
+                                            data-item-description={item.description}
+                                            data-item-image={item.img}
+                                            data-item-name={item.title}
+                                        >
+                                            Add To Cart
+                                        </button>
                                     </div>
                                 ))}
                             </div>
@@ -266,5 +294,10 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
+
+    <!-- Snipcart Script & Hidden Configuration -->
+    <!-- Note: You will need to replace this data-api-key with Victoria's actual public Test or Live key from snipcart.com -->
+    <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script>
+    <div hidden id="snipcart" data-api-key="ODZmMjU0M2ItMWJlYy00OTBjLWFkYTEtMTRiMGUzZjdlYzAxNjM4NTM3NjY0NTYxNTUzNDI1"></div>
 </body>
 </html>
