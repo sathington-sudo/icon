@@ -39,16 +39,17 @@
     <nav class="fixed w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-2 cursor-pointer" onclick="showView('home')">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="showView('home-view')">
                     <i data-lucide="wrench" class="text-blue-500 h-8 w-8"></i>
                     <span class="font-extrabold text-2xl tracking-tighter uppercase italic text-white">
                         Icon<span class="text-blue-500">Computers</span>
                     </span>
                 </div>
                 <div class="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
-                    <button onclick="showView('home', 'services')" class="hover:text-blue-400 transition-colors uppercase">Services</button>
-                    <button onclick="showView('home', 'workshop')" class="hover:text-blue-400 transition-colors uppercase">Workshop</button>
-                    <button onclick="showView('home', 'blog')" class="hover:text-blue-400 transition-colors uppercase">The Blog</button>
+                    <button onclick="showView('home-view')" class="hover:text-blue-400 transition-colors uppercase">Home</button>
+                    <button onclick="showView('home-view', 'services')" class="hover:text-blue-400 transition-colors uppercase">Services</button>
+                    <button onclick="showView('home-view', 'workshop')" class="hover:text-blue-400 transition-colors uppercase">Workshop</button>
+                    <button onclick="showView('home-view', 'blog')" class="hover:text-blue-400 transition-colors uppercase">The Blog</button>
                     <a href="tel:2897962340" class="bg-blue-600 px-6 py-2.5 rounded-full font-bold text-white hover:bg-blue-500 transition-all text-sm normal-case tracking-normal">
                         (289) 796-2340
                     </a>
@@ -75,7 +76,7 @@
             </div>
         </header>
 
-        <!-- Main Service Navigation (New) -->
+        <!-- Main Service Navigation -->
         <section id="services" class="py-24 px-4 bg-slate-900">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16 text-center">
@@ -85,7 +86,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Link 1: In-Store -->
                     <div onclick="showView('service-instore')" class="service-card glass p-8 rounded-[32px] border border-slate-800 cursor-pointer transition-all group">
                         <div class="bg-blue-500/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6 group-hover:bg-blue-500 group-hover:text-white transition-colors">
                             <i data-lucide="store" class="text-blue-500 group-hover:text-white"></i>
@@ -95,7 +95,6 @@
                         <span class="text-blue-500 text-xs font-black uppercase tracking-widest group-hover:translate-x-2 inline-block transition-transform">Learn More →</span>
                     </div>
 
-                    <!-- Link 2: On-Site -->
                     <div onclick="showView('service-onsite')" class="service-card glass p-8 rounded-[32px] border border-slate-800 cursor-pointer transition-all group">
                         <div class="bg-orange-500/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                             <i data-lucide="truck" class="text-orange-500 group-hover:text-white"></i>
@@ -105,7 +104,6 @@
                         <span class="text-blue-500 text-xs font-black uppercase tracking-widest group-hover:translate-x-2 inline-block transition-transform">Learn More →</span>
                     </div>
 
-                    <!-- Link 3: Builds -->
                     <div onclick="showView('service-builds')" class="service-card glass p-8 rounded-[32px] border border-slate-800 cursor-pointer transition-all group">
                         <div class="bg-purple-500/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6 group-hover:bg-purple-500 group-hover:text-white transition-colors">
                             <i data-lucide="cpu" class="text-purple-500 group-hover:text-white"></i>
@@ -115,7 +113,6 @@
                         <span class="text-blue-500 text-xs font-black uppercase tracking-widest group-hover:translate-x-2 inline-block transition-transform">Learn More →</span>
                     </div>
 
-                    <!-- Link 4: Remote -->
                     <div onclick="showView('service-remote')" class="service-card glass p-8 rounded-[32px] border border-slate-800 cursor-pointer transition-all group">
                         <div class="bg-green-500/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6 group-hover:bg-green-500 group-hover:text-white transition-colors">
                             <i data-lucide="mouse-pointer-2" class="text-green-500 group-hover:text-white"></i>
@@ -217,6 +214,29 @@
                 </div>
             </div>
         </section>
+
+        <!-- Contact (Always Part of Home) -->
+        <section id="contact" class="py-24 px-4 bg-slate-950">
+            <div class="max-w-4xl mx-auto">
+                <div class="glass p-8 md:p-12 rounded-[40px] shadow-2xl">
+                    <form onsubmit="handleContact(event)" class="space-y-6">
+                        <h3 class="text-white font-extrabold text-4xl mb-8 italic uppercase text-center">Get it on the Bench</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input id="userName" required placeholder="Your Name" class="bg-slate-900 border border-slate-700 rounded-2xl p-4 text-white outline-none focus:border-blue-500 w-full" />
+                            <input id="userEmail" type="email" required placeholder="Email Address" class="bg-slate-900 border border-slate-700 rounded-2xl p-4 text-white outline-none focus:border-blue-500 w-full" />
+                        </div>
+                        <textarea id="userMessage" required rows="5" placeholder="Describe the issue..." class="w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 text-white outline-none focus:border-blue-500"></textarea>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl shadow-lg uppercase tracking-widest italic text-lg transition-all hover:scale-[1.01]">
+                            Send Message to Shop
+                        </button>
+                    </form>
+                </div>
+                <div class="mt-12 text-center text-slate-400">
+                    <p class="font-bold text-white text-xl mb-2">90 Centennial Pkwy N, Hamilton, ON</p>
+                    <p class="font-bold tracking-widest uppercase text-xs">(289) 796-2340 | sathington@gmail.com</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- SERVICE DETAIL VIEWS -->
@@ -224,7 +244,7 @@
     <!-- View: In-Store Repairs -->
     <main id="service-instore" class="hidden-view pt-32 pb-24 px-4 fade-in">
         <div class="max-w-4xl mx-auto">
-            <button onclick="showView('home', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
+            <button onclick="showView('home-view', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
             </button>
             <h1 class="text-5xl md:text-6xl font-black text-white italic uppercase mb-8">In-Store <span class="text-blue-500">Repairs</span></h1>
@@ -245,7 +265,7 @@
     <!-- View: On-Site Service -->
     <main id="service-onsite" class="hidden-view pt-32 pb-24 px-4 fade-in">
         <div class="max-w-4xl mx-auto">
-            <button onclick="showView('home', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
+            <button onclick="showView('home-view', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
             </button>
             <h1 class="text-5xl md:text-6xl font-black text-white italic uppercase mb-8">On-Site <span class="text-blue-500">Service</span></h1>
@@ -262,7 +282,7 @@
     <!-- View: Computer Builds -->
     <main id="service-builds" class="hidden-view pt-32 pb-24 px-4 fade-in">
         <div class="max-w-4xl mx-auto">
-            <button onclick="showView('home', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
+            <button onclick="showView('home-view', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
             </button>
             <h1 class="text-5xl md:text-6xl font-black text-white italic uppercase mb-8">Computer <span class="text-blue-500">Builds</span></h1>
@@ -279,7 +299,7 @@
     <!-- View: Remote Support -->
     <main id="service-remote" class="hidden-view pt-32 pb-24 px-4 fade-in">
         <div class="max-w-4xl mx-auto">
-            <button onclick="showView('home', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
+            <button onclick="showView('home-view', 'services')" class="flex items-center gap-2 text-blue-500 font-bold mb-8 uppercase text-sm hover:translate-x-[-5px] transition-transform">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
             </button>
             <h1 class="text-5xl md:text-6xl font-black text-white italic uppercase mb-8">Remote <span class="text-blue-500">Support</span></h1>
@@ -292,29 +312,6 @@
             </div>
         </div>
     </main>
-
-    <!-- Contact (Always at Bottom) -->
-    <section id="contact" class="py-24 px-4 bg-slate-950">
-        <div class="max-w-4xl mx-auto">
-            <div class="glass p-8 md:p-12 rounded-[40px] shadow-2xl">
-                <form onsubmit="handleContact(event)" class="space-y-6">
-                    <h3 class="text-white font-extrabold text-4xl mb-8 italic uppercase text-center">Get it on the Bench</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input id="userName" required placeholder="Your Name" class="bg-slate-900 border border-slate-700 rounded-2xl p-4 text-white outline-none focus:border-blue-500" />
-                        <input id="userEmail" type="email" required placeholder="Email Address" class="bg-slate-900 border border-slate-700 rounded-2xl p-4 text-white outline-none focus:border-blue-500" />
-                    </div>
-                    <textarea id="userMessage" required rows="5" placeholder="Describe the issue..." class="w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 text-white outline-none focus:border-blue-500"></textarea>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl shadow-lg uppercase tracking-widest italic text-lg transition-all hover:scale-[1.01]">
-                        Send Message to Shop
-                    </button>
-                </form>
-            </div>
-            <div class="mt-12 text-center text-slate-400">
-                <p class="font-bold text-white text-xl mb-2">90 Centennial Pkwy N, Hamilton, ON</p>
-                <p class="font-bold tracking-widest uppercase text-xs">(289) 796-2340 | sathington@gmail.com</p>
-            </div>
-        </div>
-    </section>
 
     <footer class="py-16 text-center bg-slate-950 border-t border-slate-900">
         <div class="flex flex-col items-center gap-6">
@@ -332,7 +329,7 @@
 
         // Routing Logic
         function showView(viewId, sectionId = null) {
-            // Hide all views
+            // Hide all potential main containers
             const views = ['home-view', 'service-instore', 'service-onsite', 'service-builds', 'service-remote'];
             views.forEach(v => {
                 const el = document.getElementById(v);
@@ -343,15 +340,19 @@
             const target = document.getElementById(viewId);
             if (target) {
                 target.classList.remove('hidden-view');
-                window.scrollTo(0, 0);
-            }
-
-            // If a section is requested (like scroll to Blog)
-            if (sectionId) {
-                setTimeout(() => {
-                    const section = document.getElementById(sectionId);
-                    if (section) section.scrollIntoView({ behavior: 'smooth' });
-                }, 50);
+                
+                // If we have a section to scroll to on the Home View
+                if (sectionId) {
+                    // Small delay to ensure the view is visible before scrolling
+                    setTimeout(() => {
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 100);
+                } else {
+                    window.scrollTo(0, 0);
+                }
             }
         }
 
@@ -365,8 +366,9 @@
             window.location.href = `mailto:sathington@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
             btn.innerText = "OPENING EMAIL...";
-            setTimeout(() => { btn.innerText = "SEND MESSAGE TO SHOP"; }, 3000);
+            setTimeout(() => { btn.innerText = originalText; }, 3000);
         }
     </script>
 </body>
