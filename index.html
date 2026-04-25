@@ -144,6 +144,7 @@
                 
                 <form id="mainContactForm" onsubmit="handleContactSubmission(event)" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- 'name' attributes must match Formspree expectations -->
                         <input id="userName" name="name" required type="text" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
                         <input id="userEmail" name="email" required type="email" placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
                     </div>
@@ -207,8 +208,9 @@
             const originalText = submitBtn.innerText;
             
             submitBtn.disabled = true;
-            submitBtn.innerText = "SENDING...";
+            submitBtn.innerText = "SENDING TO BENCH...";
 
+            // Gather data manually for the fetch request
             const formData = new FormData(form);
 
             try {
@@ -224,10 +226,15 @@
                     document.getElementById('mainContactForm').classList.add('hidden');
                     document.getElementById('successMessage').classList.remove('hidden');
                 } else {
-                    throw new Error('Submission failed');
+                    const data = await response.json();
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(", "));
+                    } else {
+                        throw new Error('Submission failed');
+                    }
                 }
             } catch (error) {
-                alert("There was an error sending your message. Please call (289) 796-2340 or try again.");
+                alert("There was an error. Please call (289) 796-2340 or check your email for an activation link from Formspree.");
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalText;
             }
