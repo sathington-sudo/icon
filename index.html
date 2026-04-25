@@ -95,19 +95,59 @@
         </div>
     </section>
 
-    <section id="contact" class="py-24 px-4 bg-slate-950">
+    <!-- RESTORED WORKSHOP SECTION -->
+    <section id="workshop" class="py-24 bg-slate-950 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <div class="bg-blue-600/10 inline-flex p-3 rounded-2xl mb-6">
+                    <i data-lucide="graduation-cap" class="text-blue-500 w-8 h-8"></i>
+                </div>
+                <h2 class="text-4xl font-black text-white italic uppercase mb-6 leading-tight">The Bench <span class="text-blue-500">Workshop</span></h2>
+                <p class="text-xl text-slate-400 mb-8 leading-relaxed">
+                    Ever wanted to build your own PC but felt intimidated by the cables and compatibility? We offer guided workshop sessions where you bring the parts (or buy them through us) and we build it together at our pro bench.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-slate-200">
+                        <i data-lucide="check-circle-2" class="text-blue-500 w-5 h-5"></i>
+                        Professional static-safe environment
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-200">
+                        <i data-lucide="check-circle-2" class="text-blue-500 w-5 h-5"></i>
+                        Expert cable management training
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-200">
+                        <i data-lucide="check-circle-2" class="text-blue-500 w-5 h-5"></i>
+                        BIOS configuration & Stress testing
+                    </li>
+                </ul>
+                <a href="#contact" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-xl border border-slate-700 transition-all">
+                    Inquire About Workshops
+                </a>
+            </div>
+            <div class="md:w-1/2 w-full">
+                <div class="aspect-video glass rounded-[40px] flex items-center justify-center border-2 border-dashed border-slate-700 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-50"></div>
+                    <div class="relative z-10 text-center p-8">
+                        <i data-lucide="camera" class="w-12 h-12 text-slate-600 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <p class="text-slate-500 font-bold uppercase tracking-widest text-xs">Workshop Gallery Coming Soon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4 bg-slate-900">
         <div class="max-w-4xl mx-auto">
             <div class="glass p-8 md:p-12 rounded-[40px]">
                 <h3 class="text-white font-extrabold text-4xl mb-8 italic uppercase text-center">Contact the Shop</h3>
                 <p class="text-slate-400 mb-8 text-center">90 Centennial Pkwy N, Hamilton, ON | (289) 796-2340</p>
                 
-                <form onsubmit="handleContact(e)" class="space-y-4">
+                <form onsubmit="handleContact(event)" class="space-y-4">
                     <input id="userName" required placeholder="Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
                     
                     <div class="relative">
                         <textarea id="userMessage" required rows="4" placeholder="Describe your computer problem in detail..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none pr-12"></textarea>
                         
-                        <!-- ✨ AI TROUBLESHOOTING BUTTON -->
                         <button type="button" onclick="askAiAssistant()" title="Get instant AI diagnosis" class="absolute bottom-4 right-4 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-all shadow-lg group">
                             <span class="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter">
                                 <i data-lucide="sparkles" class="w-4 h-4"></i> ✨ Get AI Diagnosis
@@ -115,7 +155,6 @@
                         </button>
                     </div>
 
-                    <!-- AI Response Area -->
                     <div id="aiResponseContainer" class="hidden bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mt-4 animate-in fade-in slide-in-from-top-2">
                         <div class="flex items-center gap-2 mb-3">
                             <i data-lucide="bot" class="text-blue-400 w-5 h-5"></i>
@@ -140,7 +179,7 @@
     <script>
         lucide.createIcons();
 
-        const apiKey = ""; // Environment handles this
+        const apiKey = ""; 
 
         async function askAiAssistant() {
             const userMsg = document.getElementById('userMessage').value;
@@ -158,7 +197,7 @@
 
             const systemPrompt = `You are the virtual assistant for Icon Computers, a high-end PC repair shop in Hamilton with 25 years of experience. 
             A user will describe a computer problem. Your job is to:
-            1. Provide a professional "Preliminary Diagnosis" (what might be wrong).
+            1. Provide a professional "Preliminary Diagnosis".
             2. Suggest 2-3 "First Steps" they can try safely at home.
             3. Always conclude by explaining why bringing it into the shop (90 Centennial Pkwy N) is the safest next step for a definitive fix.
             Keep it concise, professional, and slightly "no-nonsense" in tone. Do not use markdown headers, use bolding sparingly.`;
@@ -174,7 +213,6 @@
 
         async function callGemini(prompt, systemInstruction, retries = 5) {
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            
             for (let i = 0; i < retries; i++) {
                 try {
                     const response = await fetch(url, {
@@ -185,9 +223,7 @@
                             systemInstruction: { parts: [{ text: systemInstruction }] }
                         })
                     });
-                    
                     if (!response.ok) throw new Error('API request failed');
-                    
                     const data = await response.json();
                     return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
                 } catch (error) {
