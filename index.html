@@ -142,16 +142,16 @@
                 <h3 class="text-white font-extrabold text-4xl mb-2 italic uppercase text-center">Contact the Shop</h3>
                 <p class="text-slate-400 mb-8 text-center">90 Centennial Pkwy N, Hamilton, ON | (289) 796-2340</p>
                 
-                <form id="mainContactForm" onsubmit="handleContact(event)" class="space-y-4">
+                <form id="mainContactForm" onsubmit="handleContactSubmission(event)" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input id="userName" required type="text" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
-                        <input id="userEmail" required type="email" placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+                        <input id="userName" name="name" required type="text" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+                        <input id="userEmail" name="email" required type="email" placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
                     </div>
                     
-                    <input id="userPhone" required type="tel" placeholder="Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+                    <input id="userPhone" name="phone" required type="tel" placeholder="Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
 
                     <div class="relative">
-                        <textarea id="userMessage" required rows="4" placeholder="Describe your computer problem in detail..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none pr-12"></textarea>
+                        <textarea id="userMessage" name="message" required rows="4" placeholder="Describe your computer problem in detail..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none pr-12"></textarea>
                         
                         <button type="button" onclick="askAiAssistant()" title="Get instant AI diagnosis" class="absolute bottom-4 right-4 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-all shadow-lg group">
                             <span class="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter">
@@ -190,71 +190,48 @@
         © 2026 Icon Computers. All rights reserved.
     </footer>
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script>
+        lucide.createIcons();
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // ---------------------------------------------------------
+        // CONFIGURATION: Using your actual Formspree ID
+        // ---------------------------------------------------------
+        const formspreeId = "myklovjb"; 
+        const geminiApiKey = ""; // Environment handles this
+        // ---------------------------------------------------------
 
-        let user = null;
-
-        // Initialize Auth
-        const initAuth = async () => {
-            try {
-                await signInAnonymously(auth);
-            } catch (e) {
-                console.error("Auth failed", e);
-            }
-        };
-        initAuth();
-
-        onAuthStateChanged(auth, (u) => { user = u; });
-
-        // Global function for form handling
-        window.handleContact = async (e) => {
+        async function handleContactSubmission(e) {
             e.preventDefault();
-            if (!user) {
-                alert("Please wait for connection to initialize...");
-                return;
-            }
-
+            const form = e.target;
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerText;
+            
             submitBtn.disabled = true;
             submitBtn.innerText = "SENDING...";
 
-            const name = document.getElementById('userName').value;
-            const email = document.getElementById('userEmail').value;
-            const phone = document.getElementById('userPhone').value;
-            const message = document.getElementById('userMessage').value;
+            const formData = new FormData(form);
 
             try {
-                // RULE 1: Use strictly formatted path
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'inquiries'), {
-                    name,
-                    email,
-                    phone,
-                    message,
-                    recipient: 'chris@theicon.ca',
-                    timestamp: serverTimestamp(),
-                    status: 'new'
+                const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
 
-                document.getElementById('mainContactForm').classList.add('hidden');
-                document.getElementById('successMessage').classList.remove('hidden');
+                if (response.ok) {
+                    document.getElementById('mainContactForm').classList.add('hidden');
+                    document.getElementById('successMessage').classList.remove('hidden');
+                } else {
+                    throw new Error('Submission failed');
+                }
             } catch (error) {
-                console.error(error);
-                alert("There was an error sending your message. Please call (289) 796-2340.");
+                alert("There was an error sending your message. Please call (289) 796-2340 or try again.");
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalText;
             }
-        };
+        }
 
         window.resetForm = () => {
             document.getElementById('mainContactForm').reset();
@@ -262,12 +239,6 @@
             document.getElementById('successMessage').classList.add('hidden');
             document.getElementById('aiResponseContainer').classList.add('hidden');
         };
-    </script>
-
-    <script>
-        lucide.createIcons();
-
-        const apiKey = ""; 
 
         async function askAiAssistant() {
             const userMsg = document.getElementById('userMessage').value;
@@ -300,7 +271,7 @@
         }
 
         async function callGemini(prompt, systemInstruction, retries = 5) {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${geminiApiKey}`;
             for (let i = 0; i < retries; i++) {
                 try {
                     const response = await fetch(url, {
