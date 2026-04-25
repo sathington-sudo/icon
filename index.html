@@ -32,9 +32,10 @@
                     <span class="font-extrabold text-2xl tracking-tighter uppercase italic text-white">Icon<span class="text-blue-500">Computers</span></span>
                 </a>
                 <div class="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
-                    <a href="index.html" class="text-blue-400">Home</a>
+                    <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
                     <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
                     <a href="#workshop" class="hover:text-blue-400 transition-colors">Workshop</a>
+                    <a href="#contact" class="text-blue-400 transition-colors border-b-2 border-blue-400 pb-1">Contact</a>
                     <a href="tel:2897962340" class="bg-blue-600 px-6 py-2.5 rounded-full font-bold text-white hover:bg-blue-500 transition-all text-sm normal-case tracking-normal">(289) 796-2340</a>
                 </div>
             </div>
@@ -95,7 +96,6 @@
         </div>
     </section>
 
-    <!-- RESTORED WORKSHOP SECTION -->
     <section id="workshop" class="py-24 bg-slate-950 border-y border-slate-800">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
@@ -139,12 +139,17 @@
     <section id="contact" class="py-24 px-4 bg-slate-900">
         <div class="max-w-4xl mx-auto">
             <div class="glass p-8 md:p-12 rounded-[40px]">
-                <h3 class="text-white font-extrabold text-4xl mb-8 italic uppercase text-center">Contact the Shop</h3>
+                <h3 class="text-white font-extrabold text-4xl mb-2 italic uppercase text-center">Contact the Shop</h3>
                 <p class="text-slate-400 mb-8 text-center">90 Centennial Pkwy N, Hamilton, ON | (289) 796-2340</p>
                 
-                <form onsubmit="handleContact(event)" class="space-y-4">
-                    <input id="userName" required placeholder="Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+                <form id="mainContactForm" onsubmit="handleContact(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input id="userName" required type="text" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+                        <input id="userEmail" required type="email" placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+                    </div>
                     
+                    <input id="userPhone" required type="tel" placeholder="Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
+
                     <div class="relative">
                         <textarea id="userMessage" required rows="4" placeholder="Describe your computer problem in detail..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none pr-12"></textarea>
                         
@@ -164,10 +169,19 @@
                         <p class="mt-4 text-[10px] text-slate-500 italic uppercase">Note: AI diagnosis is preliminary. Bring your device to the shop for a definitive 25-year expert bench test.</p>
                     </div>
 
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-black uppercase italic text-white transition-all shadow-lg shadow-blue-900/20">
-                        Send Final Message to Bench
+                    <button id="submitBtn" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-black uppercase italic text-white transition-all shadow-lg shadow-blue-900/20">
+                        Submit Inquiry to Bench
                     </button>
                 </form>
+
+                <div id="successMessage" class="hidden text-center p-12 space-y-6">
+                    <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="check" class="w-10 h-10"></i>
+                    </div>
+                    <h4 class="text-white text-3xl font-black uppercase italic">Message Received</h4>
+                    <p class="text-slate-400">Chris will review your inquiry and get back to you shortly at the email/phone provided.</p>
+                    <button onclick="resetForm()" class="text-blue-500 font-bold uppercase tracking-widest text-xs">Send another message</button>
+                </div>
             </div>
         </div>
     </section>
@@ -175,6 +189,80 @@
     <footer class="py-12 text-center text-slate-600 text-xs border-t border-slate-900">
         © 2026 Icon Computers. All rights reserved.
     </footer>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        let user = null;
+
+        // Initialize Auth
+        const initAuth = async () => {
+            try {
+                await signInAnonymously(auth);
+            } catch (e) {
+                console.error("Auth failed", e);
+            }
+        };
+        initAuth();
+
+        onAuthStateChanged(auth, (u) => { user = u; });
+
+        // Global function for form handling
+        window.handleContact = async (e) => {
+            e.preventDefault();
+            if (!user) {
+                alert("Please wait for connection to initialize...");
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerText = "SENDING...";
+
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const phone = document.getElementById('userPhone').value;
+            const message = document.getElementById('userMessage').value;
+
+            try {
+                // RULE 1: Use strictly formatted path
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'inquiries'), {
+                    name,
+                    email,
+                    phone,
+                    message,
+                    recipient: 'chris@theicon.ca',
+                    timestamp: serverTimestamp(),
+                    status: 'new'
+                });
+
+                document.getElementById('mainContactForm').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+            } catch (error) {
+                console.error(error);
+                alert("There was an error sending your message. Please call (289) 796-2340.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+            }
+        };
+
+        window.resetForm = () => {
+            document.getElementById('mainContactForm').reset();
+            document.getElementById('mainContactForm').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('aiResponseContainer').classList.add('hidden');
+        };
+    </script>
 
     <script>
         lucide.createIcons();
@@ -195,19 +283,19 @@
             outputText.innerHTML = "Analyzing your issue with 25 years of diagnostic logic... <span class='loading-pulse'>● ● ●</span>";
             outputText.classList.add('italic', 'text-blue-300');
 
-            const systemPrompt = `You are the virtual assistant for Icon Computers, a high-end PC repair shop in Hamilton with 25 years of experience. 
+            const systemPrompt = `You are the virtual assistant for Icon Computers, a high-end PC repair shop in Hamilton. 
             A user will describe a computer problem. Your job is to:
             1. Provide a professional "Preliminary Diagnosis".
             2. Suggest 2-3 "First Steps" they can try safely at home.
-            3. Always conclude by explaining why bringing it into the shop (90 Centennial Pkwy N) is the safest next step for a definitive fix.
-            Keep it concise, professional, and slightly "no-nonsense" in tone. Do not use markdown headers, use bolding sparingly.`;
+            3. Always conclude by explaining why bringing it into the shop (90 Centennial Pkwy N) to see Chris is the safest next step.
+            Keep it concise, professional, and slightly "no-nonsense".`;
 
             try {
                 let result = await callGemini(userMsg, systemPrompt);
                 outputText.classList.remove('italic', 'text-blue-300');
                 outputText.innerText = result;
             } catch (err) {
-                outputText.innerText = "The bench is currently busy (AI connection error). Please send your message directly or call us at (289) 796-2340.";
+                outputText.innerText = "The bench is busy. Please submit your inquiry directly.";
             }
         }
 
@@ -223,22 +311,14 @@
                             systemInstruction: { parts: [{ text: systemInstruction }] }
                         })
                     });
-                    if (!response.ok) throw new Error('API request failed');
+                    if (!response.ok) throw new Error('API failed');
                     const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
                 } catch (error) {
                     if (i === retries - 1) throw error;
-                    const delay = Math.pow(2, i) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
+                    await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
                 }
             }
-        }
-
-        function handleContact(e) {
-            e.preventDefault();
-            const name = document.getElementById('userName').value;
-            const msg = document.getElementById('userMessage').value;
-            window.location.href = `mailto:sathington@gmail.com?subject=Inquiry from ${name}&body=${encodeURIComponent(msg)}`;
         }
     </script>
 </body>
