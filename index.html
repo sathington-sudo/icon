@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FV43ZG2DMN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FV43ZG2DMN');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV43ZG2DMN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FV43ZG2DMN');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Icon Computers: Hamilton's no-nonsense repair shop. Expert tech repair, data recovery, and custom PC building with 25 years of experience.">
@@ -43,7 +42,7 @@
                 <div class="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
                     <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
                     <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
-                    <a href="#workshop" class="hover:text-blue-400 transition-colors">Workshop</a>
+                    <a href="#workshop" class="hover:text-blue-400 transition-colors">Gaming Builds</a>
                     <a href="#scam-alert" class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 border-b-2 border-transparent hover:border-red-400 pb-1"><i data-lucide="shield-alert" class="w-4 h-4"></i> Free Scam Help</a>
                     <a href="#contact" class="text-blue-400 transition-colors border-b-2 border-transparent hover:border-blue-400 pb-1">Contact</a>
                     <a href="tel:2897962340" class="bg-blue-600 px-6 py-2.5 rounded-full font-bold text-white hover:bg-blue-500 transition-all text-sm normal-case tracking-normal">(289) 796-2340</a>
@@ -62,51 +61,162 @@
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl shadow-xl shadow-blue-600/20 text-lg transition-transform hover:-translate-y-1">Get a Quote</a>
-                <a href="#services" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-xl border border-slate-700 transition-all text-lg text-center">Our Expertise</a>
+                <a href="#workshop" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-10 rounded-xl border border-slate-700 transition-all text-lg text-center">Gaming Builds</a>
             </div>
         </div>
     </header>
 
+    <!-- Services Section -->
     <section id="services" class="py-24 px-4 bg-slate-900">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 text-center">
-                <span class="text-blue-500 font-black uppercase tracking-widest text-xs">Hamilton's Best</span>
-                <h2 class="text-5xl font-bold text-white mt-4 mb-4 italic uppercase">Specialized Solutions</h2>
+                <span class="text-blue-500 font-black uppercase tracking-widest text-xs">Expert Solutions</span>
+                <h2 class="text-5xl font-bold text-white mt-4 mb-4 italic uppercase leading-none">Repair & Support</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="in-store.html" class="service-card glass p-8 rounded-[32px] border border-slate-800 transition-all group block">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="in-store.html" class="service-card glass p-10 rounded-[32px] border border-slate-800 transition-all group block">
                     <i data-lucide="store" class="text-blue-500 mb-6 w-12 h-12"></i>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">In-Store</h3>
-                    <p class="text-slate-400 text-sm mb-4">Board repair, soldering, and diagnostics.</p>
-                    <span class="text-blue-500 text-xs font-black uppercase tracking-widest">Learn More →</span>
+                    <h3 class="text-2xl font-bold text-white mb-3 uppercase italic">In-Store Repair</h3>
+                    <p class="text-slate-400 mb-6">Component-level diagnostics, soldering, and hardware replacement on our 25-year expert bench.</p>
+                    <span class="text-blue-500 text-sm font-black uppercase tracking-widest">Learn More →</span>
                 </a>
 
-                <a href="on-site.html" class="service-card glass p-8 rounded-[32px] border border-slate-800 transition-all group block">
+                <a href="on-site.html" class="service-card glass p-10 rounded-[32px] border border-slate-800 transition-all group block">
                     <i data-lucide="truck" class="text-orange-500 mb-6 w-12 h-12"></i>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">On-Site</h3>
-                    <p class="text-slate-400 text-sm mb-4">Network setup and business IT support.</p>
-                    <span class="text-blue-500 text-xs font-black uppercase tracking-widest">Learn More →</span>
+                    <h3 class="text-2xl font-bold text-white mb-3 uppercase italic">On-Site Tech</h3>
+                    <p class="text-slate-400 mb-6">We come to you. Business networking, WiFi optimization, and physical hardware installation.</p>
+                    <span class="text-blue-500 text-sm font-black uppercase tracking-widest">Learn More →</span>
                 </a>
 
-                <a href="custom-builds.html" class="service-card glass p-8 rounded-[32px] border border-slate-800 transition-all group block">
-                    <i data-lucide="cpu" class="text-purple-500 mb-6 w-12 h-12"></i>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">Builds</h3>
-                    <p class="text-slate-400 text-sm mb-4">Gaming rigs and pro workstations.</p>
-                    <span class="text-blue-500 text-xs font-black uppercase tracking-widest">Learn More →</span>
-                </a>
-
-                <a href="remote-support.html" class="service-card glass p-8 rounded-[32px] border border-slate-800 transition-all group block">
+                <a href="remote-support.html" class="service-card glass p-10 rounded-[32px] border border-slate-800 transition-all group block">
                     <i data-lucide="mouse-pointer-2" class="text-green-500 mb-6 w-12 h-12"></i>
-                    <h3 class="text-xl font-bold text-white mb-2 uppercase italic">Remote</h3>
-                    <p class="text-slate-400 text-sm mb-4">Virus removal and software fixes.</p>
-                    <span class="text-blue-500 text-xs font-black uppercase tracking-widest">Learn More →</span>
+                    <h3 class="text-2xl font-bold text-white mb-3 uppercase italic">Remote Help</h3>
+                    <p class="text-slate-400 mb-6">Secure software troubleshooting, virus removal, and optimization without leaving your desk.</p>
+                    <span class="text-blue-500 text-sm font-black uppercase tracking-widest">Learn More →</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- NEW SCAM ALERT SECTION -->
+    <!-- WORKSHOP SECTION -->
+    <section id="workshop" class="py-24 px-4 bg-slate-950 border-y border-slate-800 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            
+            <div class="lg:w-3/5">
+                <div class="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full mb-8">
+                    <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+                    <span class="text-xs font-black uppercase tracking-widest">The Icon Builder's Workshop</span>
+                </div>
+                
+                <h2 class="text-5xl md:text-6xl font-black text-white italic uppercase mb-8 leading-tight">
+                    Don't Just Unbox It. <br><span class="text-blue-500">Build It Yourself.</span>
+                </h2>
+                
+                <p class="text-xl text-slate-300 font-medium mb-8 leading-relaxed italic border-l-4 border-blue-500 pl-6">
+                    "When you buy a high-performance gaming PC, you shouldn’t just walk away with a box—you should walk away with the knowledge of exactly how it works inside and out."
+                </p>
+
+                <p class="text-lg text-slate-400 mb-10 leading-relaxed">
+                    We only build elite custom systems. When you purchase your parts from us, you have the <strong class="text-white">completely optional, exclusive choice</strong> to step behind the counter and build your new machine yourself for free. Forget the anxiety of "what if I bend a pin?"—we’ve turned the build process into a 1-on-1 masterclass.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="flex gap-4">
+                        <div class="shrink-0 w-12 h-12 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500">
+                            <i data-lucide="user-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">The Pro At Your Side</h4>
+                            <p class="text-slate-500 text-sm">We assign a dedicated tech to your station. They aren’t doing it for you—they’re teaching you how to do it safely.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="shrink-0 w-12 h-12 rounded-2xl bg-purple-600/20 flex items-center justify-center text-purple-500">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Zero-Risk Learning</h4>
+                            <p class="text-slate-300 text-sm">Get the hands-on DIY experience with a professional safety net. We ensure every pin is safe and every screw is tight.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="shrink-0 w-12 h-12 rounded-2xl bg-green-600/20 flex items-center justify-center text-green-500">
+                            <i data-lucide="hard-drive-download"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">OS & Driver Mastery</h4>
+                            <p class="text-slate-500 text-sm">We'll walk you through formatting drives, installing Windows 11 or Linux, and managing your drivers like a pro.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="shrink-0 w-12 h-12 rounded-2xl bg-orange-600/20 flex items-center justify-center text-orange-500">
+                            <i data-lucide="award"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Bragging Rights</h4>
+                            <p class="text-slate-300 text-sm">Next time your friends ask about your rig, you can tell them exactly how you built your battle-ready PC.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
+                    <h5 class="text-white font-black uppercase text-sm tracking-widest mb-4">How It Works:</h5>
+                    <ol class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-1">1</span>
+                            <span class="text-slate-300"><strong class="text-white">Pick Your Parts:</strong> Work with our team to pick the perfect GPU, CPU, and components for your budget and goals.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-1">2</span>
+                            <span class="text-slate-300"><strong class="text-white">Book Your Bench:</strong> Instead of taking the parts home in bags, schedule a time for your workshop session.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-1">3</span>
+                            <span class="text-slate-300"><strong class="text-white">Build Your Beast:</strong> Spend a couple of hours with our tech, learn the ropes, and leave with a PC that you assembled.</span>
+                        </li>
+                    </ol>
+                    <a href="#contact" class="mt-8 w-full block text-center bg-blue-600 hover:bg-blue-700 text-white font-black uppercase italic py-4 rounded-xl transition-all">Claim Your Spot at the Bench</a>
+                </div>
+            </div>
+
+            <div class="lg:w-2/5 w-full">
+                <div class="aspect-square rounded-[60px] relative overflow-hidden group shadow-2xl shadow-blue-900/20 border border-slate-700 bg-slate-900">
+                    <!-- Real Image -->
+                    <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&q=80&w=800" 
+                         alt="Inside a Custom Gaming PC" 
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                         onerror="this.style.display='none'; document.getElementById('fallback-img-bg').classList.remove('hidden');">
+                         
+                    <!-- Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-90 group-hover:opacity-75 transition-opacity duration-500"></div>
+                    
+                    <!-- Fallback Background if Image Fails -->
+                    <div id="fallback-img-bg" class="hidden absolute inset-0 bg-slate-900 glass">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-50"></div>
+                    </div>
+
+                    <!-- Overlay Content -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-10 z-10 text-center">
+                        <div class="bg-slate-950/90 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/30 shadow-[0_0_30px_rgba(37,99,235,0.3)] group-hover:-translate-y-2 transition-transform duration-500">
+                             <i data-lucide="cpu" class="w-10 h-10 text-blue-400"></i>
+                        </div>
+                        <h4 class="text-white font-black uppercase italic text-3xl mb-3 drop-shadow-lg">Your Hands.<br><span class="text-blue-500">Our Expertise.</span></h4>
+                        <div class="inline-block bg-blue-600/20 border border-blue-500/50 text-blue-300 font-bold uppercase tracking-widest text-[10px] px-4 py-2 rounded-full backdrop-blur-sm">
+                            1-on-1 Masterclass
+                        </div>
+                    </div>
+                    
+                    <!-- Tech Accents -->
+                    <div class="absolute top-8 left-8 w-12 h-12 border-t-2 border-l-2 border-blue-500/50 rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-8 right-8 w-12 h-12 border-b-2 border-r-2 border-blue-500/50 rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SCAM ALERT SECTION -->
     <section id="scam-alert" class="py-24 px-4 bg-gradient-to-b from-red-950/30 to-slate-950 border-y border-red-900/50 relative overflow-hidden">
         <div class="max-w-5xl mx-auto relative z-10">
             <div class="glass border-red-500/30 p-8 md:p-12 rounded-[40px] shadow-2xl shadow-red-900/20">
@@ -133,28 +243,28 @@
                         <i data-lucide="credit-card" class="text-orange-400 w-8 h-8 shrink-0 mt-1"></i>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-2">The Gift Card Trap</h4>
-                            <p class="text-slate-400 text-sm">No legitimate company (not Microsoft, the IRS, or HP) will ever ask you to pay for a service using gift cards from Target, CVS, or Amazon.</p>
+                            <p class="text-slate-400 text-sm">No legitimate company will ever ask you to pay for a service using gift cards from Target, CVS, or Amazon.</p>
                         </div>
                     </div>
                     <div class="bg-slate-900/80 border border-slate-700 p-6 rounded-2xl flex items-start gap-4">
                         <i data-lucide="bitcoin" class="text-yellow-400 w-8 h-8 shrink-0 mt-1"></i>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-2">The Crypto Demand</h4>
-                            <p class="text-slate-400 text-sm">If someone tells you to go to a "Bitcoin ATM" to move your money to "protect" it, they are stealing from you. Once in Bitcoin, it is gone forever.</p>
+                            <p class="text-slate-400 text-sm">If someone tells you to go to a "Bitcoin ATM" to move your money, they are stealing from you. It is gone forever.</p>
                         </div>
                     </div>
                     <div class="bg-slate-900/80 border border-slate-700 p-6 rounded-2xl flex items-start gap-4">
                         <i data-lucide="monitor-smartphone" class="text-blue-400 w-8 h-8 shrink-0 mt-1"></i>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-2">The Screen Share</h4>
-                            <p class="text-slate-400 text-sm">If a stranger calls and asks you to download "AnyDesk" or "TeamViewer" so they can "see your screen," they are moving into your digital house. Hang up.</p>
+                            <p class="text-slate-400 text-sm">If a stranger asks you to download "AnyDesk" or "TeamViewer" to see your screen, hang up immediately.</p>
                         </div>
                     </div>
                     <div class="bg-slate-900/80 border border-slate-700 p-6 rounded-2xl flex items-start gap-4">
                         <i data-lucide="banknote" class="text-green-400 w-8 h-8 shrink-0 mt-1"></i>
                         <div>
                             <h4 class="text-white font-bold text-lg mb-2">The "Refund" Scam</h4>
-                            <p class="text-slate-400 text-sm">If someone says they "accidentally" sent you too much money and asks you to send the difference back via wire transfer, it’s a trick to drain your account.</p>
+                            <p class="text-slate-400 text-sm">They "accidentally" send too much money and ask for the difference back. It's a trick to drain your account.</p>
                         </div>
                     </div>
                 </div>
@@ -162,7 +272,7 @@
                 <div class="bg-red-600 rounded-3xl p-8 text-center shadow-xl border border-red-500">
                     <h3 class="text-white font-black text-2xl uppercase italic mb-4">My Promise to You</h3>
                     <p class="text-red-100 text-lg mb-8 max-w-3xl mx-auto font-medium">
-                        I would much rather spend five minutes on the phone with you for free than have you come into my shop later because you’ve lost $2,000 to a scammer.
+                        I would much rather spend five minutes on the phone with you for free than have you come into my shop later because you’ve lost $2,000.
                     </p>
                     <div class="flex flex-col md:flex-row justify-center items-center gap-6 font-bold text-white text-lg">
                         <span class="flex items-center gap-2 bg-red-700/50 px-4 py-2 rounded-xl"><i data-lucide="x-circle"></i> Don't Panic.</span>
@@ -176,46 +286,7 @@
         </div>
     </section>
 
-    <section id="workshop" class="py-24 bg-slate-950 border-y border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2">
-                <div class="bg-blue-600/10 inline-flex p-3 rounded-2xl mb-6">
-                    <i data-lucide="graduation-cap" class="text-blue-500 w-8 h-8"></i>
-                </div>
-                <h2 class="text-4xl font-black text-white italic uppercase mb-6 leading-tight">The Bench <span class="text-blue-500">Workshop</span></h2>
-                <p class="text-xl text-slate-400 mb-8 leading-relaxed">
-                    Ever wanted to build your own PC but felt intimidated by the cables and compatibility? We offer guided workshop sessions where you bring the parts (or buy them through us) and we build it together at our pro bench.
-                </p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center gap-3 text-slate-200">
-                        <i data-lucide="check-circle-2" class="text-blue-500 w-5 h-5"></i>
-                        Professional static-safe environment
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-200">
-                        <i data-lucide="check-circle-2" class="text-blue-500 w-5 h-5"></i>
-                        Expert cable management training
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-200">
-                        <i data-lucide="check-circle-2" class="text-blue-500 w-5 h-5"></i>
-                        BIOS configuration & Stress testing
-                    </li>
-                </ul>
-                <a href="#contact" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-xl border border-slate-700 transition-all">
-                    Inquire About Workshops
-                </a>
-            </div>
-            <div class="md:w-1/2 w-full">
-                <div class="aspect-video glass rounded-[40px] flex items-center justify-center border-2 border-dashed border-slate-700 relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-50"></div>
-                    <div class="relative z-10 text-center p-8">
-                        <i data-lucide="camera" class="w-12 h-12 text-slate-600 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
-                        <p class="text-slate-500 font-bold uppercase tracking-widest text-xs">Workshop Gallery Coming Soon</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Contact Section -->
     <section id="contact" class="py-24 px-4 bg-slate-900">
         <div class="max-w-4xl mx-auto">
             <div class="glass p-8 md:p-12 rounded-[40px]">
@@ -224,7 +295,6 @@
                 
                 <form id="mainContactForm" onsubmit="handleContactSubmission(event)" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- 'name' attributes must match Formspree expectations -->
                         <input id="userName" name="name" required type="text" placeholder="Full Name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
                         <input id="userEmail" name="email" required type="email" placeholder="Email Address" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
                     </div>
@@ -232,7 +302,7 @@
                     <input id="userPhone" name="phone" required type="tel" placeholder="Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none" />
 
                     <div class="relative">
-                        <textarea id="userMessage" name="message" required rows="4" placeholder="Describe your computer problem in detail..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none pr-12"></textarea>
+                        <textarea id="userMessage" name="message" required rows="4" placeholder="Describe your computer problem or build inquiry in detail..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none pr-12"></textarea>
                         
                         <button type="button" onclick="askAiAssistant()" title="Get instant AI diagnosis" class="absolute bottom-4 right-4 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-all shadow-lg group">
                             <span class="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter">
@@ -274,12 +344,8 @@
     <script>
         lucide.createIcons();
 
-        // ---------------------------------------------------------
-        // CONFIGURATION: Using your actual Formspree ID
-        // ---------------------------------------------------------
         const formspreeId = "myklovjb"; 
         const geminiApiKey = ""; // Environment handles this
-        // ---------------------------------------------------------
 
         async function handleContactSubmission(e) {
             e.preventDefault();
@@ -290,16 +356,13 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "SENDING TO BENCH...";
 
-            // Gather data manually for the fetch request
             const formData = new FormData(form);
 
             try {
                 const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
                     method: 'POST',
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
 
                 if (response.ok) {
@@ -314,7 +377,7 @@
                     }
                 }
             } catch (error) {
-                alert("There was an error. Please call (289) 796-2340 or check your email for an activation link from Formspree.");
+                alert("There was an error. Please call (289) 796-2340.");
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalText;
             }
@@ -379,17 +442,16 @@
             }
         }
     </script>
-    <meta property="og:title" content="Icon Computers | Hamilton's Expert Tech Repair">
-<meta property="og:description" content="...">
-<meta property="og:image" content="path-to-image">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Icon Computers",
-  "address": "90 Centennial Pkwy N, Hamilton, ON",
-  "telephone": "(289) 796-2340"
-}
-</script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Icon Computers",
+      "address": "90 Centennial Pkwy N, Hamilton, ON",
+      "telephone": "(289) 796-2340",
+      "image": "https://www.theicon.ca/icon-logo.png"
+    }
+    </script>
 </body>
 </html>
