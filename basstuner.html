@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standalone Bass Guitar Tuner</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Babel for parsing JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col items-center justify-center p-6 font-sans">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Standard Bass Guitar Frequencies (4-string)
+        const BASS_NOTES = [
+          { name: 'E', freq: 41.20, label: 'E1 (41.20 Hz)' },
+          { name: 'A', freq: 55.00, label: 'A1 (55.00 Hz)' },
+          { name: 'D', freq: 73.42, label: 'D2 (73.42 Hz)' },
+          { name: 'G', freq: 98.00, label: 'G2 (98.00 Hz)' }
+        ];
+
+        // Note names for mapping frequencies to notes
+        const noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+        function App() {
+          const [listening, setListening] = useState(false);
+          const [pitch, setPitch] = useState(null);
+          const [closestNote, setClosestNote] = useState('--');
+          const [cents, setCents] = useState(0);
+          const [activeTone, setActiveTone] = useState(null);
+
+          // Audio Context and Node Refs
+          const audioContextRef = useRef(null);
+          const analyserRef = useRef(null);
+          const micStreamRef = useRef(null);
+          const reqAnimFrameRef = useRef(null);
+          const oscillatorRef = useRef(null);
+
+          // Cleanup on unmount
+          useEffect(() => {
+            return () => {
+              stopListening();
+              stopTone();
+              if (audioContextRef.current) {
+                audioContextRef.current.close();
+              }
+            };
+          }, []);
+
+          // --- MATH FOR PITCH DETECTION ---
+
+          const noteFromPitch = (frequency) => {
+            const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
+            return Math.round(noteNum) + 69;
+          };
+
+          const frequencyFromNoteNumber = (note) => {
+            return 440 * Math.pow(2, (note - 69) / 12);
+          };
+
+          const centsOffFromPitch = (frequency, note) => {
+            return Math.floor(1200 * Math.log(frequency / frequencyFromNoteNumber(note)) / Math.log(2));
+          };
+
+          // Autocorrelation algorithm to find fundamental frequency
+          const autoCorrelate = (buf, sampleRate) => {
+            let SIZE = buf.length;
+            let rms = 0;
+            
+            for (let i = 0; i < SIZE; i++) {
+              let val = buf[i];
+              rms += val * val;
+            }
+            rms = Math.sqrt(rms / SIZE);
+            if (rms < 0.01) return -1; // Volume too low
+
+            let r1 = 0, r2 = SIZE - 1, thres = 0.2;
+            for (let i = 0; i < SIZE / 2; i++)
+              if (Math.abs(buf[i]) < thres) { r1 = i; break; }
+            for (let i = 1; i < SIZE / 2; i++)
+              if (Math.abs(buf[SIZE - i]) < thres) { r2 = SIZE - i; break; }
+
+            buf = buf.slice(r1, r2);
+            SIZE = buf.length;
+
+            let c = new Array(SIZE).fill(0);
+            for (let i = 0; i < SIZE; i++)
+              for (let j = 0; j < SIZE - i; j++)
+                c[i] = c[i] + buf[j] * buf[j + i];
+
+            let d = 0; while (c[d] > c[d + 1]) d++;
+            let maxval = -1, maxpos = -1;
+            for (let i = d; i < SIZE; i++) {
+              if (c[i] > maxval) {
+                maxval = c[i];
+                maxpos = i;
+              }
+            }
+            
+            let T0 = maxpos;
+            let x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
+            let a = (x1 + x3 - 2 * x2) / 2;
+            let b = (x3 - x1) / 2;
+            if (a) T0 = T0 - b / (2 * a);
+
+            return sampleRate / T0;
+          };
+
+          // --- AUDIO INPUT LOGIC ---
+
+          const startListening = async () => {
+            try {
+              stopTone();
+
+              audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+              
+              const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+              micStreamRef.current = stream;
+
+              const source = audioContextRef.current.createMediaStreamSource(stream);
+              
+              // Lowpass filter helps remove string harmonics and focus on the bass fundamentals
+              const filter = audioContextRef.current.createBiquadFilter();
+              filter.type = 'lowpass';
+              filter.frequency.value = 300; 
+
+              const analyser = audioContextRef.current.createAnalyser();
+              analyser.fftSize = 8192; // Higher resolution for lower notes
+
+              source.connect(filter);
+              filter.connect(analyser);
+              analyserRef.current = analyser;
+
+              setListening(true);
+            } catch (err) {
+              console.error("Microphone access denied:", err);
+              alert("Microphone access is required to tune your bass. Please check browser permissions.");
+            }
+          };
+
+          // We use an effect to run the update loop so state updates reliably
+          useEffect(() => {
+            if (!listening) return;
+
+            const loop = () => {
+              if (!analyserRef.current || !audioContextRef.current) return;
+              
+              const buffer = new Float32Array(analyserRef.current.fftSize);
+              analyserRef.current.getFloatTimeDomainData(buffer);
+              
+              const acPitch = autoCorrelate(buffer, audioContextRef.current.sampleRate);
+
+              if (acPitch !== -1 && acPitch > 30 && acPitch < 250) { // Bound to typical bass range
+                setPitch(Math.round(acPitch * 10) / 10);
+                const note = noteFromPitch(acPitch);
+                setClosestNote(noteStrings[note % 12]);
+                setCents(centsOffFromPitch(acPitch, note));
+              }
+              
+              reqAnimFrameRef.current = requestAnimationFrame(loop);
+            };
+
+            reqAnimFrameRef.current = requestAnimationFrame(loop);
+
+            return () => {
+              if (reqAnimFrameRef.current) {
+                cancelAnimationFrame(reqAnimFrameRef.current);
+              }
+            };
+          }, [listening]);
+
+          const stopListening = () => {
+            setListening(false);
+            if (micStreamRef.current) {
+              micStreamRef.current.getTracks().forEach(track => track.stop());
+            }
+            setPitch(null);
+            setClosestNote('--');
+            setCents(0);
+          };
+
+          // --- AUDIO OUTPUT LOGIC ---
+
+          const playTone = (freq, noteName) => {
+            stopListening();
+            stopTone();
+
+            if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
+              audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const osc = audioContextRef.current.createOscillator();
+            const gainNode = audioContextRef.current.createGain();
+
+            osc.type = 'triangle'; 
+            osc.frequency.setValueAtTime(freq, audioContextRef.current.currentTime);
+            
+            gainNode.gain.setValueAtTime(0, audioContextRef.current.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.4, audioContextRef.current.currentTime + 0.1);
+
+            osc.connect(gainNode);
+            gainNode.connect(audioContextRef.current.destination);
+            
+            osc.start();
+            oscillatorRef.current = { osc, gainNode };
+            setActiveTone(noteName);
+          };
+
+          const stopTone = () => {
+            if (oscillatorRef.current) {
+              const { osc, gainNode } = oscillatorRef.current;
+              gainNode.gain.linearRampToValueAtTime(0, audioContextRef.current?.currentTime + 0.1 || 0.1);
+              setTimeout(() => {
+                try { osc.stop(); } catch(e){}
+              }, 120);
+              oscillatorRef.current = null;
+            }
+            setActiveTone(null);
+          };
+
+          const indicatorPosition = Math.max(-50, Math.min(50, cents));
+          const isTuned = Math.abs(cents) <= 5 && pitch !== null;
+
+          return (
+            <div className="max-w-md w-full bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-700">
+              <h1 className="text-3xl font-bold text-center mb-8 text-indigo-400">Bass Guitar Tuner</h1>
+
+              {/* Display Area */}
+              <div className="bg-gray-950 rounded-xl p-6 mb-8 text-center relative overflow-hidden border border-gray-700">
+                <div className="text-6xl font-black mb-2 h-20 flex items-center justify-center text-white">
+                  {closestNote}
+                </div>
+                
+                <div className="text-gray-400 h-6">
+                  {pitch ? `${pitch} Hz` : (listening ? 'Listening...' : 'Ready')}
+                </div>
+
+                {/* Meter */}
+                <div className="mt-8 relative w-full h-12">
+                  <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-700 transform -translate-y-1/2 rounded"></div>
+                  <div className="absolute top-0 left-1/2 w-1 h-full bg-gray-600 transform -translate-x-1/2"></div>
+                  
+                  {listening && pitch !== null && (
+                    <div 
+                      className={`absolute top-0 w-2.5 h-full rounded transform -translate-x-1/2 transition-all duration-100 ease-out
+                        ${isTuned ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-red-500'}`}
+                      style={{ left: `${50 + indicatorPosition}%` }}
+                    ></div>
+                  )}
+                </div>
+
+                {/* Meter labels */}
+                <div className="flex justify-between text-xs text-gray-500 mt-2 font-mono">
+                  <span>Flat (-50¢)</span>
+                  <span className={isTuned ? 'text-green-400 font-bold' : ''}>
+                    {pitch ? `${cents > 0 ? '+' : ''}${cents} cents` : 'Pluck a string'}
+                  </span>
+                  <span>Sharp (+50¢)</span>
+                </div>
+              </div>
+
+              {/* Controls */}
+              <div className="space-y-6">
+                <button
+                  onClick={listening ? stopListening : startListening}
+                  className={`w-full py-4 px-6 rounded-xl flex items-center justify-center gap-3 font-semibold text-lg transition-all transform active:scale-95
+                    ${listening 
+                      ? 'bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/20' 
+                      : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/20'}`}
+                >
+                  {listening ? (
+                    <span className="flex items-center gap-2">⏹ Stop Listening</span>
+                  ) : (
+                    <span className="flex items-center gap-2">🎤 Start Tuning (Microphone)</span>
+                  )}
+                </button>
+
+                <div className="border-t border-gray-700 pt-6">
+                  <h3 className="text-sm text-gray-400 mb-4 text-center uppercase tracking-wider">Play Reference Tones</h3>
+                  
+                  <div className="grid grid-cols-2 gap-3">
+                    {BASS_NOTES.map((note) => (
+                      <button
+                        key={note.name}
+                        onClick={() => activeTone === note.name ? stopTone() : playTone(note.freq, note.name)}
+                        className={`py-3 px-4 rounded-lg flex items-center justify-between transition-all transform active:scale-95
+                          ${activeTone === note.name 
+                            ? 'bg-green-600 text-white border-green-500 shadow-md' 
+                            : 'bg-gray-700 hover:bg-gray-600 text-gray-200 border-transparent'} border`}
+                      >
+                        <span className="font-bold text-lg">{note.name}</span>
+                        <span>{activeTone === note.name ? '⏹' : '🔊'}</span>
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {activeTone && (
+                    <p className="text-center text-sm text-green-400 mt-4 animate-pulse">
+                      Playing reference sound for {BASS_NOTES.find(n => n.name === activeTone)?.label}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
