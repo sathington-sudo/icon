@@ -1,0 +1,15 @@
+# Icon Computers
+Hamilton's local computer repair, custom PC optimization, and data recovery shop.
+
+## Core Details
+- Location: 90 Centennial Pkwy N, Hamilton, ON
+- Contact: (289) 796-2340
+- Lead Technician: Chris
+- Experience: 25 years of expert bench diagnostics.
+
+## Services Provided
+- In-Store Repairs: Component-level diagnostics, soldering, micro-soldering, physical hardware replacements.
+- On-Site Tech: Business networking setups, physical hardware installs, local WiFi optimizations.
+- Remote Assistance: Virus removals, software optimization, software troubleshooting.
+- Custom PC Builds: The Builder's Workshop. An exclusive, 1-on-1 custom gaming PC assembly class for consumers.
+- Community Help: Free scam safety advice (Anti-AnyDesk/TeamViewer protection, gift card trap intervention).
