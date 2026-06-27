@@ -1,179 +1,166 @@
-import React, { useEffect, useState } from 'react';
-import { 
-  Phone, 
-  ShieldAlert, 
-  MapPin, 
-  Printer, 
-  AlertTriangle,
-  Menu,
-  X,
-  Clock
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV43ZG2DMN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FV43ZG2DMN');
+    </script>
 
-export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Icon Computers: Hamilton's no-nonsense repair shop. Expert tech repair, data recovery, and custom PC building with 25 years of experience.">
+    <title>Hamilton Tech Hero Standing as ‘First Line of Defense’ Against Devastating Senior Scams</title>
+    
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  // Inject Google Tag Manager / Analytics on load
-  useEffect(() => {
-    if (!document.getElementById('google-analytics-tag')) {
-      const script1 = document.createElement('script');
-      script1.async = true;
-      script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-FV43ZG2DMN';
-      script1.id = 'google-analytics-tag';
-      document.head.appendChild(script1);
+    <style>
+        /* Force a completely straight, clean sans-serif font across the entire page */
+        body, h1, h2, h3, h4, p, span, a, button {
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white text-slate-900 selection:bg-blue-500 selection:text-white print:bg-white print:text-black">
 
-      const script2 = document.createElement('script');
-      script2.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FV43ZG2DMN');
-      `;
-      document.head.appendChild(script2);
-    }
-  }, []);
-
-  // Simple print handler
-  const handlePrint = () => {
-    window.print();
-  };
-
-  return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-500 selection:text-white print:bg-white print:text-black">
-      
-      {/* 1. TOP UTILITY MINI-BAR */}
-      <div className="bg-slate-950 text-slate-400 py-2.5 px-4 text-xs border-b border-slate-900 print:hidden">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div className="flex items-center space-x-4">
-            <span className="flex items-center space-x-1.5">
-              <MapPin className="h-3.5 w-3.5 text-blue-500" />
-              <span className="font-sans font-semibold">90 Centennial Parkway North, Hamilton, ON L8E 1H8</span>
-            </span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="flex items-center space-x-1.5">
-              <Clock className="h-3.5 w-3.5 text-blue-500" />
-              <span className="font-sans font-semibold">Mon - Fri: 9:00 AM - 5:30 PM | Sat: 10:00 AM - 2:00 PM</span>
-            </span>
-          </div>
+    <!-- 1. TOP UTILITY MINI-BAR -->
+    <div class="bg-slate-950 text-slate-400 py-2.5 px-4 text-xs border-b border-slate-900 print:hidden">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center space-x-1.5">
+                    <i data-lucide="map-pin" class="h-3.5 w-3.5 text-blue-500"></i>
+                    <span class="font-semibold">90 Centennial Parkway North, Hamilton, ON L8E 1H8</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center space-x-1.5">
+                    <i data-lucide="clock" class="h-3.5 w-3.5 text-blue-500"></i>
+                    <span class="font-semibold">Mon - Fri: 9:00 AM - 5:30 PM | Sat: 10:00 AM - 2:00 PM</span>
+                </span>
+            </div>
         </div>
-      </div>
+    </div>
 
-      {/* 2. BRAND NAVIGATION HEADER */}
-      <header className="bg-slate-900 text-white py-5 px-4 sticky top-0 z-50 shadow-md print:hidden border-b border-slate-800">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          
-          {/* Logo Brand matching www.theicon.ca */}
-          <div className="flex items-center">
-            <a href="index.html" className="flex flex-col text-left group">
-              <span className="font-sans font-black text-2xl sm:text-3xl tracking-tighter leading-none text-white">
-                ICON<span className="text-blue-500">COMPUTERS</span>
-              </span>
-              <span className="text-[10px] text-slate-400 tracking-widest font-black uppercase leading-tight group-hover:text-blue-400 transition-colors">
-                WWW.THEICON.CA
-              </span>
-            </a>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
-            <a href="index.html" className="hover:text-blue-400 transition-colors">Home</a>
-            <a href="#services" className="hover:text-blue-400 transition-colors">Services</a>
-            <a href="#workshop" className="hover:text-blue-400 transition-colors">Workshop</a>
-            <a href="#workshop" className="hover:text-blue-400 transition-colors">Gaming Builds</a>
-            <a 
-              href="#scam-alert" 
-              className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 border-b-2 border-transparent hover:border-red-400 pb-1 uppercase text-xs tracking-widest font-black"
-            >
-              <ShieldAlert className="w-4 h-4 text-red-400" /> 
-              <span>Free Scam Help</span>
-            </a>
-            <a href="#contact" className="text-blue-400 transition-colors border-b-2 border-transparent hover:border-blue-400 pb-1">Contact</a>
+    <!-- 2. BRAND NAVIGATION HEADER -->
+    <header class="bg-slate-900 text-white py-5 px-4 sticky top-0 z-50 shadow-md print:hidden border-b border-slate-800">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
             
-            {/* Direct Phone button as configured */}
-            <a 
-              href="tel:2897962340" 
-              className="bg-blue-600 px-6 py-2.5 rounded-full font-black text-white hover:bg-blue-500 transition-all text-sm tracking-normal normal-case"
-            >
-              (289) 796-2340
-            </a>
-          </nav>
+            <!-- Logo Brand matching www.theicon.ca -->
+            <div class="flex items-center">
+                <a href="index.html" class="flex flex-col text-left group">
+                    <span class="font-black text-2xl sm:text-3xl tracking-tighter leading-none text-white">
+                        ICON<span class="text-blue-500">COMPUTERS</span>
+                    </span>
+                    <span class="text-[10px] text-slate-400 tracking-widest font-black uppercase leading-tight group-hover:text-blue-400 transition-colors">
+                        WWW.THEICON.CA
+                    </span>
+                </a>
+            </div>
 
-          {/* Mobile Menu Action Button */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-slate-300 uppercase text-xs font-black tracking-widest">
+                <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
+                <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
+                <a href="#workshop" class="hover:text-blue-400 transition-colors">Workshop</a>
+                <a href="#workshop" class="hover:text-blue-400 transition-colors">Gaming Builds</a>
+                <a 
+                  href="#scam-alert" 
+                  class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 border-b-2 border-transparent hover:border-red-400 pb-1 uppercase text-xs tracking-widest font-black"
+                >
+                  <i data-lucide="shield-alert" class="w-4 h-4 text-red-400"></i>
+                  <span>Free Scam Help</span>
+                </a>
+                <a href="#contact" class="text-blue-400 transition-colors border-b-2 border-transparent hover:border-blue-400 pb-1">Contact</a>
+                
+                <!-- Direct Phone button as configured -->
+                <a 
+                  href="tel:2897962340" 
+                  class="bg-blue-600 px-6 py-2.5 rounded-full font-black text-white hover:bg-blue-500 transition-all text-sm tracking-normal normal-case"
+                >
+                  (289) 796-2340
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Action Button -->
+            <button 
+              id="menu-btn"
+              class="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none"
+            >
+              <i data-lucide="menu" id="menu-icon" class="h-6 w-6"></i>
+            </button>
 
         </div>
 
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-slate-950 border-t border-slate-800 mt-4 py-4 px-2 space-y-3 font-black text-xs uppercase tracking-widest">
-            <a href="index.html" className="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Home</a>
-            <a href="#services" className="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Services</a>
-            <a href="#workshop" className="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Workshop</a>
-            <a href="#workshop" className="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Gaming Builds</a>
-            <a href="#scam-alert" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 rounded text-red-400 bg-slate-900 flex items-center gap-1">
-              <ShieldAlert className="w-4 h-4 text-red-400" />
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950 border-t border-slate-800 mt-4 py-4 px-2 space-y-3 font-black text-xs uppercase tracking-widest">
+            <a href="index.html" class="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Home</a>
+            <a href="#services" class="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Services</a>
+            <a href="#workshop" class="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Workshop</a>
+            <a href="#workshop" class="block px-3 py-2 rounded text-slate-300 hover:text-blue-400 hover:bg-slate-900">Gaming Builds</a>
+            <a href="#scam-alert" class="block px-3 py-2 rounded text-red-400 bg-slate-900 flex items-center gap-1">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-red-400"></i>
               <span>Free Scam Help</span>
             </a>
-            <a href="#contact" className="block px-3 py-2 rounded text-blue-400 hover:bg-slate-900">Contact</a>
+            <a href="#contact" class="block px-3 py-2 rounded text-blue-400 hover:bg-slate-900">Contact</a>
             
-            <div className="pt-2 border-t border-slate-800 px-3">
+            <div class="pt-2 border-t border-slate-800 px-3">
               <a 
                 href="tel:2897962340" 
-                className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded text-center flex items-center justify-center gap-2 normal-case tracking-normal text-sm"
+                class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded text-center flex items-center justify-center gap-2 normal-case tracking-normal text-sm"
               >
-                <Phone className="h-4 w-4" />
+                <i data-lucide="phone" class="h-4 w-4"></i>
                 <span>Call (289) 796-2340</span>
               </a>
             </div>
-          </div>
-        )}
-      </header>
+        </div>
+    </header>
 
-      {/* MAIN BODY AREA WITH READABLE NEWSPAPER CARD */}
-      <main id="scam-alert" className="max-w-4xl mx-auto px-4 py-8 sm:py-16 bg-white">
+    <!-- MAIN BODY AREA WITH READABLE NEWSPAPER CARD -->
+    <main id="scam-alert" class="max-w-4xl mx-auto px-4 py-8 sm:py-16 bg-white">
         
-        {/* News Article Paper Sheet */}
-        <article className="bg-white text-slate-900 p-2 sm:p-6 rounded-2xl text-left">
+        <!-- News Article Paper Sheet -->
+        <article class="bg-white text-slate-900 p-2 sm:p-6 rounded-2xl text-left">
           
-          {/* Header metadata inside article */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-4 mb-8 gap-3">
-            <div className="font-sans text-slate-500 font-extrabold text-xs sm:text-sm tracking-wider uppercase">
+          <!-- Header metadata inside article -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-4 mb-8 gap-3">
+            <div class="text-slate-500 font-extrabold text-xs sm:text-sm tracking-wider uppercase">
               Community News Update • Published March 2026
             </div>
             
-            {/* Print Action */}
+            <!-- Print Action -->
             <button 
-              onClick={handlePrint}
-              className="font-sans text-xs font-bold text-slate-600 hover:text-blue-600 flex items-center space-x-1.5 transition-colors border border-slate-300 rounded px-3 py-1.5 hover:border-blue-600 print:hidden self-start sm:self-auto"
+              onclick="window.print()"
+              class="text-xs font-bold text-slate-600 hover:text-blue-600 flex items-center space-x-1.5 transition-colors border border-slate-300 rounded px-3 py-1.5 hover:border-blue-600 print:hidden self-start sm:self-auto"
             >
-              <Printer className="h-3.5 w-3.5" />
+              <i data-lucide="printer" class="h-3.5 w-3.5"></i>
               <span>Print This Article</span>
             </button>
           </div>
 
-          {/* Headline - Now strictly Bold Modern Sans-serif */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sans font-black text-slate-950 tracking-tight leading-tight mb-8">
+          <!-- Headline -->
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight mb-8">
             Hamilton Tech Hero Standing as ‘First Line of Defense’ Against Devastating Senior Scams
           </h1>
 
-          {/* Byline & Date info */}
-          <div className="text-sm text-slate-600 mb-8 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-            <span className="font-bold text-black uppercase tracking-wider">By Special Correspondent</span>
-            <span className="hidden sm:inline text-slate-300">|</span>
-            <span className="font-semibold">Hamilton Community Report</span>
+          <!-- Byline & Date info -->
+          <div class="text-sm text-slate-600 mb-8 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+            <span class="font-bold text-black uppercase tracking-wider">By Special Correspondent</span>
+            <span class="hidden sm:inline text-slate-300">|</span>
+            <span class="font-semibold">Hamilton Community Report</span>
           </div>
 
-          {/* Article Contents - Changed fully to highly-readable font-sans */}
-          <div className="font-sans text-lg sm:text-xl text-slate-850 leading-relaxed space-y-7">
+          <!-- Article Contents - Fully straight standard sans-serif font -->
+          <div class="text-lg sm:text-xl text-slate-850 leading-relaxed space-y-7">
             
             <p>
-              <span className="font-extrabold text-black text-base tracking-wider uppercase mr-2">HAMILTON, ON —</span> 
+              <span class="font-extrabold text-black text-base tracking-wider uppercase mr-2">HAMILTON, ON —</span> 
               For Chris Seymour, owner of Icon Computers at 90 Centennial Parkway North, fixing computers is only half the job. The other half has become a deeply personal mission: protecting Hamilton’s senior citizens from sophisticated cybercriminals looking to drain their life savings.
             </p>
 
@@ -181,19 +168,19 @@ export default function App() {
               Seymour’s crusade began shortly after taking ownership of the shop in 2023, when a local elderly woman walked into his store, visibly shaken. She had fallen victim to a high-tech scam that cost her $12,000—money she will never get back.
             </p>
 
-            {/* Reassuring Pull-Quote - Clean, bold modern layout, no italics/cursive elements */}
-            <div className="bg-slate-100 border-l-4 border-blue-600 p-6 sm:p-8 my-8 rounded-r-lg">
-              <p className="text-xl sm:text-2xl text-slate-900 font-extrabold leading-snug mb-4">
+            <!-- Reassuring Pull-Quote - Clean, bold modern layout, no italics, cursive, or serifs -->
+            <div class="bg-slate-100 border-l-4 border-blue-600 p-6 sm:p-8 my-8 rounded-r-lg">
+              <p class="text-xl sm:text-2xl text-slate-900 font-extrabold leading-snug mb-4">
                 "Seeing her get scammed like that, so scared and devastated, broke my heart. Right then and there, I promised myself I would do everything in my power to make sure another senior in our community never has to go through that nightmare again."
               </p>
-              <p className="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider">— Chris Seymour, Owner of Icon Computers</p>
+              <p class="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider">— Chris Seymour, Owner of Icon Computers</p>
             </div>
 
             <p>
               Since 2023, it is estimated that Seymour protects local seniors from losing a staggering $250,000 every single year. Over his three years running the shop, that adds up to nearly three-quarters of a million dollars kept right where it belongs—in the pockets of our community's seniors, rather than the hands of international fraudsters.
             </p>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
               How the Scammers Strike
             </h2>
 
@@ -205,7 +192,7 @@ export default function App() {
               From there, the trap is sprung. Victims are instructed to call a 1-800 number, where a convincing voice on the other end claims to be a certified technician from Microsoft or Apple.
             </p>
 
-            <p className="font-bold text-slate-950 bg-slate-50 p-4 border-l-4 border-slate-300">
+            <p class="font-bold text-slate-950 bg-slate-50 p-4 border-l-4 border-slate-300">
               "Quite often, they will trick the senior into downloading remote access software like AnyDesk or TeamViewer," Seymour explains. "Once they connect, the scammers have total control over the screen."
             </p>
 
@@ -213,7 +200,7 @@ export default function App() {
               In some of the worst cases, scammers will fake a "Trojan horse" virus alert and claim the user's bank requires the entire computer to be wiped clean. They then demand heavy immediate credit card charges—or worse, manipulate the victim into transferring thousands of dollars under the guise of "fixing" the problem.
             </p>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
               The Ultimate Red Flag: Gift Cards and Bitcoin
             </h2>
 
@@ -221,21 +208,21 @@ export default function App() {
               Seymour notes that as awareness grows, scammers are shifting their tactics to bypass traditional bank security. They do this by forcing victims to use payment methods that cannot be reversed.
             </p>
 
-            {/* RED DANGER WARNING BOX */}
-            <div className="bg-red-50 border-2 border-red-500 p-6 my-8 rounded-xl text-red-950">
-              <div className="flex items-center space-x-3 mb-3">
-                <AlertTriangle className="h-6 w-6 text-red-650 shrink-0" style={{ color: '#dc2626' }} />
-                <h3 className="font-extrabold text-lg sm:text-xl text-red-950">Guaranteed Scam Warning</h3>
+            <!-- RED DANGER WARNING BOX -->
+            <div class="bg-red-50 border-2 border-red-500 p-6 my-8 rounded-xl text-red-950">
+              <div class="flex items-center space-x-3 mb-3">
+                <i data-lucide="alert-triangle" class="h-6 w-6 text-red-650 shrink-0" style="color: #dc2626;"></i>
+                <h3 class="font-extrabold text-lg sm:text-xl text-red-950">Guaranteed Scam Warning</h3>
               </div>
-              <p className="text-sm sm:text-base leading-relaxed mb-4 text-red-900">
+              <p class="text-sm sm:text-base leading-relaxed mb-4 text-red-900">
                 "If someone on the phone tells you to go out and buy retail gift cards—like Apple, Google Play, or Amazon—or tells you to drive to a local store to put cash into a Bitcoin ATM machine, it is a 100 percent guaranteed scam," Seymour warns emphatically.
               </p>
-              <p className="font-extrabold text-sm sm:text-base bg-white p-3 rounded border border-red-200 text-red-700">
+              <p class="font-extrabold text-sm sm:text-base bg-white p-3 rounded border border-red-200 text-red-700">
                 No legitimate tech support company, bank, or government agency will ever ask you to pay them in gift cards or cryptocurrency. Never, ever do it.
               </p>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
               An Education in Safety
             </h2>
 
@@ -247,11 +234,11 @@ export default function App() {
               "I hate seeing people get scared," Seymour says. "The scammers rely on panic. If we can replace that fear with education, the scammers lose all their power."
             </p>
 
-            <p className="font-bold text-slate-950">
+            <p class="font-bold text-slate-950">
               His primary rule for anyone facing a sudden, alarming computer issue is simple: hang up immediately and turn off the computer. Microsoft and major banks will never call out of the blue demanding remote access, cryptocurrency, or immediate gift card payments.
             </p>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-950 pt-6 pb-2 border-b border-slate-200">
               A Free Line of Defense
             </h2>
 
@@ -259,55 +246,55 @@ export default function App() {
               Seymour wants local residents to know they don't have to navigate the confusing digital world alone, and they certainly don't need to feel embarrassed if they get tricked. He encourages anyone in doubt to call or visit his shop before giving away a single dollar.
             </p>
 
-            <p className="pb-8">
+            <p class="pb-8">
               "If you see a scary pop-up, or if you have a bad feeling that someone is trying to scam you, don't pay them—call me first," says Seymour. "I will always take the time to look at your machine, verify if it's safe, and teach you what to look out for next time. We are here to help."
             </p>
 
-            {/* Clean Help Box styled with brand colors */}
-            <div id="contact" className="bg-blue-50 border border-blue-200 p-8 rounded-2xl text-center sm:text-left mt-8 print:border-slate-400">
-              <h3 className="text-xl font-black text-blue-900 uppercase tracking-wider mb-4">
+            <!-- Clean Help Box styled with brand colors -->
+            <div id="contact" class="bg-blue-50 border border-blue-200 p-8 rounded-2xl text-center sm:text-left mt-8 print:border-slate-400">
+              <h3 class="text-xl font-black text-blue-900 uppercase tracking-wider mb-4">
                 Get Free Advice Before You Pay a Scammer
               </h3>
-              <p className="text-base text-blue-800 mb-6 font-semibold">
+              <p class="text-base text-blue-800 mb-6 font-semibold">
                 If you or an elderly loved one suspects a computer scam, do not hand over your credit card, buy gift cards, or use a Bitcoin ATM. Hang up immediately and reach out to Chris for trusted, local help.
               </p>
               
-              <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
-                <div className="text-center sm:text-left mb-4 sm:mb-0">
-                  <p className="text-sm text-blue-600 uppercase font-extrabold tracking-widest mb-1">Direct Support Help</p>
-                  <p className="text-2xl font-black text-slate-900">Icon Computers</p>
-                  <p className="text-sm text-slate-600 font-bold mt-1">Chris Seymour • 90 Centennial Parkway North, Hamilton, ON</p>
+              <div class="flex flex-col sm:flex-row justify-between items-center bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
+                <div class="text-center sm:text-left mb-4 sm:mb-0">
+                  <p class="text-sm text-blue-600 uppercase font-extrabold tracking-widest mb-1">Direct Support Help</p>
+                  <p class="text-2xl font-black text-slate-900">Icon Computers</p>
+                  <p class="text-sm text-slate-600 font-bold mt-1">Chris Seymour • 90 Centennial Parkway North, Hamilton, ON</p>
                 </div>
-                <div className="text-center sm:text-right">
-                  <a href="tel:2897962340" className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 rounded-xl font-black transition-colors shadow-lg shadow-blue-600/25">
-                    <Phone className="h-5 w-5" />
+                <div class="text-center sm:text-right">
+                  <a href="tel:2897962340" class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 rounded-xl font-black transition-colors shadow-lg shadow-blue-600/25">
+                    <i data-lucide="phone" class="h-5 w-5"></i>
                     <span>(289) 796-2340</span>
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* PORTABLE CHECKLIST TO KEEP BY THE SCREEN */}
-            <div className="bg-amber-50 border-2 border-dashed border-amber-500 p-6 rounded-xl mt-8 print:border-slate-900">
-              <h4 className="font-extrabold text-base sm:text-lg text-slate-950 mb-3 flex items-center space-x-2">
-                <ShieldAlert className="h-5 w-5 text-amber-600 shrink-0" />
+            <!-- PORTABLE CHECKLIST TO KEEP BY THE SCREEN -->
+            <div class="bg-amber-50 border-2 border-dashed border-amber-500 p-6 rounded-xl mt-8 print:border-slate-900">
+              <h4 class="font-extrabold text-base sm:text-lg text-slate-950 mb-3 flex items-center space-x-2">
+                <i data-lucide="shield-alert" class="h-5 w-5 text-amber-600 shrink-0"></i>
                 <span>Keep This Checklist Near Your Computer</span>
               </h4>
-              <ul className="space-y-3.5 text-xs sm:text-sm text-slate-800 font-bold">
-                <li className="flex items-start space-x-2">
-                  <span className="bg-red-200 text-red-900 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✕</span>
+              <ul class="space-y-3.5 text-xs sm:text-sm text-slate-800 font-bold">
+                <li class="flex items-start space-x-2">
+                  <span class="bg-red-200 text-red-900 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✕</span>
                   <span>NEVER buy Google Play, Apple, or Amazon gift cards to pay for tech support. No legitimate business will ever accept them.</span>
                 </li>
-                <li className="flex items-start space-x-2">
-                  <span className="bg-red-200 text-red-900 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✕</span>
+                <li class="flex items-start space-x-2">
+                  <span class="bg-red-200 text-red-900 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✕</span>
                   <span>NEVER go to a local Bitcoin ATM machine to deposit cash on the instructions of a caller.</span>
                 </li>
-                <li className="flex items-start space-x-2">
-                  <span className="bg-red-200 text-red-900 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✕</span>
+                <li class="flex items-start space-x-2">
+                  <span class="bg-red-200 text-red-900 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✕</span>
                   <span>NEVER download remote software like AnyDesk or TeamViewer because an online pop-up claims your computer is infected.</span>
                 </li>
-                <li className="flex items-start space-x-2">
-                  <span className="bg-green-200 text-green-950 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✓</span>
+                <li class="flex items-start space-x-2">
+                  <span class="bg-green-200 text-green-950 px-1.5 py-0.5 rounded text-[10px] font-black shrink-0 mt-0.5">✓</span>
                   <span>DO shut off your computer or shut down your browser immediately if a scary warning appears. It cannot hurt your files if you shut it off.</span>
                 </li>
               </ul>
@@ -315,25 +302,43 @@ export default function App() {
 
           </div>
 
-          {/* Section separation footer decoration */}
-          <div className="border-t-2 border-slate-900 mt-12 pt-4 text-center text-xs text-slate-400 font-bold uppercase tracking-wider">
+          <!-- Section separation footer decoration -->
+          <div class="border-t-2 border-slate-900 mt-12 pt-4 text-center text-xs text-slate-400 font-bold uppercase tracking-wider">
             <span>Icon Computers Hamilton Community Safety Initiative</span>
           </div>
 
         </article>
       </main>
 
-      {/* FOOTER */}
-      <footer className="bg-slate-950 text-slate-400 py-12 px-4 text-center border-t border-slate-900 print:hidden">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <p className="font-sans font-black text-white text-base">
-            ICON <span className="text-blue-500">COMPUTERS</span>
+      <!-- FOOTER -->
+      <footer class="bg-slate-950 text-slate-400 py-12 px-4 text-center border-t border-slate-900 print:hidden">
+        <div class="max-w-3xl mx-auto space-y-4">
+          <p class="font-black text-white text-base">
+            ICON <span class="text-blue-500">COMPUTERS</span>
           </p>
-          <p className="text-xs font-bold">90 Centennial Parkway North, Hamilton, ON | Direct Support Line: (289) 796-2340</p>
-          <p className="text-[11px] text-slate-600 font-bold uppercase tracking-wider">© 2026 Icon Computers. Serving Hamilton.</p>
+          <p class="text-xs font-bold">90 Centennial Parkway North, Hamilton, ON | Direct Support Line: (289) 796-2340</p>
+          <p class="text-[11px] text-slate-600 font-bold uppercase tracking-wider">© 2026 Icon Computers. Serving Hamilton.</p>
         </div>
       </footer>
 
-    </div>
-  );
-}
+      <!-- Simple Mobile Menu Toggle Script -->
+      <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+      </script>
+</body>
+</html>
