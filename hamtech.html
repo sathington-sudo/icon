@@ -1,0 +1,443 @@
+import React, { useState } from 'react';
+import { 
+  Wrench, 
+  MonitorSmartphone, 
+  Printer, 
+  ShieldCheck, 
+  GraduationCap, 
+  HardDrive,
+  PhoneCall,
+  Mail,
+  MapPin,
+  Clock,
+  Menu,
+  X,
+  CheckCircle2,
+  Calendar,
+  ChevronRight
+} from 'lucide-react';
+
+export default function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState('');
+
+  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+      {/* Navigation */}
+      <nav className="fixed w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-20 items-center">
+            {/* Logo area */}
+            <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+              <div className="bg-blue-600 p-2 rounded-lg">
+                <Wrench className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="font-bold text-xl leading-none text-slate-900">Hamilton<span className="text-blue-600">Tech</span></h1>
+                <p className="text-xs text-slate-500 font-medium tracking-wide">MOBILE IT REPAIR</p>
+              </div>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#services" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Services</a>
+              <a href="#about" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
+              <a href="#contact" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Contact</a>
+              <div className="flex items-center gap-2 text-slate-900 font-semibold">
+                <PhoneCall className="h-5 w-5 text-blue-600" />
+                <span>289-804-3044</span>
+              </div>
+              <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md shadow-blue-200">
+                Book Service
+              </a>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center">
+              <button onClick={toggleMenu} className="text-slate-600 hover:text-blue-600 p-2">
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu Panel */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
+            <div className="px-4 pt-2 pb-6 space-y-2">
+              <a href="#services" onClick={toggleMenu} className="block px-3 py-3 text-slate-700 font-medium hover:bg-slate-50 rounded-lg">Services</a>
+              <a href="#about" onClick={toggleMenu} className="block px-3 py-3 text-slate-700 font-medium hover:bg-slate-50 rounded-lg">About Us</a>
+              <a href="#contact" onClick={toggleMenu} className="block px-3 py-3 text-slate-700 font-medium hover:bg-slate-50 rounded-lg">Contact</a>
+              <div className="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-3">
+                <a href="tel:2898043044" className="flex items-center justify-center gap-2 w-full bg-slate-100 text-slate-900 px-4 py-3 rounded-lg font-semibold">
+                  <PhoneCall className="h-5 w-5 text-blue-600" />
+                  289-804-3044
+                </a>
+                <a href="#contact" onClick={toggleMenu} className="text-center w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-medium shadow-md">
+                  Book a Technician
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&q=80&w=2000" 
+            alt="Technician repairing computer" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-slate-900/40"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 mb-6 backdrop-blur-sm">
+              <CheckCircle2 className="h-4 w-4" />
+              <span className="text-sm font-semibold tracking-wide">CompTIA A+ Certified Experts</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+              Expert Tech Support,<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Right at Your Door.</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-xl">
+              From slow laptops and stubborn printers to complete OS upgrades and personalized tutoring. We bring 30+ years of professional IT experience directly to your home or small business in Hamilton & Stoney Creek.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#contact" className="inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg shadow-blue-900/50 hover:-translate-y-0.5">
+                <Calendar className="h-5 w-5" />
+                Book an Appointment
+              </a>
+              <a href="tel:2898043044" className="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20 px-8 py-4 rounded-full font-semibold text-lg transition-all">
+                <PhoneCall className="h-5 w-5" />
+                289-804-3044
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Everything We Fix & Teach</h2>
+            <p className="text-lg text-slate-600">Hardware, software, or just learning the ropes—our A+ certified technicians handle it all with patience and expertise.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Service 1 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <MonitorSmartphone className="h-7 w-7 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">PC & Laptop Repair</h3>
+              <p className="text-slate-600 leading-relaxed">Hardware diagnostics, part replacements, screen fixes, and performance optimization for all brands.</p>
+            </div>
+
+            {/* Service 2 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Printer className="h-7 w-7 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Printer Setup & Fixes</h3>
+              <p className="text-slate-600 leading-relaxed">Network configurations, paper jam resolutions, driver updates, and complete wireless setup.</p>
+            </div>
+
+            {/* Service 3 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <HardDrive className="h-7 w-7 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Software & OS Upgrades</h3>
+              <p className="text-slate-600 leading-relaxed">Windows/Mac OS installations, software troubleshooting, updates, and system cleanups.</p>
+            </div>
+
+            {/* Service 4 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <ShieldCheck className="h-7 w-7 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Backups & Security</h3>
+              <p className="text-slate-600 leading-relaxed">Virus removal, malware protection, local and cloud data backups to keep your family or business safe.</p>
+            </div>
+
+            {/* Service 5 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group lg:col-span-2">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <GraduationCap className="h-7 w-7 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Tech Tutoring & Teaching</h3>
+              <p className="text-slate-600 leading-relaxed max-w-2xl">Don't just fix it—understand it. We offer patient, one-on-one teaching sessions. Learn how to use your new smartphone, navigate your operating system safely, manage your photos, or use software effectively.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section id="about" className="py-16 bg-blue-600 relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-96 h-96 bg-blue-700 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="lg:w-1/2 text-white">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">30+ Years of Local Trust</h2>
+              <p className="text-blue-100 text-lg mb-6 leading-relaxed">
+                Technology has changed drastically over the last three decades, but our commitment to honest, reliable service hasn't. We are proud to serve the Hamilton and Stoney Creek communities, helping small businesses stay operational and families stay connected.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3 text-white font-medium">
+                  <CheckCircle2 className="text-blue-300 h-6 w-6" />
+                  Fully CompTIA A+ Certified Technicians
+                </li>
+                <li className="flex items-center gap-3 text-white font-medium">
+                  <CheckCircle2 className="text-blue-300 h-6 w-6" />
+                  We Come Directly to Your Home or Office
+                </li>
+                <li className="flex items-center gap-3 text-white font-medium">
+                  <CheckCircle2 className="text-blue-300 h-6 w-6" />
+                  Clear Explanations, No Confusing Tech Jargon
+                </li>
+              </ul>
+            </div>
+            
+            <div className="lg:w-1/2 w-full">
+               <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-2xl relative">
+                  <div className="absolute -top-6 -right-6 bg-yellow-400 text-slate-900 font-bold py-3 px-6 rounded-full shadow-lg transform rotate-3 flex flex-col items-center leading-tight">
+                    <span className="text-2xl">30+</span>
+                    <span className="text-xs uppercase tracking-wider">Years Exp</span>
+                  </div>
+                  <img 
+                    src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800" 
+                    alt="Technician working" 
+                    className="rounded-xl w-full h-64 object-cover shadow-inner mb-6 opacity-90"
+                  />
+                  <div className="flex items-center justify-between text-white">
+                    <div>
+                      <p className="font-semibold text-xl">Local Area Coverage</p>
+                      <p className="text-blue-200">Hamilton & Stoney Creek</p>
+                    </div>
+                    <MapPin className="h-10 w-10 text-blue-300 opacity-80" />
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-slate-100">
+            
+            {/* Contact Info Panel */}
+            <div className="lg:w-2/5 bg-slate-900 text-white p-10 lg:p-12 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20 -mr-20 -mt-20 pointer-events-none"></div>
+              
+              <h3 className="text-3xl font-bold mb-2 relative z-10">Get in Touch</h3>
+              <p className="text-slate-300 mb-10 relative z-10">We usually respond within a few hours. Call us for immediate emergency support.</p>
+              
+              <div className="space-y-8 relative z-10">
+                <div className="flex items-start gap-4">
+                  <div className="bg-white/10 p-3 rounded-lg">
+                    <PhoneCall className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-400 font-medium mb-1">Direct Phone</p>
+                    <a href="tel:2898043044" className="text-xl font-semibold hover:text-blue-400 transition-colors">289-804-3044</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-white/10 p-3 rounded-lg">
+                    <Mail className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-400 font-medium mb-1">Email Us</p>
+                    <a href="mailto:sathington@gmail.com" className="text-lg font-semibold hover:text-blue-400 transition-colors break-all">sathington@gmail.com</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-white/10 p-3 rounded-lg">
+                    <MapPin className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-400 font-medium mb-1">Service Area</p>
+                    <p className="text-lg font-semibold">Hamilton & Stoney Creek, Ontario</p>
+                    <p className="text-slate-400 text-sm mt-1">We come to your home or office.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Smart Booking Form */}
+            <div className="lg:w-3/5 p-10 lg:p-12">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Request a Service Appointment</h3>
+              
+              {/* Form implementation */}
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  // For a real implementation, you would send this to an API or Form service.
+                  // Since we are frontend only, we'll format a mailto link.
+                  const formData = new FormData(e.target);
+                  const subject = `Service Request: ${formData.get('inquiryType')} - ${formData.get('name')}`;
+                  const body = `
+Name: ${formData.get('name')}
+Phone: ${formData.get('phone')}
+Desired Date: ${formData.get('date')}
+Desired Time: ${formData.get('time')}
+Service Type: ${formData.get('inquiryType')}
+
+Message/Issue Details:
+${formData.get('message')}
+                  `;
+                  window.location.href = `mailto:sathington@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                  setFormStatus('Redirecting to your email client...');
+                  setTimeout(() => setFormStatus(''), 3000);
+                }}
+                className="space-y-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Name */}
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label>
+                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+                  </div>
+                  {/* Phone */}
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="(289) 804-3044" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Date */}
+                  <div>
+                    <label htmlFor="date" className="block text-sm font-medium text-slate-700 mb-2">Desired Date</label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Calendar className="h-5 w-5 text-slate-400" />
+                      </div>
+                      <input type="date" id="date" name="date" className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-700" />
+                    </div>
+                  </div>
+                  {/* Time */}
+                  <div>
+                    <label htmlFor="time" className="block text-sm font-medium text-slate-700 mb-2">Desired Time</label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Clock className="h-5 w-5 text-slate-400" />
+                      </div>
+                      <select id="time" name="time" className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-700 appearance-none">
+                        <option value="Anytime">Anytime</option>
+                        <option value="Morning (8am - 12pm)">Morning (8am - 12pm)</option>
+                        <option value="Afternoon (12pm - 4pm)">Afternoon (12pm - 4pm)</option>
+                        <option value="Evening (4pm - 8pm)">Evening (4pm - 8pm)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Inquiry Type */}
+                <div>
+                  <label htmlFor="inquiryType" className="block text-sm font-medium text-slate-700 mb-2">What do you need help with?</label>
+                  <select id="inquiryType" name="inquiryType" required defaultValue="" className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-700 appearance-none">
+                    <option value="" disabled>Select an option...</option>
+                    <option value="Hardware Repair">Hardware Repair (Computer/Printer)</option>
+                    <option value="Software/OS Issue">Software or OS Issue</option>
+                    <option value="Virus/Security/Backup">Virus Removal, Security, or Backup</option>
+                    <option value="Tech Tutoring">Tech Tutoring / Learning</option>
+                    <option value="General Inquiry">General Inquiry / Other</option>
+                  </select>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Brief description of the issue</label>
+                  <textarea id="message" name="message" rows="4" className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none" placeholder="My laptop is running very slow and making a clicking noise..."></textarea>
+                </div>
+
+                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group">
+                  Submit Request
+                  <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                
+                {formStatus && (
+                  <p className="text-center text-sm font-medium text-blue-600 mt-2">{formStatus}</p>
+                )}
+                
+                <p className="text-xs text-slate-500 text-center mt-4">
+                  By submitting this form, an email draft will be created for you to send to our team. 
+                  If it is an emergency, please call us directly.
+                </p>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Wrench className="h-6 w-6 text-blue-500" />
+                <span className="font-bold text-xl text-white">Hamilton<span className="text-blue-500">Tech</span></span>
+              </div>
+              <p className="text-sm leading-relaxed max-w-xs">
+                Your reliable, local mobile IT repair and tech tutoring service in the Hamilton and Stoney Creek area. CompTIA A+ certified with over 30 years of experience.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#services" className="hover:text-blue-400 transition-colors">Our Services</a></li>
+                <li><a href="#about" className="hover:text-blue-400 transition-colors">About Us</a></li>
+                <li><a href="#contact" className="hover:text-blue-400 transition-colors">Book an Appointment</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Contact</h4>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-center gap-2">
+                  <PhoneCall className="h-4 w-4" />
+                  289-804-3044
+                </li>
+                <li className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  sathington@gmail.com
+                </li>
+                <li className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  Hamilton & Stoney Creek
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between text-sm text-slate-500">
+            <p>&copy; {new Date().getFullYear()} Hamilton Tech Mobile IT Repair. All rights reserved.</p>
+            <p className="mt-2 md:mt-0">Locally owned and operated.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
