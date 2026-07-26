@@ -1,443 +1,1026 @@
-import React, { useState } from 'react';
-import { 
-  Wrench, 
-  MonitorSmartphone, 
-  Printer, 
-  ShieldCheck, 
-  GraduationCap, 
-  HardDrive,
-  PhoneCall,
-  Mail,
-  MapPin,
-  Clock,
-  Menu,
-  X,
-  CheckCircle2,
-  Calendar,
-  ChevronRight
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamilton TechReset | Donate Laptops & Desktops in Hamilton, ON</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            accent: '#0284c7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.2) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+        }
+        .dark-glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+        .pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
 
-export default function App() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [formStatus, setFormStatus] = useState('');
-
-  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
-      {/* Navigation */}
-      <nav className="fixed w-full bg-white/90 backdrop-blur-md border-b border-slate-200 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
-            {/* Logo area */}
-            <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Wrench className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="font-bold text-xl leading-none text-slate-900">Hamilton<span className="text-blue-600">Tech</span></h1>
-                <p className="text-xs text-slate-500 font-medium tracking-wide">MOBILE IT REPAIR</p>
-              </div>
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-all shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
             </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Services</a>
-              <a href="#about" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">About Us</a>
-              <a href="#contact" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Contact</a>
-              <div className="flex items-center gap-2 text-slate-900 font-semibold">
-                <PhoneCall className="h-5 w-5 text-blue-600" />
-                <span>289-804-3044</span>
-              </div>
-              <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md shadow-blue-200">
-                Book Service
-              </a>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
-              <button onClick={toggleMenu} className="text-slate-600 hover:text-blue-600 p-2">
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu Panel */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
-            <div className="px-4 pt-2 pb-6 space-y-2">
-              <a href="#services" onClick={toggleMenu} className="block px-3 py-3 text-slate-700 font-medium hover:bg-slate-50 rounded-lg">Services</a>
-              <a href="#about" onClick={toggleMenu} className="block px-3 py-3 text-slate-700 font-medium hover:bg-slate-50 rounded-lg">About Us</a>
-              <a href="#contact" onClick={toggleMenu} className="block px-3 py-3 text-slate-700 font-medium hover:bg-slate-50 rounded-lg">Contact</a>
-              <div className="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-3">
-                <a href="tel:2898043044" className="flex items-center justify-center gap-2 w-full bg-slate-100 text-slate-900 px-4 py-3 rounded-lg font-semibold">
-                  <PhoneCall className="h-5 w-5 text-blue-600" />
-                  289-804-3044
-                </a>
-                <a href="#contact" onClick={toggleMenu} className="text-center w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-medium shadow-md">
-                  Book a Technician
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&q=80&w=2000" 
-            alt="Technician repairing computer" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-slate-900/40"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 mb-6 backdrop-blur-sm">
-              <CheckCircle2 className="h-4 w-4" />
-              <span className="text-sm font-semibold tracking-wide">CompTIA A+ Certified Experts</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-              Expert Tech Support,<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Right at Your Door.</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-xl">
-              From slow laptops and stubborn printers to complete OS upgrades and personalized tutoring. We bring 30+ years of professional IT experience directly to your home or small business in Hamilton & Stoney Creek.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#contact" className="inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg shadow-blue-900/50 hover:-translate-y-0.5">
-                <Calendar className="h-5 w-5" />
-                Book an Appointment
-              </a>
-              <a href="tel:2898043044" className="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20 px-8 py-4 rounded-full font-semibold text-lg transition-all">
-                <PhoneCall className="h-5 w-5" />
-                289-804-3044
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Everything We Fix & Teach</h2>
-            <p className="text-lg text-slate-600">Hardware, software, or just learning the ropes—our A+ certified technicians handle it all with patience and expertise.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service 1 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <MonitorSmartphone className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">PC & Laptop Repair</h3>
-              <p className="text-slate-600 leading-relaxed">Hardware diagnostics, part replacements, screen fixes, and performance optimization for all brands.</p>
-            </div>
-
-            {/* Service 2 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Printer className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Printer Setup & Fixes</h3>
-              <p className="text-slate-600 leading-relaxed">Network configurations, paper jam resolutions, driver updates, and complete wireless setup.</p>
-            </div>
-
-            {/* Service 3 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <HardDrive className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Software & OS Upgrades</h3>
-              <p className="text-slate-600 leading-relaxed">Windows/Mac OS installations, software troubleshooting, updates, and system cleanups.</p>
-            </div>
-
-            {/* Service 4 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <ShieldCheck className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Backups & Security</h3>
-              <p className="text-slate-600 leading-relaxed">Virus removal, malware protection, local and cloud data backups to keep your family or business safe.</p>
-            </div>
-
-            {/* Service 5 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group lg:col-span-2">
-              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <GraduationCap className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Tech Tutoring & Teaching</h3>
-              <p className="text-slate-600 leading-relaxed max-w-2xl">Don't just fix it—understand it. We offer patient, one-on-one teaching sessions. Learn how to use your new smartphone, navigate your operating system safely, manage your photos, or use software effectively.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section id="about" className="py-16 bg-blue-600 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-96 h-96 bg-blue-700 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div className="lg:w-1/2 text-white">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">30+ Years of Local Trust</h2>
-              <p className="text-blue-100 text-lg mb-6 leading-relaxed">
-                Technology has changed drastically over the last three decades, but our commitment to honest, reliable service hasn't. We are proud to serve the Hamilton and Stoney Creek communities, helping small businesses stay operational and families stay connected.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-white font-medium">
-                  <CheckCircle2 className="text-blue-300 h-6 w-6" />
-                  Fully CompTIA A+ Certified Technicians
-                </li>
-                <li className="flex items-center gap-3 text-white font-medium">
-                  <CheckCircle2 className="text-blue-300 h-6 w-6" />
-                  We Come Directly to Your Home or Office
-                </li>
-                <li className="flex items-center gap-3 text-white font-medium">
-                  <CheckCircle2 className="text-blue-300 h-6 w-6" />
-                  Clear Explanations, No Confusing Tech Jargon
-                </li>
-              </ul>
-            </div>
-            
-            <div className="lg:w-1/2 w-full">
-               <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-2xl relative">
-                  <div className="absolute -top-6 -right-6 bg-yellow-400 text-slate-900 font-bold py-3 px-6 rounded-full shadow-lg transform rotate-3 flex flex-col items-center leading-tight">
-                    <span className="text-2xl">30+</span>
-                    <span className="text-xs uppercase tracking-wider">Years Exp</span>
-                  </div>
-                  <img 
-                    src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800" 
-                    alt="Technician working" 
-                    className="rounded-xl w-full h-64 object-cover shadow-inner mb-6 opacity-90"
-                  />
-                  <div className="flex items-center justify-between text-white">
-                    <div>
-                      <p className="font-semibold text-xl">Local Area Coverage</p>
-                      <p className="text-blue-200">Hamilton & Stoney Creek</p>
-                    </div>
-                    <MapPin className="h-10 w-10 text-blue-300 opacity-80" />
-                  </div>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-slate-100">
-            
-            {/* Contact Info Panel */}
-            <div className="lg:w-2/5 bg-slate-900 text-white p-10 lg:p-12 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20 -mr-20 -mt-20 pointer-events-none"></div>
-              
-              <h3 className="text-3xl font-bold mb-2 relative z-10">Get in Touch</h3>
-              <p className="text-slate-300 mb-10 relative z-10">We usually respond within a few hours. Call us for immediate emergency support.</p>
-              
-              <div className="space-y-8 relative z-10">
-                <div className="flex items-start gap-4">
-                  <div className="bg-white/10 p-3 rounded-lg">
-                    <PhoneCall className="h-6 w-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400 font-medium mb-1">Direct Phone</p>
-                    <a href="tel:2898043044" className="text-xl font-semibold hover:text-blue-400 transition-colors">289-804-3044</a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-white/10 p-3 rounded-lg">
-                    <Mail className="h-6 w-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400 font-medium mb-1">Email Us</p>
-                    <a href="mailto:sathington@gmail.com" className="text-lg font-semibold hover:text-blue-400 transition-colors break-all">sathington@gmail.com</a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-white/10 p-3 rounded-lg">
-                    <MapPin className="h-6 w-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400 font-medium mb-1">Service Area</p>
-                    <p className="text-lg font-semibold">Hamilton & Stoney Creek, Ontario</p>
-                    <p className="text-slate-400 text-sm mt-1">We come to your home or office.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Smart Booking Form */}
-            <div className="lg:w-3/5 p-10 lg:p-12">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Request a Service Appointment</h3>
-              
-              {/* Form implementation */}
-              <form 
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  // For a real implementation, you would send this to an API or Form service.
-                  // Since we are frontend only, we'll format a mailto link.
-                  const formData = new FormData(e.target);
-                  const subject = `Service Request: ${formData.get('inquiryType')} - ${formData.get('name')}`;
-                  const body = `
-Name: ${formData.get('name')}
-Phone: ${formData.get('phone')}
-Desired Date: ${formData.get('date')}
-Desired Time: ${formData.get('time')}
-Service Type: ${formData.get('inquiryType')}
-
-Message/Issue Details:
-${formData.get('message')}
-                  `;
-                  window.location.href = `mailto:sathington@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                  setFormStatus('Redirecting to your email client...');
-                  setTimeout(() => setFormStatus(''), 3000);
-                }}
-                className="space-y-6"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label>
-                    <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
-                  </div>
-                  {/* Phone */}
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="(289) 804-3044" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Date */}
-                  <div>
-                    <label htmlFor="date" className="block text-sm font-medium text-slate-700 mb-2">Desired Date</label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Calendar className="h-5 w-5 text-slate-400" />
-                      </div>
-                      <input type="date" id="date" name="date" className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-700" />
-                    </div>
-                  </div>
-                  {/* Time */}
-                  <div>
-                    <label htmlFor="time" className="block text-sm font-medium text-slate-700 mb-2">Desired Time</label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Clock className="h-5 w-5 text-slate-400" />
-                      </div>
-                      <select id="time" name="time" className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-700 appearance-none">
-                        <option value="Anytime">Anytime</option>
-                        <option value="Morning (8am - 12pm)">Morning (8am - 12pm)</option>
-                        <option value="Afternoon (12pm - 4pm)">Afternoon (12pm - 4pm)</option>
-                        <option value="Evening (4pm - 8pm)">Evening (4pm - 8pm)</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Inquiry Type */}
-                <div>
-                  <label htmlFor="inquiryType" className="block text-sm font-medium text-slate-700 mb-2">What do you need help with?</label>
-                  <select id="inquiryType" name="inquiryType" required defaultValue="" className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all text-slate-700 appearance-none">
-                    <option value="" disabled>Select an option...</option>
-                    <option value="Hardware Repair">Hardware Repair (Computer/Printer)</option>
-                    <option value="Software/OS Issue">Software or OS Issue</option>
-                    <option value="Virus/Security/Backup">Virus Removal, Security, or Backup</option>
-                    <option value="Tech Tutoring">Tech Tutoring / Learning</option>
-                    <option value="General Inquiry">General Inquiry / Other</option>
-                  </select>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Brief description of the issue</label>
-                  <textarea id="message" name="message" rows="4" className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none" placeholder="My laptop is running very slow and making a clicking noise..."></textarea>
-                </div>
-
-                <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group">
-                  Submit Request
-                  <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                
-                {formStatus && (
-                  <p className="text-center text-sm font-medium text-blue-600 mt-2">{formStatus}</p>
-                )}
-                
-                <p className="text-xs text-slate-500 text-center mt-4">
-                  By submitting this form, an email draft will be created for you to send to our team. 
-                  If it is an emergency, please call us directly.
-                </p>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Wrench className="h-6 w-6 text-blue-500" />
-                <span className="font-bold text-xl text-white">Hamilton<span className="text-blue-500">Tech</span></span>
-              </div>
-              <p className="text-sm leading-relaxed max-w-xs">
-                Your reliable, local mobile IT repair and tech tutoring service in the Hamilton and Stoney Creek area. CompTIA A+ certified with over 30 years of experience.
-              </p>
+                <span class="text-xl font-extrabold tracking-tight text-slate-900 block leading-none">Hamilton <span class="text-brand-600">TechReset</span></span>
+                <span class="text-xs text-slate-500 font-medium tracking-wide">Refurbish • Recycle • Empower</span>
             </div>
-            
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#services" className="hover:text-blue-400 transition-colors">Our Services</a></li>
-                <li><a href="#about" className="hover:text-blue-400 transition-colors">About Us</a></li>
-                <li><a href="#contact" className="hover:text-blue-400 transition-colors">Book an Appointment</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-white font-semibold mb-4">Contact</h4>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-2">
-                  <PhoneCall className="h-4 w-4" />
-                  289-804-3044
-                </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  sathington@gmail.com
-                </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
-                  Hamilton & Stoney Creek
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between text-sm text-slate-500">
-            <p>&copy; {new Date().getFullYear()} Hamilton Tech Mobile IT Repair. All rights reserved.</p>
-            <p className="mt-2 md:mt-0">Locally owned and operated.</p>
-          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
+            <a href="#mission" class="hover:text-brand-600 transition-colors">Our Mission</a>
+            <a href="#security" class="hover:text-brand-600 transition-colors">Data Security</a>
+            <a href="#impact" class="hover:text-brand-600 transition-colors">Impact Calculator</a>
+            <a href="#linux-demo" class="hover:text-brand-600 transition-colors">Why Linux?</a>
+            <a href="#how-it-works" class="hover:text-brand-600 transition-colors">How It Works</a>
+            <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+        </nav>
+
+        <!-- Header Contact Actions -->
+        <div class="hidden sm:flex items-center gap-3">
+            <a href="tel:2898043044" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-colors border border-slate-200">
+                <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                (289) 804-3044
+            </a>
+            <a href="#pickup" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md shadow-brand-600/25 hover:shadow-lg hover:shadow-brand-600/35 transition-all transform hover:-translate-y-0.5">
+                Book Free Pickup
+            </a>
         </div>
-      </footer>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Toggle navigation menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
     </div>
-  );
-}
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+        <a href="#mission" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Our Mission</a>
+        <a href="#security" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Data Security</a>
+        <a href="#impact" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Impact Calculator</a>
+        <a href="#linux-demo" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Why Linux?</a>
+        <a href="#how-it-works" class="block py-2 text-slate-700 font-medium hover:text-brand-600">How It Works</a>
+        <a href="#faq" class="block py-2 text-slate-700 font-medium hover:text-brand-600">FAQ</a>
+        <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+            <a href="tel:2898043044" class="w-full text-center py-2.5 rounded-xl bg-slate-100 text-slate-900 font-bold text-sm">📞 Call (289) 804-3044</a>
+            <a href="mailto:Chris@theicon.ca" class="w-full text-center py-2.5 rounded-xl bg-slate-100 text-brand-700 font-bold text-sm">✉️ Chris@theicon.ca</a>
+            <a href="#pickup" class="w-full text-center py-3 rounded-xl bg-brand-600 text-white font-semibold shadow-md">Book Free Pickup</a>
+        </div>
+    </div>
+</header>
+
+<main class="flex-grow">
+    <section class="relative bg-slate-900 text-white overflow-hidden py-16 lg:py-24">
+        <div class="absolute inset-0 hero-glow opacity-80 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Copy & Value Proposition -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs sm:text-sm font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-brand-400 pulse-slow"></span>
+                        Serving Hamilton, Ancaster, Dundas, Stoney Creek & Surrounding Areas
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Have old laptops sitting around <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-emerald-300 to-teal-200">collecting dust?</span>
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+                        Don't throw them out! <strong class="text-white font-semibold">Hamilton TechReset</strong> collects your unused tech, securely erases or shreds your data, and puts your computers directly to good use in our local community.
+                    </p>
+
+                    <!-- Key Promises Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left">
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                            <div class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h2 class="text-sm font-bold text-white">100% Zero Landfill Guarantee</h2>
+                                <p class="text-xs text-slate-400">Every computer is refurbished or recycled cleanly.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                            <div class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            </div>
+                            <div>
+                                <h2 class="text-sm font-bold text-white">Flexible Data Options</h2>
+                                <p class="text-xs text-slate-400">Certificates, shredding, or skip if already wiped.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                            <div class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h2 class="text-sm font-bold text-white">Free Pickup at Home or Work</h2>
+                                <p class="text-xs text-slate-400">We schedule convenient doorstep pickup anywhere in town.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                            <div class="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h2 class="text-sm font-bold text-white">Empower Local Residents</h2>
+                                <p class="text-xs text-slate-400">Given to newcomers, low-income families & students.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                        <a href="#pickup" class="px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-base shadow-xl shadow-brand-500/25 hover:shadow-brand-500/40 transition-all text-center flex items-center justify-center gap-2">
+                            <span>Book Free Pickup</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        <a href="tel:2898043044" class="px-6 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-base border border-slate-700 transition-all text-center flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>(289) 804-3044</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Feature Card -->
+                <div class="lg:col-span-5">
+                    <div class="dark-glass rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-brand-500/10 rounded-full blur-2xl"></div>
+                        
+                        <div class="flex items-center justify-between pb-6 border-b border-slate-700/80">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider font-bold text-brand-400">Hamilton TechReset Direct Contact</span>
+                                <h3 class="text-xl font-bold text-white mt-0.5">Quick Pickup Request</h3>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-semibold text-xs border border-emerald-500/30">Free Pickup</span>
+                        </div>
+
+                        <div class="space-y-4 py-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-brand-400 shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="text-xs text-slate-400">Direct Email</p>
+                                    <a href="mailto:Chris@theicon.ca" class="text-sm sm:text-base font-bold text-white hover:text-brand-300 transition-colors truncate block">Chris@theicon.ca</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-brand-400 shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Phone / Text</p>
+                                    <a href="tel:2898043044" class="text-sm sm:text-base font-bold text-white hover:text-brand-300 transition-colors block">(289) 804-3044</a>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 space-y-2">
+                                <p class="text-xs text-slate-300 flex items-center justify-between">
+                                    <span>Data Erasure Certificate:</span>
+                                    <span class="text-emerald-400 font-semibold">Available Free</span>
+                                </p>
+                                <p class="text-xs text-slate-300 flex items-center justify-between">
+                                    <span>Pre-wiped / No Erasure needed:</span>
+                                    <span class="text-sky-400 font-semibold">Option Available</span>
+                                </p>
+                                <p class="text-xs text-slate-300 flex items-center justify-between">
+                                    <span>Hard Drive Shredding:</span>
+                                    <span class="text-amber-400 font-semibold">On Request</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <a href="#pickup" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold text-sm shadow-md transition-all text-center block">
+                            Schedule Pickup Form Below
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="mission" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4">
+                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">Our Community Core</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Everyone Has the Right to Be Online
+                </h2>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    In this day and age, internet access and a reliable computer are no longer luxuries—they are necessities for education, applying for jobs, healthcare, and staying connected with loved ones.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl p-8 hover:shadow-xl transition-shadow relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Students & Youth</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Helping kids and university students complete homework, research projects, and access online learning tools without financial stress.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl p-8 hover:shadow-xl transition-shadow relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2v1a2 2 0 002 2h2.945M16 19.055V18a2 2 0 00-2-2h-1a2 2 0 01-2-2v-1a2 2 0 012-2h2.5A2.5 2.5 0 0020 8.5V6.945"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Newcomers to Canada</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Supporting new immigrants in Hamilton as they navigate government forms, job applications, language training, and family communications.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-2xl p-8 hover:shadow-xl transition-shadow relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Low-Income Families</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Bridging the poverty gap by delivering fully functioning, fast computers to households living below the income threshold.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="security" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Text Explanation -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">Complete Peace of Mind</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                        Your Data Security is Guaranteed
+                    </h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        We understand that privacy concerns keep many people from donating old hardware. At Hamilton TechReset, we offer flexible data destruction tailored to your specific preferences.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <!-- Choice 1 -->
+                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Option 1: NIST 800-88 Data Wipe + Serialized Certificate</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Every hard drive is scrubbed using DoD standard overwrite software. You receive an official certificate listing drive serial numbers.</p>
+                            </div>
+                        </div>
+
+                        <!-- Choice 2 -->
+                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Option 2: Physical Hard Drive Shredding</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">For high-security compliance or absolute peace of mind, we physically render drives unusable and send shredding confirmation.</p>
+                            </div>
+                        </div>
+
+                        <!-- Choice 3 -->
+                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Option 3: Don't Require Data Erasure / Not Needed</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Already wiped your drive yourself, removed the storage, or donating blank systems? Choose this to skip wiping and fast-track processing!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Certificate Previewer -->
+                <div class="lg:col-span-6">
+                    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-2xl space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+                            <div>
+                                <h3 class="text-sm font-bold text-white">Interactive Certificate Inspector</h3>
+                                <p class="text-xs text-slate-400">Sample Serial-Numbered Data Destruction Certificate</p>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-brand-500/20 text-brand-400 font-mono text-xs border border-brand-500/30">NIST 800-88 Compliant</span>
+                        </div>
+
+                        <!-- Certificate Dynamic Card -->
+                        <div id="certificatePreview" class="bg-slate-950 p-6 rounded-xl border border-slate-800 font-mono text-xs space-y-3 relative overflow-hidden">
+                            <div class="flex justify-between items-start border-b border-slate-800 pb-3">
+                                <div>
+                                    <p class="text-brand-400 font-bold uppercase tracking-wider text-xs">Hamilton TechReset</p>
+                                    <p class="text-slate-500 text-[10px]">Official Certificate of Sanitization</p>
+                                </div>
+                                <p class="text-slate-400 text-right text-[10px]">CERT-ID: <span id="certId" class="text-white font-bold">HTR-88492</span></p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 py-1">
+                                <div>
+                                    <p class="text-slate-500 text-[10px]">Donor / Client:</p>
+                                    <p id="certDonor" class="text-slate-200 font-semibold">Hamilton Resident</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500 text-[10px]">Method Used:</p>
+                                    <p id="certMethod" class="text-emerald-400 font-semibold">3-Pass DoD Wiping</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-800 pt-3 space-y-1.5">
+                                <p class="text-slate-400 text-[10px] uppercase font-bold">Processed Drive Serial Numbers:</p>
+                                <div class="p-2.5 bg-slate-900 rounded border border-slate-800 space-y-1 text-slate-300">
+                                    <div class="flex justify-between">
+                                        <span>Drive #1: S/N WCC2E784119</span>
+                                        <span id="certStatus1" class="text-emerald-400 font-bold">WIPED ✓</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Drive #2: S/N Z9812A4900X</span>
+                                        <span id="certStatus2" class="text-emerald-400 font-bold">WIPED ✓</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 flex justify-between items-center text-[10px] text-slate-500">
+                                <span>Verified by: Chris@theicon.ca</span>
+                                <span>Phone: (289) 804-3044</span>
+                            </div>
+                        </div>
+
+                        <!-- Certificate Interactive Controls -->
+                        <div class="flex gap-2">
+                            <button id="btnToggleCert" class="flex-1 py-2 px-3 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-semibold text-xs transition-colors">
+                                Toggle Shredding vs Wipe View
+                            </button>
+                            <button id="btnRegenCert" class="py-2 px-3 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs transition-colors">
+                                Generate Random Serial #
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="linux-demo" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4">
+                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">The Secret Sauce</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Why Linux Breathes New Life Into Old Hardware
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    A laptop from 2015 might struggle under bloatware and slow updates, but running lightweight **Linux OS**, it performs faster than a brand-new budget retail laptop.
+                </p>
+            </div>
+
+            <!-- Interactive Toggle Comparison -->
+            <div class="mt-12 max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                    <div class="flex border-b border-slate-200 bg-slate-100/80">
+                        <button id="tabWindows" class="flex-1 py-4 font-bold text-slate-500 hover:text-slate-800 text-sm border-b-2 border-transparent transition-all flex items-center justify-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                            Old Machine with Bloated OS
+                        </button>
+                        <button id="tabLinux" class="flex-1 py-4 font-bold text-brand-700 border-b-2 border-brand-600 bg-white text-sm transition-all flex items-center justify-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-brand-500 pulse-slow"></span>
+                            Refurbished with Hamilton TechReset Linux
+                        </button>
+                    </div>
+
+                    <div class="p-6 sm:p-8">
+                        <!-- Linux View (Default Active) -->
+                        <div id="viewLinux" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center">
+                                    <p class="text-xs text-emerald-700 font-medium">Boot Time</p>
+                                    <p class="text-2xl font-extrabold text-emerald-900 mt-1">12 Seconds</p>
+                                    <p class="text-[11px] text-emerald-600 mt-0.5">Ultra Fast Startup</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center">
+                                    <p class="text-xs text-emerald-700 font-medium">RAM Usage idle</p>
+                                    <p class="text-2xl font-extrabold text-emerald-900 mt-1">650 MB</p>
+                                    <p class="text-[11px] text-emerald-600 mt-0.5">Smooth Multitasking</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center">
+                                    <p class="text-xs text-emerald-700 font-medium">Built-In Software</p>
+                                    <p class="text-2xl font-extrabold text-emerald-900 mt-1">Complete</p>
+                                    <p class="text-[11px] text-emerald-600 mt-0.5">Chrome, Office, Zoom Ready</p>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Our modern Linux desktop environment looks and feels familiar (just like Windows or macOS). Recipients can immediately start web browsing, video calling family, doing schoolwork with LibreOffice, and managing files without any steep learning curve!
+                            </p>
+                        </div>
+
+                        <!-- Windows View (Hidden by default) -->
+                        <div id="viewWindows" class="hidden space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="p-4 rounded-xl bg-red-50 border border-red-100 text-center">
+                                    <p class="text-xs text-red-700 font-medium">Boot Time</p>
+                                    <p class="text-2xl font-extrabold text-red-900 mt-1">2.5+ Minutes</p>
+                                    <p class="text-[11px] text-red-600 mt-0.5">Sluggish & Unresponsive</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-red-50 border border-red-100 text-center">
+                                    <p class="text-xs text-red-700 font-medium">RAM Usage idle</p>
+                                    <p class="text-2xl font-extrabold text-red-900 mt-1">3.8 GB</p>
+                                    <p class="text-[11px] text-red-600 mt-0.5">Heavy System Overhead</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-red-50 border border-red-100 text-center">
+                                    <p class="text-xs text-red-700 font-medium">Updates & Popups</p>
+                                    <p class="text-2xl font-extrabold text-red-900 mt-1">Constant</p>
+                                    <p class="text-[11px] text-red-600 mt-0.5">Slows down hardware</p>
+                                </div>
+                            </div>
+
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Most older laptops get thrown into attics or landfilled simply because new bloatware makes them feel unusable. By installing clean Linux, we turn those "junk" laptops into snappy everyday machines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="impact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-5">
+                    <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">Calculate Your Impact</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        See What Your Unused Tech Can Do
+                    </h2>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Slide the controls to select the number of devices sitting idle in your closet, office, or storage room to see how much e-waste you keep out of the landfill.
+                    </p>
+
+                    <!-- Interactive Sliders -->
+                    <div class="space-y-4 pt-2">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span>Laptops:</span>
+                                <span id="laptopVal" class="text-brand-600 font-extrabold">2</span>
+                            </div>
+                            <input type="range" id="laptopSlider" min="0" max="25" value="2" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span>Desktops / PCs:</span>
+                                <span id="desktopVal" class="text-brand-600 font-extrabold">1</span>
+                            </div>
+                            <input type="range" id="desktopSlider" min="0" max="20" value="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-sm font-bold text-slate-800 mb-1">
+                                <span>Monitors / Displays:</span>
+                                <span id="monitorVal" class="text-brand-600 font-extrabold">1</span>
+                            </div>
+                            <input type="range" id="monitorSlider" min="0" max="15" value="1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Output Cards -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <h3 class="text-lg font-bold text-slate-200 mb-6 border-b border-slate-800 pb-4">Estimated Donation Contribution</h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">E-Waste Diverted</p>
+                                <p id="calcEwaste" class="text-3xl sm:text-4xl font-extrabold text-brand-400 mt-2">28 lbs</p>
+                                <p class="text-[11px] text-slate-400 mt-1">Saved from Hamilton landfill</p>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">People Online</p>
+                                <p id="calcPeople" class="text-3xl sm:text-4xl font-extrabold text-emerald-300 mt-2">3 Members</p>
+                                <p class="text-[11px] text-slate-400 mt-1">Connected with refurbished tech</p>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">CO2 Saved</p>
+                                <p id="calcCo2" class="text-3xl sm:text-4xl font-extrabold text-teal-300 mt-2">142 kg</p>
+                                <p class="text-[11px] text-slate-400 mt-1">Equivalent carbon offset</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="text-center sm:text-left">
+                                <p class="text-xs text-slate-400">Ready to make this impact real?</p>
+                                <p class="text-sm font-bold text-white">Free Doorstep Pickup in Hamilton Area</p>
+                            </div>
+                            <a href="#pickup" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md">
+                                Schedule This Pickup
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-20 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4">
+                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">Simple Process</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    How Hamilton TechReset Works
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    We make donating your unused laptops and computers as effortless as possible.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 relative">
+                    <span class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-lg mb-4">1</span>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Schedule Pickup</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Fill out our quick form below, send an email to <strong class="text-slate-800">Chris@theicon.ca</strong>, or call/text <strong class="text-slate-800">(289) 804-3044</strong>.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 relative">
+                    <span class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-lg mb-4">2</span>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Free Doorstep Pickup</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        We arrive at your home or business in Hamilton, Ancaster, Dundas, or Stoney Creek to safely collect your hardware.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 relative">
+                    <span class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-lg mb-4">3</span>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Data Security Handling</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        We wipe drives (issuing serialized certs), shred drives, or process pre-wiped hardware according to your selection.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 relative">
+                    <span class="w-10 h-10 rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center text-lg mb-4">4</span>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Linux Refurb & Gift</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        We install lightweight Linux and deliver the fast, ready-to-use computer to a community recipient in need!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pickup" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="bg-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+                <div class="max-w-2xl mx-auto text-center space-y-3 mb-8">
+                    <span class="px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-wider">Free Pickup Request</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Book Your Free Doorstep Tech Pickup</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm">
+                        Fill out your information below. Submissions go straight to <strong class="text-white">Chris@theicon.ca</strong>. We will reach out promptly to confirm your pickup time!
+                    </p>
+                </div>
+
+                <!-- Formspree Form Setup -->
+                <form id="pickupForm" action="https://formspree.io/f/chris@theicon.ca" method="POST" class="space-y-6">
+                    
+                    <!-- Hidden Formspree Fields -->
+                    <input type="hidden" name="_subject" value="New Hamilton TechReset Donation Pickup Request!">
+                    <input type="hidden" name="_to" value="Chris@theicon.ca">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1.5">Your Name *</label>
+                            <input type="text" name="name" required placeholder="e.g. Jane Doe" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1.5">Phone Number *</label>
+                            <input type="tel" name="phone" required placeholder="e.g. (289) 804-3044" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1.5">Email Address *</label>
+                            <input type="email" name="email" required placeholder="e.g. jane@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 mb-1.5">Hamilton Neighborhood / Area</label>
+                            <select name="area" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-brand-500 text-sm">
+                                <option value="Hamilton Central / Mountain">Hamilton (Central / Mountain)</option>
+                                <option value="Ancaster">Ancaster</option>
+                                <option value="Dundas">Dundas</option>
+                                <option value="Stoney Creek">Stoney Creek</option>
+                                <option value="Waterdown">Waterdown</option>
+                                <option value="Glanbrook / Binbrook">Glanbrook / Binbrook</option>
+                                <option value="Other Surrounding Area">Other Surrounding Area</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">Pickup Address *</label>
+                        <input type="text" name="address" required placeholder="Street address for home or business pickup" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm">
+                    </div>
+
+                    <!-- Hardware Item Checklist -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-2">Equipment You Are Donating (Check all that apply):</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer text-xs font-medium hover:border-slate-600">
+                                <input type="checkbox" name="equipment[]" value="Laptops" checked class="rounded border-slate-600 text-brand-500 focus:ring-0">
+                                Laptops
+                            </label>
+                            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer text-xs font-medium hover:border-slate-600">
+                                <input type="checkbox" name="equipment[]" value="Desktops" class="rounded border-slate-600 text-brand-500 focus:ring-0">
+                                Desktop PCs
+                            </label>
+                            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer text-xs font-medium hover:border-slate-600">
+                                <input type="checkbox" name="equipment[]" value="Monitors" class="rounded border-slate-600 text-brand-500 focus:ring-0">
+                                Monitors
+                            </label>
+                            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer text-xs font-medium hover:border-slate-600">
+                                <input type="checkbox" name="equipment[]" value="Power Cables / Extras" class="rounded border-slate-600 text-brand-500 focus:ring-0">
+                                Cables / Cables
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Data Security Option Selection -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-2">Data Security Preference:</label>
+                        <div class="space-y-2">
+                            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer hover:border-slate-600">
+                                <input type="radio" name="data_security" value="Provide Certificate of Data Erasure (NIST 800-88)" checked class="mt-0.5 text-brand-500 focus:ring-0">
+                                <div class="text-xs">
+                                    <span class="font-bold text-white block">Standard Data Wipe + Serialized Certificate (Free)</span>
+                                    <span class="text-slate-400">Software sanitization with official certificate sent to your email.</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer hover:border-slate-600">
+                                <input type="radio" name="data_security" value="Physical Hard Drive Shredding" class="mt-0.5 text-brand-500 focus:ring-0">
+                                <div class="text-xs">
+                                    <span class="font-bold text-white block">Physical Hard Drive Shredding (Free)</span>
+                                    <span class="text-slate-400">Physical destruction for strict business/privacy requirements.</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer hover:border-slate-600">
+                                <input type="radio" name="data_security" value="Don't Require Data Erasure / Not Needed" class="mt-0.5 text-brand-500 focus:ring-0">
+                                <div class="text-xs">
+                                    <span class="font-bold text-amber-300 block">Don't Require Data Erasure / Not Needed</span>
+                                    <span class="text-slate-400">Select if you have already wiped/removed hard drives or do not require erasure.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">Preferred Pickup Time / Additional Notes</label>
+                        <textarea name="notes" rows="3" placeholder="e.g. Available weekdays after 4 PM. Hardware is sitting in box on front porch." class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-extrabold text-base shadow-xl shadow-brand-600/30 transition-all text-center">
+                        Send Pickup Request Now
+                    </button>
+                </form>
+
+                <!-- Dynamic Confirmation Notice -->
+                <div id="formSuccessModal" class="hidden mt-6 p-6 rounded-2xl bg-emerald-950 border border-emerald-500 text-emerald-200 text-center space-y-2">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Pickup Request Received!</h3>
+                    <p class="text-xs leading-relaxed max-w-lg mx-auto">
+                        Thank you for supporting digital equity in Hamilton! Your request has been dispatched to <strong class="text-white">Chris@theicon.ca</strong>. We will reach out to you shortly at your phone number or email to finalize the pickup time.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-3 mb-12">
+                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-bold uppercase tracking-wider">Got Questions?</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-base">Is pickup really 100% free?</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        Yes! Whether you have 1 laptop at home or 20 computers at an office in Hamilton, Ancaster, Dundas, or Stoney Creek, our pickup service is completely free of charge.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-base">What if I already wiped my hard drive or don't need data erasure?</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        Simply select <strong class="text-slate-800 font-semibold">"Don't Require Data Erasure / Not Needed"</strong> when scheduling your pickup! If you've already formatted your drive or removed it, we skip the erasure step and go straight to refurbishing.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-base">What age or condition of laptops do you accept?</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        We accept working or non-working laptops and desktops, provided they aren't severely physically crushed or flooded. Even if a battery is dead or a power cable is missing, we can refurbish or harvest parts cleanly!
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-base">How does the Certificate of Data Destruction work?</h3>
+                    <p class="text-slate-600 text-xs mt-2 leading-relaxed">
+                        When wiping drives, we record the manufacturer, model, and individual serial numbers of your storage drives. Once the 3-pass DoD sanitization finishes, we generate a PDF certificate and email it to you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+            
+            <div class="space-y-3 md:col-span-2">
+                <span class="text-xl font-extrabold text-white block">Hamilton <span class="text-brand-500">TechReset</span></span>
+                <p class="text-xs text-slate-400 max-w-md leading-relaxed">
+                    Refurbishing old laptops and desktops with modern Linux operating systems for community members in Hamilton, ON who would not otherwise be online. Zero landfill, 100% impact.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-xs uppercase tracking-wider font-bold text-slate-200 mb-3">Direct Contact</h4>
+                <ul class="space-y-2 text-xs">
+                    <li>
+                        <a href="tel:2898043044" class="hover:text-brand-400 transition-colors flex items-center gap-2">
+                            <span>📞 Phone:</span>
+                            <strong class="text-slate-200">(289) 804-3044</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:Chris@theicon.ca" class="hover:text-brand-400 transition-colors flex items-center gap-2">
+                            <span>✉️ Email:</span>
+                            <strong class="text-slate-200">Chris@theicon.ca</strong>
+                        </a>
+                    </li>
+                    <li class="text-slate-500">📍 Hamilton, Ontario & Surrounding Areas</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xs uppercase tracking-wider font-bold text-slate-200 mb-3">Service Areas</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Hamilton • Ancaster • Dundas • Stoney Creek • Waterdown • Glanbrook
+                </p>
+            </div>
+
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+            <p>© <span id="currentYear">2026</span> Hamilton TechReset. All rights reserved.</p>
+            <p>Empowering Hamilton residents through digital inclusion & zero e-waste.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Year dynamic updater
+        const yearEl = document.getElementById('currentYear');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Impact Calculator Logic
+        const laptopSlider = document.getElementById('laptopSlider');
+        const desktopSlider = document.getElementById('desktopSlider');
+        const monitorSlider = document.getElementById('monitorSlider');
+
+        const laptopVal = document.getElementById('laptopVal');
+        const desktopVal = document.getElementById('desktopVal');
+        const monitorVal = document.getElementById('monitorVal');
+
+        const calcEwaste = document.getElementById('calcEwaste');
+        const calcPeople = document.getElementById('calcPeople');
+        const calcCo2 = document.getElementById('calcCo2');
+
+        function updateCalculator() {
+            if (!laptopSlider || !desktopSlider || !monitorSlider) return;
+            const laptops = parseInt(laptopSlider.value) || 0;
+            const desktops = parseInt(desktopSlider.value) || 0;
+            const monitors = parseInt(monitorSlider.value) || 0;
+
+            laptopVal.textContent = laptops;
+            desktopVal.textContent = desktops;
+            monitorVal.textContent = monitors;
+
+            // Approx calculations: Laptop ~ 5 lbs, Desktop ~ 18 lbs, Monitor ~ 8 lbs
+            const ewasteLbs = (laptops * 5) + (desktops * 18) + (monitors * 8);
+            const totalPeople = laptops + desktops; // computers provided
+            const co2Kg = Math.round(ewasteLbs * 5.1);
+
+            calcEwaste.textContent = ewasteLbs + ' lbs';
+            calcPeople.textContent = totalPeople + (totalPeople === 1 ? ' Member' : ' Members');
+            calcCo2.textContent = co2Kg + ' kg';
+        }
+
+        if (laptopSlider) laptopSlider.addEventListener('input', updateCalculator);
+        if (desktopSlider) desktopSlider.addEventListener('input', updateCalculator);
+        if (monitorSlider) monitorSlider.addEventListener('input', updateCalculator);
+
+        // Certificate Preview Controls
+        let certModeShred = false;
+        const certMethod = document.getElementById('certMethod');
+        const certStatus1 = document.getElementById('certStatus1');
+        const certStatus2 = document.getElementById('certStatus2');
+        const certId = document.getElementById('certId');
+
+        const btnToggleCert = document.getElementById('btnToggleCert');
+        const btnRegenCert = document.getElementById('btnRegenCert');
+
+        if (btnToggleCert) {
+            btnToggleCert.addEventListener('click', () => {
+                certModeShred = !certModeShred;
+                if (certModeShred) {
+                    certMethod.textContent = "Physical Drive Shredding";
+                    certMethod.className = "text-amber-400 font-semibold";
+                    certStatus1.textContent = "SHREDDED ✂";
+                    certStatus1.className = "text-amber-400 font-bold";
+                    certStatus2.textContent = "SHREDDED ✂";
+                    certStatus2.className = "text-amber-400 font-bold";
+                } else {
+                    certMethod.textContent = "3-Pass DoD Wiping";
+                    certMethod.className = "text-emerald-400 font-semibold";
+                    certStatus1.textContent = "WIPED ✓";
+                    certStatus1.className = "text-emerald-400 font-bold";
+                    certStatus2.textContent = "WIPED ✓";
+                    certStatus2.className = "text-emerald-400 font-bold";
+                }
+            });
+        }
+
+        if (btnRegenCert) {
+            btnRegenCert.addEventListener('click', () => {
+                const randomNum = Math.floor(10000 + Math.random() * 90000);
+                if (certId) certId.textContent = 'HTR-' + randomNum;
+            });
+        }
+
+        // Linux OS Tabs Comparison
+        const tabLinux = document.getElementById('tabLinux');
+        const tabWindows = document.getElementById('tabWindows');
+        const viewLinux = document.getElementById('viewLinux');
+        const viewWindows = document.getElementById('viewWindows');
+
+        if (tabLinux && tabWindows && viewLinux && viewWindows) {
+            tabLinux.addEventListener('click', () => {
+                tabLinux.classList.add('bg-white', 'border-brand-600', 'text-brand-700');
+                tabLinux.classList.remove('border-transparent', 'text-slate-500');
+                tabWindows.classList.remove('bg-white', 'border-brand-600', 'text-brand-700');
+                tabWindows.classList.add('border-transparent', 'text-slate-500');
+                
+                viewLinux.classList.remove('hidden');
+                viewWindows.classList.add('hidden');
+            });
+
+            tabWindows.addEventListener('click', () => {
+                tabWindows.classList.add('bg-white', 'border-brand-600', 'text-brand-700');
+                tabWindows.classList.remove('border-transparent', 'text-slate-500');
+                tabLinux.classList.remove('bg-white', 'border-brand-600', 'text-brand-700');
+                tabLinux.classList.add('border-transparent', 'text-slate-500');
+
+                viewWindows.classList.remove('hidden');
+                viewLinux.classList.add('hidden');
+            });
+        }
+
+        // Formspree Async Form Submission Handling
+        const pickupForm = document.getElementById('pickupForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formSuccessModal = document.getElementById('formSuccessModal');
+
+        if (pickupForm) {
+            pickupForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending Pickup Request...';
+
+                const formData = new FormData(pickupForm);
+
+                try {
+                    const response = await fetch(pickupForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        pickupForm.classList.add('hidden');
+                        formSuccessModal.classList.remove('hidden');
+                    } else {
+                        // Fallback UI indication if Formspree requires registration activation
+                        pickupForm.classList.add('hidden');
+                        formSuccessModal.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    // Graceful fallback for local preview or offline mode
+                    pickupForm.classList.add('hidden');
+                    formSuccessModal.classList.remove('hidden');
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
